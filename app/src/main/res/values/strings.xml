@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CipherHub</string>
+    <string name="hello">Hello</string>
+    <string name="button">Click me.</string>
+    <string name="change_activity">Caesar</string>
+    <string name="decoded_input">Enter Decoded Text</string>
+    <string name="coded_output">Enter Encoded Text (Reverse)</string>
 </resources>
