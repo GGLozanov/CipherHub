@@ -8,6 +8,23 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/VigenereButton"
+        android:layout_width="108dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginRight="152dp"
+        android:layout_marginBottom="201dp"
+        android:text="@string/change_activity_vigenere"
+        android:textColorHighlight="#00AF2929"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HelloText" />
+
+    <Button
         android:id="@+id/printHelloButton"
         android:layout_width="105dp"
         android:layout_height="0dp"
@@ -27,18 +44,18 @@
         android:layout_height="38dp"
         android:layout_marginStart="173dp"
         android:layout_marginLeft="173dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="51dp"
         android:layout_marginEnd="179dp"
         android:layout_marginRight="179dp"
-        android:layout_marginBottom="275dp"
+        android:layout_marginBottom="344dp"
         android:width="120dp"
         android:text="@string/hello"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/printHelloButton"
-        app:layout_constraintVertical_bias="0.0"
         tools:text="@string/hello" />
 
     <Button
@@ -51,7 +68,7 @@
         android:layout_marginEnd="152dp"
         android:layout_marginRight="152dp"
         android:layout_marginBottom="111dp"
-        android:text="@string/change_activity"
+        android:text="@string/change_activity_caesar"
         android:textColorHighlight="#00AF2929"
         app:layout_constraintBottom_toTopOf="@+id/printHelloButton"
         app:layout_constraintEnd_toEndOf="parent"

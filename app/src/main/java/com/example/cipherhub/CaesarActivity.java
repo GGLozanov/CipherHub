@@ -10,18 +10,27 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CaesarActivity extends AppCompatActivity {
     EditText caesarText;
     EditText normalInput;
+
     int key = 3;
+
     boolean isCaesarEvoked = false;
     boolean isDecodeEvoked = false;
+
     //TextView caesarInput;
     private void CaesarDecoder(Editable base){
         String decodedText = "";
         String defaultInput = base.toString();
-        for(int i = 0; i < defaultInput.length(); i++){
+        for(int i = 0; i < defaultInput.length(); i++) {
+
             int currentCharValue = (int) defaultInput.charAt(i);
             int asciiValue = currentCharValue + key;
-            if(asciiValue > 'Z' && asciiValue < 'a')asciiValue += 26;
-            if((asciiValue < 'A' && asciiValue != 32) || asciiValue > 'z')continue;
+
+            if(asciiValue > 'Z' && asciiValue < 'a') {
+                asciiValue += 26;
+            }
+
+            //if(((asciiValue != ' ' && (asciiValue < 'A')) || (asciiValue > 'z'))continue;
+
             decodedText += (char)asciiValue;
         }
         normalInput.setText(decodedText);
@@ -31,11 +40,15 @@ public class CaesarActivity extends AppCompatActivity {
     private void CaesarCipher(Editable base){
         String encodedText = "";
         String defaultInput = base.toString();
-        for(int i = 0; i < defaultInput.length(); i++){
+        for(int i = 0; i < defaultInput.length(); i++) {
+
             int currentCharValue = (int) defaultInput.charAt(i);
             int asciiValue = currentCharValue - key;
+
             if(asciiValue > 'Z' && asciiValue < 'a')asciiValue += 26;
-            if((asciiValue < 'A' && asciiValue != 32) || asciiValue > 'z')continue;
+
+            //((asciiValue != '.' && asciiValue != '!' && asciiValue != '?' && asciiValue != ',' && asciiValue != ':' && asciiValue != ';' && asciiValue != '-') || asciiValue > 'z')continue;
+
             encodedText += (char)asciiValue;
         }
         caesarText.setText(encodedText);
@@ -80,15 +93,17 @@ public class CaesarActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if(!isDecodeEvoked) {
-                    isCaesarEvoked = false;
+                    isCaesarEvoked = true;
                     CaesarDecoder(s);
                     //isDecodeEvoked = false;
                 }
                 isDecodeEvoked = false;
             }
         };
+
         normalInput = (EditText) findViewById(R.id.CaesarStringInput);
         caesarText = (EditText) findViewById(R.id.CaesarStringOutput);
+
         normalInput.addTextChangedListener(normaltoCaesarListener);
         caesarText.addTextChangedListener(CaesartoNormalListener);
     }

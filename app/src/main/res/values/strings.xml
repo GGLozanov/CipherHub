@@ -2,7 +2,11 @@
     <string name="app_name">CipherHub</string>
     <string name="hello">Hello</string>
     <string name="button">Click me.</string>
-    <string name="change_activity">Caesar</string>
-    <string name="decoded_input">Enter Decoded Text</string>
-    <string name="coded_output">Enter Encoded Text (Reverse)</string>
+    <string name="change_activity_caesar">Caesar</string>
+    <string name="change_activity_vigenere">Vigenere</string>
+    <string name="decoded_input_caesar">Enter Decoded Text</string>
+    <string name="coded_output_caesar">Enter Encoded Text (Reverse)</string>
+    <string name="decoded_input_vigenere">Enter Decoded Text</string>
+    <string name="key_vigenere">Enter Vigenere Key</string>
+    <string name="coded_output_vigenere">Enter Encoded Text (Reverse)</string>
 </resources>
