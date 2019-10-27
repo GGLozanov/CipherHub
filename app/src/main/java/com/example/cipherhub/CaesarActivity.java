@@ -16,6 +16,8 @@ public class CaesarActivity extends AppCompatActivity {
     boolean isCaesarEvoked = false;
     boolean isDecodeEvoked = false;
 
+    ASCIIUtils characterValidator;
+
     //TextView caesarInput;
     private void CaesarDecoder(Editable base){
         String decodedText = "";
@@ -23,19 +25,26 @@ public class CaesarActivity extends AppCompatActivity {
         for(int i = 0; i < defaultInput.length(); i++) {
 
             int currentCharValue = (int) defaultInput.charAt(i);
+
+            if(characterValidator.isSpecialCharacter(currentCharValue)) {
+                decodedText += (char)currentCharValue;
+                continue;
+            }
+
+            if(characterValidator.isInvalidCharacter((currentCharValue))) continue;
+
             int asciiValue = currentCharValue + key;
 
-            if(asciiValue > 'Z' && asciiValue < 'a') {
-                asciiValue += 26;
-            }
+            if(characterValidator.isCaesarDecodeSpecialCase(currentCharValue)) asciiValue -= 26;
 
             //if(((asciiValue != ' ' && (asciiValue < 'A')) || (asciiValue > 'z'))continue;
 
             decodedText += (char)asciiValue;
         }
+
         normalInput.setText(decodedText);
         isDecodeEvoked = true;
-        //System.out.println(encodedText);
+
     }
     private void CaesarCipher(Editable base){
         String encodedText = "";
@@ -43,22 +52,31 @@ public class CaesarActivity extends AppCompatActivity {
         for(int i = 0; i < defaultInput.length(); i++) {
 
             int currentCharValue = (int) defaultInput.charAt(i);
+
+            if(characterValidator.isSpecialCharacter(currentCharValue)) {
+                encodedText += (char)currentCharValue;
+                continue;
+            }
+
+            if(characterValidator.isInvalidCharacter((currentCharValue))) continue;
+
             int asciiValue = currentCharValue - key;
 
-            if(asciiValue > 'Z' && asciiValue < 'a')asciiValue += 26;
-
-            //((asciiValue != '.' && asciiValue != '!' && asciiValue != '?' && asciiValue != ',' && asciiValue != ':' && asciiValue != ';' && asciiValue != '-') || asciiValue > 'z')continue;
+            if(characterValidator.isCaesarEncodeSpecialCase(currentCharValue)) asciiValue += 26;
 
             encodedText += (char)asciiValue;
         }
+
         caesarText.setText(encodedText);
         isCaesarEvoked = true;
-        //System.out.println(encodedText);
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caesar);
+
         TextWatcher normaltoCaesarListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -103,6 +121,8 @@ public class CaesarActivity extends AppCompatActivity {
 
         normalInput = (EditText) findViewById(R.id.CaesarStringInput);
         caesarText = (EditText) findViewById(R.id.CaesarStringOutput);
+
+        characterValidator = new ASCIIUtils();
 
         normalInput.addTextChangedListener(normaltoCaesarListener);
         caesarText.addTextChangedListener(CaesartoNormalListener);
