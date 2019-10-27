@@ -84,8 +84,8 @@ public class VigenereActivity extends AppCompatActivity {
     private void VigenereDecode(String key, String base) {
         //Vigenere doesn't actually decode, only encodes further
         //should implement decoding
+        //One letter is omitted for some reason
 
-        //String elongatedKey = "ababa";
         Log.i("Debug", key);
 
         String decodedText = "";
@@ -128,11 +128,14 @@ public class VigenereActivity extends AppCompatActivity {
 
     private String EnlargeKey(String template, Editable s, int characterIndex, boolean mode) {
 
-        if(!characterValidator.isInvalidCharacter((int) s.toString().charAt(characterIndex)) ||
-                !characterValidator.isSpecialCharacter((int) s.toString().charAt(characterIndex))) keyString += template.charAt(characterIndex);
+        char editTextCharacter = s.toString().charAt(characterIndex);
 
-        //need to add ability to shorten key if Editable is shortened (!)
-        //keep track of previous Editable?
+        if(/*!characterValidator.isInvalidCharacter((int) editTextCharacter) ||*/
+        !characterValidator.isSpecialCharacter((int) editTextCharacter)) keyString += template.charAt(characterIndex);
+        //separate invalid check and special char check due to different ending outputs
+        else keyString += editTextCharacter;
+
+        //need to add ability to shorten key if Editable is shortened (!) -> implemented
 
         if(keyString.length() > s.length()) {
             keyString = keyString.substring(0, Math.min(keyString.length(), s.length())); //crashes if there is no substring or key is smaller than editable
@@ -154,7 +157,7 @@ public class VigenereActivity extends AppCompatActivity {
 
     private void updateDecodingKey(Editable s) {
         if(keyDecodeIndexCounter == keyTemplate.length()) keyDecodeIndexCounter = 0;
-        EnlargeKey(keyTemplate, s, keyDecodeIndexCounter++, false); //goes out of bounds when changed
+        keyString = EnlargeKey(keyTemplate, s, keyDecodeIndexCounter++, false); //goes out of bounds when changed
     }
 
     @Override
@@ -171,27 +174,7 @@ public class VigenereActivity extends AppCompatActivity {
 
         characterValidator = new ASCIIUtils();
 
-        TextWatcher KeyListener = new TextWatcher() {
-             @Override
-             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-             }
-
-             @Override
-             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-             }
-
-             @Override
-             public void afterTextChanged(Editable s) {
-                 keyTemplate = s.toString();
-                 //need to add functionality if user decided to actually replace key after it's been converted
-                 //crashes currently at that
-
-             }
-         };
-
-        TextWatcher InputToVigenereListener = new TextWatcher() {
+        final TextWatcher InputToVigenereListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -214,7 +197,7 @@ public class VigenereActivity extends AppCompatActivity {
                         if(isKeyChanged(keyTemplate, currentkeyTemplate)) { //replace key if key is changed
                             //should use compareEquals
                             //need to keep track of templates
-                            keyString = keyString.replaceAll(currentkeyTemplate, keyTemplate);
+                            keyString = keyString.replaceAll(currentkeyTemplate, keyTemplate); //crashes if key is entirely changed
                             currentkeyTemplate = keyTemplate;
                             keyEncodeIndexCounter = 0;
                         } else {
@@ -232,7 +215,7 @@ public class VigenereActivity extends AppCompatActivity {
             }
         };
 
-        TextWatcher VigenereToInputListener = new TextWatcher() {
+        final TextWatcher VigenereToInputListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -245,10 +228,10 @@ public class VigenereActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) { //ALWAYS USE THE VARIABLE "s" AND NOT YOUR BULLSHIT EDITTEXTs
-                if(keyString.length() > s.length() || keyString.isEmpty()) return;
+                    if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) return;
 
-                if(!isDecodeEvoked) {
-                        if(keyString.length() == s.length()) {
+                    if(!isDecodeEvoked) {
+                        if(keyTemplate.length() == s.length()) {
                             currentkeyTemplate = keyTemplate;
                             keyString = currentkeyTemplate;
                         }
@@ -269,6 +252,27 @@ public class VigenereActivity extends AppCompatActivity {
 
                     currentkeyTemplate = keyTemplate;
                     isDecodeEvoked = false;
+            }
+        };
+
+        TextWatcher KeyListener = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                keyTemplate = s.toString();
+                //need to add functionality if user decided to actually replace key after it's been converted
+                //crashes currently at that
+                //if(keyTemplate.length() < inputText.length()) InputToVigenereListener.afterTextChanged((Editable) inputText);
+                //else if(keyTemplate.length() < vigenereText.length()) VigenereToInputListener.afterTextChanged((Editable) vigenereText);
             }
         };
 
