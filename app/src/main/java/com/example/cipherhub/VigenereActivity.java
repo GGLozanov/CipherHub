@@ -43,6 +43,7 @@ public class VigenereActivity extends AppCompatActivity {
         String encodedText = "";
 
         for(int counter = 0; counter < base.length(); counter++) {
+
             int baseasciiValue = base.charAt(counter);
             int keyasciiValue = key.charAt(counter);
 
@@ -56,8 +57,24 @@ public class VigenereActivity extends AppCompatActivity {
                 continue;
             }
             if(characterValidator.isInvalidCharacter(baseasciiValue) || characterValidator.isInvalidCharacter(keyasciiValue)) continue;
-            if(characterValidator.isCapitalLetter(baseasciiValue) && characterValidator.isCapitalLetter(keyasciiValue)) encodedText += (char) ((baseasciiValue + keyasciiValue) - 'A');
-            else if(characterValidator.isLowercaseLetter(baseasciiValue) && characterValidator.isLowercaseLetter(keyasciiValue)) encodedText += (char) ((baseasciiValue + keyasciiValue) - 'a');
+            if(characterValidator.isInvalidCharacter(baseasciiValue) || characterValidator.isInvalidCharacter(keyasciiValue)) continue;
+            if(characterValidator.isCapitalLetter(baseasciiValue) && characterValidator.isCapitalLetter(keyasciiValue)) {
+                baseasciiValue -= 'A';
+                keyasciiValue -= 'A';
+
+                if(baseasciiValue + keyasciiValue + 'A' > 'Z') {
+                    encodedText += (char) ('A' + ((baseasciiValue + keyasciiValue + 'A') - 'Z') - 1);
+                }
+                else encodedText += (char) ('A' + (baseasciiValue + keyasciiValue));
+            }
+            else if((characterValidator.isLowercaseLetter(baseasciiValue) && characterValidator.isLowercaseLetter(keyasciiValue))) {
+                baseasciiValue -= 'a';
+                keyasciiValue -= 'a';
+                if(baseasciiValue + keyasciiValue + 'a' > 'z') {
+                    encodedText += (char) ('a' + ((baseasciiValue + keyasciiValue + 'a')  - 'z') - 1);
+                }
+                else encodedText += (char) ('a' + baseasciiValue + keyasciiValue);
+            }
         }
 
         vigenereText.setText(encodedText);
@@ -65,6 +82,8 @@ public class VigenereActivity extends AppCompatActivity {
     }
 
     private void VigenereDecode(String key, String base) {
+        //Vigenere doesn't actually decode, only encodes further
+        //should implement decoding
 
         //String elongatedKey = "ababa";
         Log.i("Debug", key);
@@ -72,8 +91,10 @@ public class VigenereActivity extends AppCompatActivity {
         String decodedText = "";
 
         for(int counter = 0; counter < base.length(); counter++) {
+
                 int baseasciiValue = base.charAt(counter);
                 int keyasciiValue = key.charAt(counter);
+
                 if(characterValidator.isSpecialCharacter(baseasciiValue)) {
                     decodedText += (char) (baseasciiValue);
                     continue;
@@ -83,8 +104,22 @@ public class VigenereActivity extends AppCompatActivity {
                     continue;
                 }
                 if(characterValidator.isInvalidCharacter(baseasciiValue) || characterValidator.isInvalidCharacter(keyasciiValue)) continue;
-                if(characterValidator.isCapitalLetter(baseasciiValue) && characterValidator.isCapitalLetter(keyasciiValue)) decodedText += (char) ((baseasciiValue + keyasciiValue) - 'A');
-                else if((characterValidator.isLowercaseLetter(baseasciiValue) && characterValidator.isLowercaseLetter(keyasciiValue))) decodedText += (char) ((baseasciiValue + keyasciiValue) - 'a');
+                if(characterValidator.isCapitalLetter(baseasciiValue) && characterValidator.isCapitalLetter(keyasciiValue)) {
+                    baseasciiValue -= 'A';
+                    keyasciiValue -= 'A';
+                    if(baseasciiValue + keyasciiValue + 'A' > 'Z') {
+                        decodedText += (char) ('A' + ((baseasciiValue + keyasciiValue + 'A') - 'Z') - 1);
+                    }
+                    else decodedText += (char) ('A' + (baseasciiValue + keyasciiValue));
+                }
+                else if((characterValidator.isLowercaseLetter(baseasciiValue) && characterValidator.isLowercaseLetter(keyasciiValue))) {
+                    baseasciiValue -= 'a';
+                    keyasciiValue -= 'a';
+                    if(baseasciiValue + keyasciiValue + 'a' > 'z') {
+                        decodedText += (char) ('a' + ((baseasciiValue + keyasciiValue + 'a') - 'z') - 1);
+                    }
+                    else decodedText += (char) ('a' + (baseasciiValue + keyasciiValue) );
+                }
         }
 
         inputText.setText(decodedText);
@@ -176,7 +211,7 @@ public class VigenereActivity extends AppCompatActivity {
                             currentkeyTemplate = keyTemplate;
                             keyString = currentkeyTemplate;
                         }
-                        if(isKeyChanged(keyTemplate, currentkeyTemplate)) { //reset everything if key has changed
+                        if(isKeyChanged(keyTemplate, currentkeyTemplate)) { //replace key if key is changed
                             //should use compareEquals
                             //need to keep track of templates
                             keyString = keyString.replaceAll(currentkeyTemplate, keyTemplate);
