@@ -3,7 +3,6 @@ package com.example.cipherhub;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,147 +16,20 @@ public class VigenereActivity extends AppCompatActivity {
     TextView keyView;
     TextView newKeyView;
 
-    boolean isEncodeEvoked = false;
-    boolean isDecodeEvoked = false;
+    VigenereCipher vigenereCipher;
 
-    String keyString = "";
-    String keyTemplate = "";
-    String currentkeyTemplate = "";
+    String keyTemplate;
+    String currentkeyTemplate;
+    String keyString;
+    boolean isEncodeEvoked;
+    boolean isDecodeEvoked;
 
-    ASCIIUtils characterValidator;
-
-    int keyEncodeIndexCounter = 0;
-    int keyDecodeIndexCounter = 0;
-
-    private void VigenereEncode(String key, String base) {
-        //String elongatedKey = "ababa";
-        //creates a string instance with allocated memory equal to that of an allocated char array of size base string's length
-        //Uses the newly constructed String's replace() method with arguments oldCharacter and newCharacter, the former meaning characters up to the terminating null character, and the latter, the repeated string.
-        // The new char array's characters are replaced from NULL to base (the ones you wish)
-
-        System.out.println(key);
-
-        //ABCDEFGHIJKLEM -> base
-        //LEMONLEMONLEMO -> elongated_key
-
-        String encodedText = "";
-
-        for(int counter = 0; counter < base.length(); counter++) {
-
-            int baseasciiValue = base.charAt(counter);
-            int keyasciiValue = key.charAt(counter);
-
-            if(characterValidator.isSpecialCharacter(baseasciiValue)) {
-                encodedText += (char) (baseasciiValue);
-                continue;
-            }
-
-            if(characterValidator.isSpecialCharacter(keyasciiValue)) {
-                encodedText += (char) (keyasciiValue);
-                continue;
-            }
-            if(characterValidator.isInvalidCharacter(baseasciiValue) || characterValidator.isInvalidCharacter(keyasciiValue)) continue;
-            if(characterValidator.isInvalidCharacter(baseasciiValue) || characterValidator.isInvalidCharacter(keyasciiValue)) continue;
-            if(characterValidator.isCapitalLetter(baseasciiValue) && characterValidator.isCapitalLetter(keyasciiValue)) {
-                baseasciiValue -= 'A';
-                keyasciiValue -= 'A';
-
-                if(baseasciiValue + keyasciiValue + 'A' > 'Z') {
-                    encodedText += (char) ('A' + ((baseasciiValue + keyasciiValue + 'A') - 'Z') - 1);
-                }
-                else encodedText += (char) ('A' + (baseasciiValue + keyasciiValue));
-            }
-            else if((characterValidator.isLowercaseLetter(baseasciiValue) && characterValidator.isLowercaseLetter(keyasciiValue))) {
-                baseasciiValue -= 'a';
-                keyasciiValue -= 'a';
-                if(baseasciiValue + keyasciiValue + 'a' > 'z') {
-                    encodedText += (char) ('a' + ((baseasciiValue + keyasciiValue + 'a')  - 'z') - 1);
-                }
-                else encodedText += (char) ('a' + baseasciiValue + keyasciiValue);
-            }
-        }
-
-        vigenereText.setText(encodedText);
-        isEncodeEvoked = true;
-    }
-
-    private void VigenereDecode(String key, String base) {
-        //Vigenere doesn't actually decode, only encodes further
-        //should implement decoding
-        //One letter is omitted for some reason
-
-        Log.i("Debug", key);
-
-        String decodedText = "";
-
-        for(int counter = 0; counter < base.length(); counter++) {
-
-                int baseasciiValue = base.charAt(counter);
-                int keyasciiValue = key.charAt(counter);
-
-                if(characterValidator.isSpecialCharacter(baseasciiValue)) {
-                    decodedText += (char) (baseasciiValue);
-                    continue;
-                }
-                if(characterValidator.isSpecialCharacter(keyasciiValue)) {
-                    decodedText += (char) (keyasciiValue);
-                    continue;
-                }
-                if(characterValidator.isInvalidCharacter(baseasciiValue) || characterValidator.isInvalidCharacter(keyasciiValue)) continue;
-                if(characterValidator.isCapitalLetter(baseasciiValue) && characterValidator.isCapitalLetter(keyasciiValue)) {
-                    baseasciiValue -= 'A';
-                    keyasciiValue -= 'A';
-                    if(baseasciiValue + keyasciiValue + 'A' > 'Z') {
-                        decodedText += (char) ('A' + ((baseasciiValue + keyasciiValue + 'A') - 'Z') - 1);
-                    }
-                    else decodedText += (char) ('A' + (baseasciiValue + keyasciiValue));
-                }
-                else if((characterValidator.isLowercaseLetter(baseasciiValue) && characterValidator.isLowercaseLetter(keyasciiValue))) {
-                    baseasciiValue -= 'a';
-                    keyasciiValue -= 'a';
-                    if(baseasciiValue + keyasciiValue + 'a' > 'z') {
-                        decodedText += (char) ('a' + ((baseasciiValue + keyasciiValue + 'a') - 'z') - 1);
-                    }
-                    else decodedText += (char) ('a' + (baseasciiValue + keyasciiValue) );
-                }
-        }
-
-        inputText.setText(decodedText);
-        isDecodeEvoked = true;
-    }
-
-    private String EnlargeKey(String template, Editable s, int characterIndex, boolean mode) {
-
-        char editTextCharacter = s.toString().charAt(characterIndex);
-
-        if(/*!characterValidator.isInvalidCharacter((int) editTextCharacter) ||*/
-        !characterValidator.isSpecialCharacter((int) editTextCharacter)) keyString += template.charAt(characterIndex);
-        //separate invalid check and special char check due to different ending outputs
-        else keyString += editTextCharacter;
-
-        //need to add ability to shorten key if Editable is shortened (!) -> implemented
-
-        if(keyString.length() > s.length()) {
-            keyString = keyString.substring(0, Math.min(keyString.length(), s.length())); //crashes if there is no substring or key is smaller than editable
-            if(mode) keyEncodeIndexCounter = 0;
-            else keyDecodeIndexCounter = 0;
-        }
-
-        return keyString;
-    }
-
-    private boolean isKeyChanged(String keyString, String previousKeyString) {
-        return !previousKeyString.equals(keyString);
-    }
-
-    private void updateEncodingKey(Editable s) {
-        if(keyEncodeIndexCounter == keyTemplate.length()) keyEncodeIndexCounter = 0;
-        keyString = EnlargeKey(keyTemplate, s, keyEncodeIndexCounter++, true);
-    }
-
-    private void updateDecodingKey(Editable s) {
-        if(keyDecodeIndexCounter == keyTemplate.length()) keyDecodeIndexCounter = 0;
-        keyString = EnlargeKey(keyTemplate, s, keyDecodeIndexCounter++, false); //goes out of bounds when changed
+    private void updateVariables() {
+        keyTemplate = vigenereCipher.getKeyTemplate();
+        currentkeyTemplate = vigenereCipher.getCurrentKeyTemplate();
+        keyString = vigenereCipher.getKeyString();
+        isEncodeEvoked = vigenereCipher.getEncodeState();
+        isDecodeEvoked = vigenereCipher.getDecodeState();
     }
 
     @Override
@@ -172,7 +44,7 @@ public class VigenereActivity extends AppCompatActivity {
         keyView = (TextView) findViewById(R.id.KeyView);
         newKeyView = (TextView) findViewById(R.id.NewKeyView);
 
-        characterValidator = new ASCIIUtils();
+        vigenereCipher = new VigenereCipher();
 
         final TextWatcher InputToVigenereListener = new TextWatcher() {
             @Override
@@ -187,31 +59,44 @@ public class VigenereActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                    if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) return; //< or >?
 
-                    if(!isEncodeEvoked) {
-                        if(keyTemplate.length() == s.length()) {
-                            currentkeyTemplate = keyTemplate;
-                            keyString = currentkeyTemplate;
-                        }
-                        if(isKeyChanged(keyTemplate, currentkeyTemplate)) { //replace key if key is changed
-                            //should use compareEquals
-                            //need to keep track of templates
-                            keyString = keyString.replaceAll(currentkeyTemplate, keyTemplate); //crashes if key is entirely changed
-                            currentkeyTemplate = keyTemplate;
-                            keyEncodeIndexCounter = 0;
-                        } else {
-                            updateEncodingKey(s);
-                        }
-                        keyView.setText(keyString);
-                        newKeyView.setText(keyTemplate);
-                        isDecodeEvoked = true;
-                        VigenereEncode(keyString, s.toString());
+                    //vigenereCipher.setKeyString(vigenereCipher.getKeyString()).setCurrentKeyTemplate(vigenereCipher.getCurrentKeyTemplate()).setTemplate(vigenereCipher.getKeyTemplate()).setEncodeEvoked(vigenereCipher.getEncodeState()).setDecodeEvoked(vigenereCipher.getDecodeState());
+
+                    updateVariables();
+
+                    if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) {
+                        vigenereCipher.setKeyString(keyTemplate);
+                        keyView.setText(vigenereCipher.getKeyString());
+                        vigenereCipher.setCurrentKeyTemplate(keyTemplate);
+                        return; //< or >?
                     }
 
-                    currentkeyTemplate = keyTemplate;
+                    if(!isEncodeEvoked) {
+
+                        if(vigenereCipher.isKeyChanged(keyTemplate, currentkeyTemplate)) { //replace key if key is changed
+                            //should use compareEquals
+                            //need to keep track of templates
+                            //crashes
+                            vigenereCipher.setKeyString(keyString.replaceAll(currentkeyTemplate, keyTemplate)); //crashes if key is entirely changed
+                            vigenereCipher.setTemplate(keyTemplate);
+                            vigenereCipher.setCurrentKeyTemplate(keyTemplate);
+                            vigenereCipher.setKeyString(currentkeyTemplate);
+                        } else {
+                            vigenereCipher.setKeyString(vigenereCipher.updateEncodingKey(s));
+                            keyView.setText(vigenereCipher.getKeyString());
+                        }
+                        //keyString = vigenereCipher.getKeyString();
+
+                        newKeyView.setText(keyTemplate);
+                        vigenereCipher.setDecodeEvoked(true);
+                        updateVariables();
+                        vigenereText.setText(vigenereCipher.VigenereEncode(keyString, s.toString()));
+                    }
+
+                    vigenereCipher.setCurrentKeyTemplate(keyTemplate);
                     //keyString = previousKeyString;
-                    isEncodeEvoked = false; //might change
+                    vigenereCipher.setEncodeEvoked(false); //might change
+
             }
         };
 
@@ -228,30 +113,36 @@ public class VigenereActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) { //ALWAYS USE THE VARIABLE "s" AND NOT YOUR BULLSHIT EDITTEXTs
-                    if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) return;
 
-                    if(!isDecodeEvoked) {
-                        if(keyTemplate.length() == s.length()) {
-                            currentkeyTemplate = keyTemplate;
-                            keyString = currentkeyTemplate;
-                        }
-                        if(isKeyChanged(keyTemplate, currentkeyTemplate)) { //reset everything if key has changed
-                            //should use compareEquals
-                            //need to keep track of templates
-                            keyString = keyString.replaceAll(currentkeyTemplate, keyTemplate);
-                            currentkeyTemplate = keyTemplate;
-                            keyDecodeIndexCounter = 0;
-                        } else {
-                            updateDecodingKey(s);
-                        }
-                        keyView.setText(keyString);
-                        newKeyView.setText(currentkeyTemplate);
-                        isEncodeEvoked = true;
-                        VigenereDecode(keyString, s.toString());
+                    updateVariables();
+
+                    if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) {
+                        vigenereCipher.setKeyString(keyTemplate);
+                        vigenereCipher.setCurrentKeyTemplate(keyTemplate);
+                        return;
                     }
 
-                    currentkeyTemplate = keyTemplate;
-                    isDecodeEvoked = false;
+
+                    if(!isDecodeEvoked) {
+
+                        if(vigenereCipher.isKeyChanged(keyTemplate, currentkeyTemplate)) { //reset everything if key has changed
+                            //should use compareEquals
+                            //need to keep track of templates
+                            vigenereCipher.setKeyString(keyString.replaceAll(currentkeyTemplate, keyTemplate)); //crashes if key is changed entirely
+                            vigenereCipher.setTemplate(keyTemplate);
+                            vigenereCipher.setCurrentKeyTemplate(keyTemplate);
+                            vigenereCipher.setKeyString(currentkeyTemplate);
+                        } else {
+                            vigenereCipher.updateDecodingKey(s);
+                        }
+                        keyView.setText(keyString);
+                        vigenereCipher.setEncodeEvoked(true);
+                        updateVariables();
+                        inputText.setText(vigenereCipher.VigenereDecode(keyString, s.toString()));
+                    }
+
+                    vigenereCipher.setCurrentKeyTemplate(keyTemplate);
+                    vigenereCipher.setDecodeEvoked(false);
             }
         };
 
@@ -268,7 +159,8 @@ public class VigenereActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                keyTemplate = s.toString();
+                vigenereCipher.setTemplate(s.toString());
+                keyTemplate = vigenereCipher.getKeyTemplate();
                 //need to add functionality if user decided to actually replace key after it's been converted
                 //crashes currently at that
                 //if(keyTemplate.length() < inputText.length()) InputToVigenereListener.afterTextChanged((Editable) inputText);

@@ -20,11 +20,37 @@ class ASCIIUtils {
         return (currentCharValue > 'Z' && currentCharValue < 'a') || (currentCharValue < ' ')  || currentCharValue > 'z';
     }
 
-    boolean isCaesarEncodeSpecialCase(int currentCharValue) {
-        return (currentCharValue >= 'A' && currentCharValue <= 'C') || (currentCharValue >= 'a' && currentCharValue <= 'c');
+    boolean isCaesarEncodeSpecialCase(int currentCharValue, int key) {
+        return currentCharValue <= key;
     }
 
-    boolean isCaesarDecodeSpecialCase(int currentCharValue) {
-        return (currentCharValue >= 'x' && currentCharValue <= 'z') || (currentCharValue >= 'X' && currentCharValue <= 'Z');
+    boolean isCaesarDecodeSpecialCase(int currentCharValue, int key) {
+        return currentCharValue >= key;
     }
+
+    int CalculateVigenereEncodeUppercaseValue(int baseASCIIValue, int keyASCIIValue) {
+        return (baseASCIIValue + keyASCIIValue) - 'A';
+    }
+
+    int CalculateVigenereEncodeLowercaseValue(int baseASCIIValue, int keyASCIIValue) {
+        return (baseASCIIValue + keyASCIIValue) - 'a';
+    }
+
+    int CalculateVigenereDecodeUppercaseValue(int baseASCIIValue, int keyASCIIValue) {
+        return (baseASCIIValue + 'A') - keyASCIIValue;
+    }
+
+    int CalculateVigenereDecodeLowercaseValue(int baseASCIIValue, int keyASCIIValue) {
+        return (baseASCIIValue + 'a') - keyASCIIValue;
+    }
+
+
+    /*int convertToCaesar(int base, int key) {
+        int caesarAmount;
+        //Caesar enoding: (base - (key + 'A')) = result
+        //if result < 0 => 'Z' + result
+        //Vigenere encoding: (base + key) - 'A'
+        //if the answer to (base + key) - 'A' > key
+        return caesarAmount;
+    }*/
 }
