@@ -66,8 +66,8 @@ public class VigenereActivity extends AppCompatActivity {
 
                     if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) {
                         vigenereCipher.setKeyString(keyTemplate);
-                        keyView.setText(vigenereCipher.getKeyString());
                         vigenereCipher.setCurrentKeyTemplate(keyTemplate);
+                       // vigenereCipher.updateEncodingKey(s);
                         return; //< or >?
                     }
 
@@ -78,18 +78,14 @@ public class VigenereActivity extends AppCompatActivity {
                             //need to keep track of templates
                             //crashes
                             vigenereCipher.setKeyString(keyString.replaceAll(currentkeyTemplate, keyTemplate)); //crashes if key is entirely changed
-                            vigenereCipher.setTemplate(keyTemplate);
+                            if(vigenereCipher.keyExceedsMessage(s)) vigenereCipher.trimKeyString(s); //trims the key if the new one is too long
                             vigenereCipher.setCurrentKeyTemplate(keyTemplate);
-                            vigenereCipher.setKeyString(currentkeyTemplate);
-                        } else {
-                            vigenereCipher.setKeyString(vigenereCipher.updateEncodingKey(s));
-                            keyView.setText(vigenereCipher.getKeyString());
+                            vigenereCipher.resetEncodeIndexCounter();
                         }
-                        //keyString = vigenereCipher.getKeyString();
-
-                        newKeyView.setText(keyTemplate);
-                        vigenereCipher.setDecodeEvoked(true);
+                        else vigenereCipher.updateEncodingKey(s);
                         updateVariables();
+                        keyView.setText(keyString);
+                        vigenereCipher.setDecodeEvoked(true);
                         vigenereText.setText(vigenereCipher.VigenereEncode(keyString, s.toString()));
                     }
 
@@ -119,25 +115,27 @@ public class VigenereActivity extends AppCompatActivity {
                     if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) {
                         vigenereCipher.setKeyString(keyTemplate);
                         vigenereCipher.setCurrentKeyTemplate(keyTemplate);
+                        //newKeyView.setText(currentkeyTemplate);
+                        //keyView.setText(keyTemplate);
                         return;
                     }
 
+                    //PHANTOM LETTERS WHEN DELETING PARTS OF KEY AND WHEN WRITING
 
                     if(!isDecodeEvoked) {
 
                         if(vigenereCipher.isKeyChanged(keyTemplate, currentkeyTemplate)) { //reset everything if key has changed
                             //should use compareEquals
-                            //need to keep track of templates
+                            //need to keep track of template
                             vigenereCipher.setKeyString(keyString.replaceAll(currentkeyTemplate, keyTemplate)); //crashes if key is changed entirely
-                            vigenereCipher.setTemplate(keyTemplate);
+                            if(vigenereCipher.keyExceedsMessage(s)) vigenereCipher.trimKeyString(s);
                             vigenereCipher.setCurrentKeyTemplate(keyTemplate);
-                            vigenereCipher.setKeyString(currentkeyTemplate);
-                        } else {
-                            vigenereCipher.updateDecodingKey(s);
+                            vigenereCipher.resetDecodeIndexCounter();
                         }
+                        else vigenereCipher.updateDecodingKey(s);
+                        updateVariables();
                         keyView.setText(keyString);
                         vigenereCipher.setEncodeEvoked(true);
-                        updateVariables();
                         inputText.setText(vigenereCipher.VigenereDecode(keyString, s.toString()));
                     }
 
@@ -163,8 +161,10 @@ public class VigenereActivity extends AppCompatActivity {
                 keyTemplate = vigenereCipher.getKeyTemplate();
                 //need to add functionality if user decided to actually replace key after it's been converted
                 //crashes currently at that
-                //if(keyTemplate.length() < inputText.length()) InputToVigenereListener.afterTextChanged((Editable) inputText);
-                //else if(keyTemplate.length() < vigenereText.length()) VigenereToInputListener.afterTextChanged((Editable) vigenereText);
+                Editable inputTextEditable = inputText.getText();
+                Editable vigenereTextEditable = vigenereText.getText();
+                if(keyTemplate.length() <= inputText.length()) InputToVigenereListener.afterTextChanged(inputTextEditable);
+                else if(keyTemplate.length() <= vigenereText.length()) VigenereToInputListener.afterTextChanged(vigenereTextEditable);
             }
         };
 

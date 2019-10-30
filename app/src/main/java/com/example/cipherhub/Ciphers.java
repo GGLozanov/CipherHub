@@ -20,6 +20,27 @@ class Ciphers {
 
 }
 
+class KeyCiphers extends Ciphers {
+
+    String keyString;
+    String keyTemplate;
+    String currentkeyTemplate;
+
+    int keyEncodeIndexCounter;
+    int keyDecodeIndexCounter;
+
+    String getKeyTemplate() {return keyTemplate;}
+    String getCurrentKeyTemplate() {return currentkeyTemplate;}
+    String getKeyString() {return keyString;}
+
+    void setKeyString(String key) {keyString = key;}
+    void setTemplate(String template) {keyTemplate = template;}
+    void setCurrentKeyTemplate(String currTemplate) {currentkeyTemplate = currTemplate;}
+
+    void resetEncodeIndexCounter() {keyEncodeIndexCounter = 0;}
+    void resetDecodeIndexCounter() {keyDecodeIndexCounter = 0;}
+}
+
 class CaesarCipher extends Ciphers {
 
     private int key;
@@ -42,7 +63,7 @@ class CaesarCipher extends Ciphers {
 
             int asciiValue = currentCharValue + key;
 
-            if(characterValidator.isCaesarDecodeSpecialCase(currentCharValue, currentCharValue > 'Z' ? (key + 'a') - 1 : (key + 'A') - 1)) asciiValue -= 26;
+            if(characterValidator.isCaesarDecodeSpecialCase(currentCharValue, currentCharValue > 'Z' ? ('z' - key) : ('Z' - key))) asciiValue -= 26;
 
             //if(((asciiValue != ' ' && (asciiValue < 'A')) || (asciiValue > 'z'))continue;
 
@@ -69,7 +90,7 @@ class CaesarCipher extends Ciphers {
 
             int asciiValue = currentCharValue - key;
 
-            if(characterValidator.isCaesarEncodeSpecialCase(currentCharValue, currentCharValue > 'Z' ? (key + 'a') - 1 : (key + 'A') - 1)) asciiValue += 26;
+            if(characterValidator.isCaesarEncodeSpecialCase(currentCharValue, characterValidator.isLowercaseLetter(currentCharValue) ? (key + 'a') : (key + 'A'))) asciiValue += 26;
 
             encodedText += (char)asciiValue;
         }
@@ -79,31 +100,10 @@ class CaesarCipher extends Ciphers {
     }
 }
 
-class VigenereCipher extends Ciphers {
+class VigenereCipher extends KeyCiphers {
 
-    String keyString;
-    String keyTemplate;
-    String currentkeyTemplate;
-
-    int keyEncodeIndexCounter;
-    int keyDecodeIndexCounter;
 
     VigenereCipher() {keyString = ""; keyTemplate =  ""; currentkeyTemplate = ""; keyEncodeIndexCounter = 0; keyDecodeIndexCounter = 0;}
-
-    String getKeyTemplate() {return keyTemplate;}
-    String getCurrentKeyTemplate() {return currentkeyTemplate;}
-    String getKeyString() {return keyString;}
-
-    int getKeyEncodeIndexCounter() {return keyEncodeIndexCounter;}
-    int getKeyDecodeIndexCounter() {return keyDecodeIndexCounter;}
-
-    void setKeyString(String key) {keyString = key;}
-    void setTemplate(String template) {keyTemplate = template;}
-    void setCurrentKeyTemplate(String currTemplate) {currentkeyTemplate = currTemplate;}
-
-    String updateKeyTemplate(String template) {return keyTemplate = template;}
-    String updateKeyString(String key) {return keyString = key;}
-    String updateCurrentKeyTemplate(String currTemplate) {return currentkeyTemplate = currTemplate;}
 
     String VigenereEncode(String key, String base) {
         //String elongatedKey = "ababa";
@@ -140,7 +140,7 @@ class VigenereCipher extends Ciphers {
 
                 sumASCIIValues = characterValidator.CalculateVigenereEncodeUppercaseValue(baseASCIIValue, keyASCIIValue);
 
-                if(sumASCIIValues > 'Z') {
+                if(characterValidator.isCaesarDecodeSpecialCase(sumASCIIValues, 'Z')) { //vigenere always uses decode caesar (3 forward)
                     encodedText += (char) (sumASCIIValues - 26);
                 }
                 else encodedText += (char) (sumASCIIValues);
@@ -149,7 +149,7 @@ class VigenereCipher extends Ciphers {
 
                 sumASCIIValues = characterValidator.CalculateVigenereEncodeLowercaseValue(baseASCIIValue, keyASCIIValue);
 
-                if(sumASCIIValues > 'z') {
+                if(characterValidator.isCaesarDecodeSpecialCase(sumASCIIValues, 'z')) {
                     encodedText += (char) (sumASCIIValues  - 26);
                 }
                 else encodedText += (char) (sumASCIIValues);
@@ -192,8 +192,8 @@ class VigenereCipher extends Ciphers {
             if(characterValidator.isCapitalLetter(baseASCIIValue) || characterValidator.isCapitalLetter(keyASCIIValue)) {
 
                 sumASCIIValues = characterValidator.CalculateVigenereDecodeUppercaseValue(baseASCIIValue, keyASCIIValue);
-                if(sumASCIIValues < 'A') {
-                    decodedText += (char) ((sumASCIIValues + 25)); //
+                if(characterValidator.isCaesarEncodeSpecialCase(sumASCIIValues, 'A')) { //decoding for Vigenere is encoding for Caesar
+                    decodedText += (char) ((sumASCIIValues + 26)); //
                 }
                 else decodedText += (char) (sumASCIIValues);
             }
@@ -201,8 +201,8 @@ class VigenereCipher extends Ciphers {
             else if((characterValidator.isLowercaseLetter(baseASCIIValue) || characterValidator.isLowercaseLetter(keyASCIIValue))) {
 
                 sumASCIIValues = characterValidator.CalculateVigenereDecodeLowercaseValue(baseASCIIValue, keyASCIIValue);
-                if(sumASCIIValues < 'a') {
-                    decodedText += (char) (sumASCIIValues + 25);
+                if(characterValidator.isCaesarEncodeSpecialCase(sumASCIIValues, 'a')) {
+                    decodedText += (char) (sumASCIIValues + 26);
                 }
                 else decodedText += (char) (sumASCIIValues);
             }
@@ -216,7 +216,7 @@ class VigenereCipher extends Ciphers {
         return decodedText;
     }
 
-    private String EnlargeKey(String template, Editable s, int characterIndex, boolean mode) {
+    private void EnlargeKey(String template, Editable s, int characterIndex, boolean mode) {
 
         char editTextCharacter = s.toString().charAt(characterIndex);
 
@@ -225,30 +225,40 @@ class VigenereCipher extends Ciphers {
         if(/*!characterValidator.isInvalidCharacter((int) editTextCharacter) ||*/
                 !characterValidator.isSpecialCharacter((int) editTextCharacter)) keyString += template.charAt(characterIndex);
             //separate invalid check and special char check due to different ending outputs
-        else keyString += editTextCharacter;
+        else {
+            if(mode) keyEncodeIndexCounter--;
+            else keyDecodeIndexCounter--;
+            keyString += editTextCharacter;
+        }
 
         //need to add ability to shorten key if Editable is shortened (!) -> implemented
 
-        if(keyString.length() > s.length()) {
-            keyString = keyString.substring(0, Math.min(keyString.length(), s.length())); //crashes if there is no substring or key is smaller than editable
+        if(keyExceedsMessage(s)) {
+            trimKeyString(s); //crashes if there is no substring or key is smaller than editable
             if(mode) keyEncodeIndexCounter = 0;
             else keyDecodeIndexCounter = 0;
         }
-
-        return keyString;
     }
 
     boolean isKeyChanged(String keyString, String previousKeyString) {
         return !previousKeyString.equals(keyString);
     }
 
-    String updateEncodingKey(Editable s) {
+    void updateEncodingKey(Editable s) {
         if(keyEncodeIndexCounter == keyTemplate.length()) keyEncodeIndexCounter = 0;
-        return EnlargeKey(keyTemplate, s, keyEncodeIndexCounter++, true);
+        EnlargeKey(keyTemplate, s, keyEncodeIndexCounter++, true);
     }
 
-    String updateDecodingKey(Editable s) {
+    void updateDecodingKey(Editable s) {
         if(keyDecodeIndexCounter == keyTemplate.length()) keyDecodeIndexCounter = 0;
-        return EnlargeKey(keyTemplate, s, keyDecodeIndexCounter++, false); //goes out of bounds when changed
+        EnlargeKey(keyTemplate, s, keyDecodeIndexCounter++, false); //goes out of bounds when changed
+    }
+
+    void trimKeyString(Editable s) {
+        keyString = keyString.substring(0, Math.min(keyString.length(), s.length()));
+    }
+
+    boolean keyExceedsMessage(Editable s) {
+        return getKeyString().length() > s.length();
     }
 }

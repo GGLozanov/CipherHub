@@ -21,11 +21,11 @@ class ASCIIUtils {
     }
 
     boolean isCaesarEncodeSpecialCase(int currentCharValue, int key) {
-        return currentCharValue <= key;
+        return currentCharValue < key;
     }
 
     boolean isCaesarDecodeSpecialCase(int currentCharValue, int key) {
-        return currentCharValue >= key;
+        return currentCharValue > key;
     }
 
     int CalculateVigenereEncodeUppercaseValue(int baseASCIIValue, int keyASCIIValue) {
@@ -43,7 +43,6 @@ class ASCIIUtils {
     int CalculateVigenereDecodeLowercaseValue(int baseASCIIValue, int keyASCIIValue) {
         return (baseASCIIValue + 'a') - keyASCIIValue;
     }
-
 
     /*int convertToCaesar(int base, int key) {
         int caesarAmount;
