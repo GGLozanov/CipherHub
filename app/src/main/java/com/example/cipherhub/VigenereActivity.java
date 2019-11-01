@@ -38,9 +38,6 @@ public class VigenereActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_vigenere);
 
-        inputText = (EditText) findViewById(R.id.VigenereStringInput);
-        keyText = (EditText) findViewById(R.id.VigenereKey);
-        vigenereText = (EditText) findViewById(R.id.ViginereStringOutput);
         keyView = (TextView) findViewById(R.id.KeyView);
         newKeyView = (TextView) findViewById(R.id.NewKeyView);
 
@@ -167,6 +164,13 @@ public class VigenereActivity extends AppCompatActivity {
                 else if(keyTemplate.length() <= vigenereText.length()) VigenereToInputListener.afterTextChanged(vigenereTextEditable);
             }
         };
+
+        vigenereCipher.setKeyText((EditText) findViewById(R.id.VigenereKey));
+        vigenereCipher.setIOTexts((EditText) findViewById(R.id.VigenereStringInput), (EditText) findViewById(R.id.VigenereStringOutput));
+
+        inputText = vigenereCipher.getInputText();
+        keyText = vigenereCipher.getKeyText();
+        vigenereText = vigenereCipher.getOutputText();
 
         inputText.addTextChangedListener(InputToVigenereListener); //adds the listener TO the object (not the other way around)
         vigenereText.addTextChangedListener(VigenereToInputListener);

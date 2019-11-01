@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VigenereActivity"></activity>
+        <activity android:name=".AtbashActivity"></activity>
+        <activity android:name=".VigenereActivity" />
         <activity android:name=".CaesarActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

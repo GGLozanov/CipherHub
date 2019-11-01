@@ -9,4 +9,7 @@
     <string name="decoded_input_vigenere">Enter Decoded Text</string>
     <string name="key_vigenere">Enter Vigenere Key</string>
     <string name="coded_output_vigenere">Enter Encoded Text (Reverse)</string>
+    <string name="change_activity_atbash">Atbash</string>
+    <string name="decoded_input_atbash">Enter Decoded Text</string>
+    <string name="coded_output_atbash">Enter Encoded Text (Reverse)</string>
 </resources>

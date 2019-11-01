@@ -9,10 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CaesarActivity extends AppCompatActivity {
 
+    CaesarCipher caesarCipher;
     EditText caesarText;
     EditText normalInput;
-
-    CaesarCipher caesarCipher;
 
     //TextView caesarInput;
     @Override
@@ -65,9 +64,10 @@ public class CaesarActivity extends AppCompatActivity {
             }
         };
 
-        normalInput = (EditText) findViewById(R.id.CaesarStringInput);
-        caesarText = (EditText) findViewById(R.id.CaesarStringOutput);
+        caesarCipher.setIOTexts((EditText) findViewById(R.id.CaesarStringInput), (EditText) findViewById(R.id.CaesarStringOutput));
 
+        normalInput = caesarCipher.getInputText();
+        caesarText = caesarCipher.getOutputText();
 
         normalInput.addTextChangedListener(normaltoCaesarListener);
         caesarText.addTextChangedListener(CaesartoNormalListener);

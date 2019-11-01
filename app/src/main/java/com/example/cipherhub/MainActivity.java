@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 //import android.Animation.animation;
@@ -16,12 +15,13 @@ public class MainActivity extends AppCompatActivity { //main class that inherits
 
         setContentView(R.layout.activity_main); //set the screen's layout to the xml file in layout (can interact with it)
 
-        Button helloButton = (Button) findViewById(R.id.printHelloButton); //R = resources; id property accesses your id as input
+        //Button helloButton = (Button) findViewById(R.id.printHelloButton); //R = resources; id property accesses your id as input
         Button CaesarButton = (Button) findViewById(R.id.CaesarButton);
         Button VigenereButton = (Button) findViewById(R.id.VigenereButton);
-        final TextView helloText = (TextView) findViewById(R.id.HelloText);
+        Button AtbashButton = (Button) findViewById(R.id.AtbashButton);
+        //final TextView helloText = (TextView) findViewById(R.id.HelloText);
 
-        helloButton.setOnClickListener(new View.OnClickListener() { //We set the listener for the event
+        /*helloButton.setOnClickListener(new View.OnClickListener() { //We set the listener for the event
             // to new View (view = rectangular area with stuff in it) onClickListener
             //and override its method of onclick to what we want
             //View = android:view (accesses from XML file)
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity { //main class that inherits
                 if(helloText.isShown())helloText.setVisibility(View.INVISIBLE); //INVISIBLE is an int that is hardcoded to mean INVISIBLE and is property of the View
                 else helloText.setVisibility(View.VISIBLE); //same with VISIBLE
             }
-        });
+        });*/
 
         CaesarButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +43,13 @@ public class MainActivity extends AppCompatActivity { //main class that inherits
             @Override
             public void onClick(View v) {
                 OpenVigenereActivity();
+            }
+        });
+
+        AtbashButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenAtbashActivity();
             }
         });
     }
@@ -59,5 +66,11 @@ public class MainActivity extends AppCompatActivity { //main class that inherits
         Intent VigenereIntent = new Intent(this, VigenereActivity.class);
 
         startActivity(VigenereIntent);
+    }
+
+    public void OpenAtbashActivity() {
+        Intent AtbashIntent = new Intent(this, AtbashActivity.class);
+
+        startActivity(AtbashIntent);
     }
 }

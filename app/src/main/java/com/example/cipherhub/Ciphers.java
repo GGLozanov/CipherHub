@@ -1,19 +1,27 @@
 package com.example.cipherhub;
 
 import android.text.Editable;
+import android.widget.EditText;
 
 class Ciphers {
 
     ASCIIUtils characterValidator = new ASCIIUtils();
 
+    EditText inputText;
+    EditText outputText;
+
+    void setIOTexts(EditText inputText, EditText outputText) {this.inputText = inputText; this.outputText = outputText;}
+    EditText getInputText() {return inputText;}
+    EditText getOutputText() {return outputText;}
+
     boolean isEncodeEvoked = false;
     boolean isDecodeEvoked = false;
 
     boolean getEncodeState() {return isEncodeEvoked;}
-    protected boolean getDecodeState() {return isDecodeEvoked;}
+    boolean getDecodeState() {return isDecodeEvoked;}
 
-    Ciphers setEncodeEvoked(boolean encodeEvoke) {isEncodeEvoked = encodeEvoke; return this;}
-    Ciphers setDecodeEvoked(boolean decodeEvoke) {isDecodeEvoked = decodeEvoke; return this;}
+    void setEncodeEvoked(boolean encodeEvoke) {isEncodeEvoked = encodeEvoke;}
+    void setDecodeEvoked(boolean decodeEvoke) {isDecodeEvoked = decodeEvoke;}
 
     boolean updateEncodeEvoked(boolean encodeEvoke) {return isEncodeEvoked = encodeEvoke;}
     boolean updateDecodeEvoked(boolean decodeEvoke) {return isDecodeEvoked = decodeEvoke;}
@@ -22,6 +30,11 @@ class Ciphers {
 
 class KeyCiphers extends Ciphers {
 
+    EditText keyText;
+
+    void setKeyText(EditText keyText) {this.keyText = keyText;}
+    EditText getKeyText() {return keyText;}
+
     String keyString;
     String keyTemplate;
     String currentkeyTemplate;
@@ -29,16 +42,63 @@ class KeyCiphers extends Ciphers {
     int keyEncodeIndexCounter;
     int keyDecodeIndexCounter;
 
-    String getKeyTemplate() {return keyTemplate;}
-    String getCurrentKeyTemplate() {return currentkeyTemplate;}
-    String getKeyString() {return keyString;}
-
     void setKeyString(String key) {keyString = key;}
     void setTemplate(String template) {keyTemplate = template;}
     void setCurrentKeyTemplate(String currTemplate) {currentkeyTemplate = currTemplate;}
 
+    String getKeyTemplate() {return keyTemplate;}
+    String getCurrentKeyTemplate() {return currentkeyTemplate;}
+    String getKeyString() {return keyString;}
+
     void resetEncodeIndexCounter() {keyEncodeIndexCounter = 0;}
     void resetDecodeIndexCounter() {keyDecodeIndexCounter = 0;}
+
+
+    void EnlargeKey(String template, Editable s, int characterIndex, boolean mode) {
+
+        char editTextCharacter = s.toString().charAt(characterIndex);
+
+        System.out.print(keyString);
+
+        if(/*!characterValidator.isInvalidCharacter((int) editTextCharacter) ||*/
+                !characterValidator.isSpecialCharacter((int) editTextCharacter)) keyString += template.charAt(characterIndex);
+            //separate invalid check and special char check due to different ending outputs
+        else {
+            if(mode) keyEncodeIndexCounter--;
+            else keyDecodeIndexCounter--;
+            keyString += editTextCharacter;
+        }
+
+        //need to add ability to shorten key if Editable is shortened (!) -> implemented
+
+        if(keyExceedsMessage(s)) {
+            trimKeyString(s); //crashes if there is no substring or key is smaller than editable
+            if(mode) keyEncodeIndexCounter = 0;
+            else keyDecodeIndexCounter = 0;
+        }
+    }
+
+    boolean isKeyChanged(String keyString, String previousKeyString) {
+        return !previousKeyString.equals(keyString);
+    }
+
+    void updateEncodingKey(Editable s) {
+        if(keyEncodeIndexCounter == keyTemplate.length()) keyEncodeIndexCounter = 0;
+        EnlargeKey(keyTemplate, s, keyEncodeIndexCounter++, true);
+    }
+
+    void updateDecodingKey(Editable s) {
+        if(keyDecodeIndexCounter == keyTemplate.length()) keyDecodeIndexCounter = 0;
+        EnlargeKey(keyTemplate, s, keyDecodeIndexCounter++, false); //goes out of bounds when changed
+    }
+
+    void trimKeyString(Editable s) {
+        keyString = keyString.substring(0, Math.min(keyString.length(), s.length()));
+    }
+
+    boolean keyExceedsMessage(Editable s) {
+        return getKeyString().length() > s.length();
+    }
 }
 
 class CaesarCipher extends Ciphers {
@@ -102,18 +162,9 @@ class CaesarCipher extends Ciphers {
 
 class VigenereCipher extends KeyCiphers {
 
-
     VigenereCipher() {keyString = ""; keyTemplate =  ""; currentkeyTemplate = ""; keyEncodeIndexCounter = 0; keyDecodeIndexCounter = 0;}
 
     String VigenereEncode(String key, String base) {
-        //String elongatedKey = "ababa";
-        //creates a string instance with allocated memory equal to that of an allocated char array of size base string's length
-        //Uses the newly constructed String's replace() method with arguments oldCharacter and newCharacter, the former meaning characters up to the terminating null character, and the latter, the repeated string.
-        // The new char array's characters are replaced from NULL to base (the ones you wish)
-
-
-        //ABCDEFGHIJKLEM -> base
-        //LEMONLEMONLEMO -> elongated_key
 
         String encodedText = "";
         int sumASCIIValues;
@@ -215,50 +266,74 @@ class VigenereCipher extends KeyCiphers {
         isDecodeEvoked = true;
         return decodedText;
     }
+}
 
-    private void EnlargeKey(String template, Editable s, int characterIndex, boolean mode) {
+class  AtbashCipher extends KeyCiphers {
 
-        char editTextCharacter = s.toString().charAt(characterIndex);
+    String reverseLowerKeyString = "";
+    String reverseUpperKeyString = "";
 
-        System.out.print(keyString);
+    //keyString and keyTemplate are both keys, just one is lowercase and the other is uppercase
 
-        if(/*!characterValidator.isInvalidCharacter((int) editTextCharacter) ||*/
-                !characterValidator.isSpecialCharacter((int) editTextCharacter)) keyString += template.charAt(characterIndex);
-            //separate invalid check and special char check due to different ending outputs
-        else {
-            if(mode) keyEncodeIndexCounter--;
-            else keyDecodeIndexCounter--;
-            keyString += editTextCharacter;
-        }
-
-        //need to add ability to shorten key if Editable is shortened (!) -> implemented
-
-        if(keyExceedsMessage(s)) {
-            trimKeyString(s); //crashes if there is no substring or key is smaller than editable
-            if(mode) keyEncodeIndexCounter = 0;
-            else keyDecodeIndexCounter = 0;
+    private void reverseLowerKeyString() {
+        for(int counter = keyString.length() - 1; counter >= 0; counter--) { //equal to gives one more iteration (includes 'a')
+            reverseLowerKeyString += keyString.charAt(counter);
         }
     }
 
-    boolean isKeyChanged(String keyString, String previousKeyString) {
-        return !previousKeyString.equals(keyString);
+    private void reverseUpperKeyString() {
+        for(int counter = keyTemplate.length() - 1; counter >= 0; counter--) {
+            reverseUpperKeyString += keyTemplate.charAt(counter);
+        }
     }
 
-    void updateEncodingKey(Editable s) {
-        if(keyEncodeIndexCounter == keyTemplate.length()) keyEncodeIndexCounter = 0;
-        EnlargeKey(keyTemplate, s, keyEncodeIndexCounter++, true);
+    //default key for now is alphabet; will add support for more in the future
+    AtbashCipher(String key) {
+        keyString = key;
+        keyTemplate = keyString.toUpperCase();
+        reverseUpperKeyString();
+        reverseLowerKeyString();
     }
 
-    void updateDecodingKey(Editable s) {
-        if(keyDecodeIndexCounter == keyTemplate.length()) keyDecodeIndexCounter = 0;
-        EnlargeKey(keyTemplate, s, keyDecodeIndexCounter++, false); //goes out of bounds when changed
+    String AtbashEncode(String base) {
+        String encodedText = "";
+
+        for(int i = 0; i < base.length(); i++) {
+            char currentCharacter = base.charAt(i);
+
+            if(characterValidator.isInvalidCharacter(currentCharacter)) continue;
+            if(characterValidator.isSpecialCharacter(currentCharacter)) encodedText += currentCharacter;
+
+            if(characterValidator.isLowercaseLetter(currentCharacter)) {
+                encodedText += reverseLowerKeyString.charAt(keyString.indexOf(currentCharacter));
+            }
+            else if (characterValidator.isCapitalLetter(currentCharacter)) {
+                encodedText += reverseUpperKeyString.charAt(keyTemplate.indexOf(currentCharacter));
+            }
+        }
+
+        isEncodeEvoked = true;
+        return encodedText;
     }
 
-    void trimKeyString(Editable s) {
-        keyString = keyString.substring(0, Math.min(keyString.length(), s.length()));
-    }
+    String AtbashDecode(String base) {
+        String decodedText = "";
 
-    boolean keyExceedsMessage(Editable s) {
-        return getKeyString().length() > s.length();
+        for(int i = 0; i < base.length(); i++) {
+            char currentCharacter = base.charAt(i);
+
+            if(characterValidator.isInvalidCharacter(currentCharacter)) continue;
+            if(characterValidator.isSpecialCharacter(currentCharacter)) decodedText += currentCharacter;
+
+            if(characterValidator.isLowercaseLetter(currentCharacter)) {
+                decodedText += keyString.charAt(reverseLowerKeyString.indexOf(currentCharacter));
+            }
+            else if (characterValidator.isCapitalLetter(base.charAt(i))) {
+                decodedText += keyTemplate.charAt(reverseUpperKeyString.indexOf(currentCharacter));
+            }
+        }
+
+        isDecodeEvoked = true;
+        return decodedText;
     }
 }
