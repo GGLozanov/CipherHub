@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity { //main class that inherits
         Button CaesarButton = (Button) findViewById(R.id.CaesarButton);
         Button VigenereButton = (Button) findViewById(R.id.VigenereButton);
         Button AtbashButton = (Button) findViewById(R.id.AtbashButton);
+        Button PolybiusButton = (Button) findViewById(R.id.PolybiusButton);
         //final TextView helloText = (TextView) findViewById(R.id.HelloText);
 
         /*helloButton.setOnClickListener(new View.OnClickListener() { //We set the listener for the event
@@ -31,6 +32,13 @@ public class MainActivity extends AppCompatActivity { //main class that inherits
                 else helloText.setVisibility(View.VISIBLE); //same with VISIBLE
             }
         });*/
+
+        PolybiusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenPolybiusActivity();
+            }
+        });
 
         CaesarButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,5 +80,11 @@ public class MainActivity extends AppCompatActivity { //main class that inherits
         Intent AtbashIntent = new Intent(this, AtbashActivity.class);
 
         startActivity(AtbashIntent);
+    }
+
+    public void OpenPolybiusActivity() {
+        Intent PolybiusIntent = new Intent(this, PolybiusActivity.class);
+
+        startActivity(PolybiusIntent);
     }
 }

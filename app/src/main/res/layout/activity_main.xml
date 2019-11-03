@@ -16,10 +16,10 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="152dp"
         android:layout_marginRight="152dp"
-        android:layout_marginBottom="252dp"
+        android:layout_marginBottom="101dp"
         android:text="@string/change_activity_vigenere"
         android:textColorHighlight="#00AF2929"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/PolybiusButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AtbashButton" />
@@ -40,6 +40,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CaesarButton" />
+
+    <Button
+        android:id="@+id/PolybiusButton"
+        android:layout_width="108dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="151dp"
+        android:layout_marginRight="151dp"
+        android:layout_marginBottom="104dp"
+        android:text="@string/change_activity_polybius"
+        android:textColorHighlight="#00AF2929"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/VigenereButton" />
 
     <Button
         android:id="@+id/CaesarButton"

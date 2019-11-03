@@ -1,6 +1,7 @@
 package com.example.cipherhub;
 
 import android.text.Editable;
+import android.util.Log;
 import android.widget.EditText;
 
 class Ciphers {
@@ -9,6 +10,11 @@ class Ciphers {
 
     EditText inputText;
     EditText outputText;
+
+    String encodedText = "";
+    String decodedText = "";
+
+    int currentCharacter;
 
     void setIOTexts(EditText inputText, EditText outputText) {this.inputText = inputText; this.outputText = outputText;}
     EditText getInputText() {return inputText;}
@@ -108,7 +114,7 @@ class CaesarCipher extends Ciphers {
     CaesarCipher(int key) {this.key = key;}
 
     String CaesarDecoder(Editable base){
-        String decodedText = "";
+        decodedText = "";
         String defaultInput = base.toString();
         for(int i = 0; i < defaultInput.length(); i++) {
 
@@ -135,7 +141,7 @@ class CaesarCipher extends Ciphers {
     }
 
     String CaesarEncoder(Editable base){
-        String encodedText = "";
+        encodedText = "";
         String defaultInput = base.toString();
         for(int i = 0; i < defaultInput.length(); i++) {
 
@@ -166,7 +172,7 @@ class VigenereCipher extends KeyCiphers {
 
     String VigenereEncode(String key, String base) {
 
-        String encodedText = "";
+        encodedText = "";
         int sumASCIIValues;
         //Vigenere encode formula: (base + key) - 'A'
 
@@ -187,7 +193,7 @@ class VigenereCipher extends KeyCiphers {
 
             if(characterValidator.isInvalidCharacter(baseASCIIValue) || characterValidator.isInvalidCharacter(keyASCIIValue)) continue;
 
-            if(characterValidator.isCapitalLetter(baseASCIIValue) && characterValidator.isCapitalLetter(keyASCIIValue)) {
+            if(Character.isUpperCase(baseASCIIValue) && Character.isUpperCase(keyASCIIValue)) {
 
                 sumASCIIValues = characterValidator.CalculateVigenereEncodeUppercaseValue(baseASCIIValue, keyASCIIValue);
 
@@ -196,7 +202,7 @@ class VigenereCipher extends KeyCiphers {
                 }
                 else encodedText += (char) (sumASCIIValues);
             }
-            else if((characterValidator.isLowercaseLetter(baseASCIIValue) && characterValidator.isLowercaseLetter(keyASCIIValue))) {
+            else if(Character.isLowerCase(baseASCIIValue) && Character.isLowerCase(keyASCIIValue)) {
 
                 sumASCIIValues = characterValidator.CalculateVigenereEncodeLowercaseValue(baseASCIIValue, keyASCIIValue);
 
@@ -221,9 +227,10 @@ class VigenereCipher extends KeyCiphers {
         //One letter is omitted for some reason
         //Implement constant function for Caesar cipher that can work for Vigenere as well in ASCIIUtils
 
-        String decodedText = "";
+        decodedText = "";
         int sumASCIIValues;
         //Vigenere decode formula: (base + 'A') - key
+        //use Character class and delete redundant methods from ASCIIUtils
 
         for(int counter = 0; counter < key.length(); counter++) {
 
@@ -240,7 +247,7 @@ class VigenereCipher extends KeyCiphers {
             }
             if(characterValidator.isInvalidCharacter(baseASCIIValue) || characterValidator.isInvalidCharacter(keyASCIIValue)) continue;
 
-            if(characterValidator.isCapitalLetter(baseASCIIValue) || characterValidator.isCapitalLetter(keyASCIIValue)) {
+            if(Character.isUpperCase(baseASCIIValue) || Character.isUpperCase(keyASCIIValue)) {
 
                 sumASCIIValues = characterValidator.CalculateVigenereDecodeUppercaseValue(baseASCIIValue, keyASCIIValue);
                 if(characterValidator.isCaesarEncodeSpecialCase(sumASCIIValues, 'A')) { //decoding for Vigenere is encoding for Caesar
@@ -249,7 +256,7 @@ class VigenereCipher extends KeyCiphers {
                 else decodedText += (char) (sumASCIIValues);
             }
 
-            else if((characterValidator.isLowercaseLetter(baseASCIIValue) || characterValidator.isLowercaseLetter(keyASCIIValue))) {
+            else if(Character.isLowerCase(baseASCIIValue) || Character.isLowerCase(keyASCIIValue)) {
 
                 sumASCIIValues = characterValidator.CalculateVigenereDecodeLowercaseValue(baseASCIIValue, keyASCIIValue);
                 if(characterValidator.isCaesarEncodeSpecialCase(sumASCIIValues, 'a')) {
@@ -268,10 +275,10 @@ class VigenereCipher extends KeyCiphers {
     }
 }
 
-class  AtbashCipher extends KeyCiphers {
+class AtbashCipher extends KeyCiphers {
 
-    String reverseLowerKeyString = "";
-    String reverseUpperKeyString = "";
+    private String reverseLowerKeyString = "";
+    private String reverseUpperKeyString = "";
 
     //keyString and keyTemplate are both keys, just one is lowercase and the other is uppercase
 
@@ -296,7 +303,7 @@ class  AtbashCipher extends KeyCiphers {
     }
 
     String AtbashEncode(String base) {
-        String encodedText = "";
+        encodedText = "";
 
         for(int i = 0; i < base.length(); i++) {
             char currentCharacter = base.charAt(i);
@@ -317,7 +324,7 @@ class  AtbashCipher extends KeyCiphers {
     }
 
     String AtbashDecode(String base) {
-        String decodedText = "";
+        decodedText = "";
 
         for(int i = 0; i < base.length(); i++) {
             char currentCharacter = base.charAt(i);
@@ -337,3 +344,66 @@ class  AtbashCipher extends KeyCiphers {
         return decodedText;
     }
 }
+
+class PolybiusCipher extends Ciphers {
+
+    static final Character[][] PolybiusSquare = {
+            {'A', 'B', 'C', 'D', 'E', 'F'},
+            {'G', 'H', 'I', 'J', 'K', 'L'},
+            {'M', 'N', 'O', 'P', 'Q', 'R'},
+            {'S', 'T', 'U', 'V', 'W', 'X'},
+            {'Y', 'Z', '0', '1', '2', '3'},
+            {'4', '5', '6', '7', '8', '9'}
+    };
+
+
+    String PolybiusEncode(String base) {
+        encodedText = "";
+
+        //TO-DO: Put these variables in superclass Ciphers
+        //add functionality for user to choose lowercase or uppercase
+
+        for(int i = 0; i < base.length(); i++) {
+
+            currentCharacter = base.charAt(i);
+
+            if(characterValidator.isInvalidCharacter(currentCharacter)) continue;
+            if(characterValidator.isSpecialCharacter(currentCharacter)) encodedText += (char)currentCharacter;
+            else {
+                if(characterValidator.isLowercaseLetter(currentCharacter)) currentCharacter = characterValidator.convertToUppercase(currentCharacter);
+                encodedText += (char) characterValidator.convertToASCIINumber(characterValidator.findElementRow(PolybiusSquare, (char)currentCharacter));
+                encodedText += (char) characterValidator.convertToASCIINumber(characterValidator.findElementColumn(PolybiusSquare, (char)currentCharacter));
+            }
+        }
+
+        return encodedText;
+    }
+
+    String PolybiusDecode(String base, String inputText) {
+        decodedText = "";
+        Log.d("Input; ", inputText);
+
+        //evaluate exception in activity file -> if(base.length() % 2 != 0)
+
+        for(int i = 0, counter = 0; i < base.length(); i += 2, counter++) {
+            currentCharacter = base.charAt(i);
+            int nextCharacter = base.charAt(i + 1);
+
+            if(!characterValidator.isNumber(currentCharacter) || !characterValidator.isNumber(nextCharacter) ||
+                    characterValidator.isInvalidCharacter(currentCharacter) || characterValidator.isInvalidCharacter(nextCharacter)) continue;
+            else if(characterValidator.isSpecialCharacter(currentCharacter)) decodedText += (char)currentCharacter;
+            else if(characterValidator.isSpecialCharacter(nextCharacter)) decodedText += (char)nextCharacter;
+
+            int x = characterValidator.convertToNumber(currentCharacter), y = characterValidator.convertToNumber(nextCharacter);
+            if(x > 6 || y > 6) continue;
+            //Fix uppercase and lowercase bug
+            if(characterValidator.isLowercaseLetter(inputText.charAt(i))) decodedText += (char)characterValidator.convertToLowercase(PolybiusSquare[x - 1][y - 1]);
+            else decodedText += PolybiusSquare[x - 1][y - 1];
+        }
+
+        return decodedText;
+    }
+
+}
+
+//Polybius for Cyrillic

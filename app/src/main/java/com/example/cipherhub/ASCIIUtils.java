@@ -28,6 +28,10 @@ class ASCIIUtils {
         return currentCharValue > key;
     }
 
+    boolean isNumber(int currentCharValue) {
+        return currentCharValue >='0' && currentCharValue <= '9';
+    }
+
     int CalculateVigenereEncodeUppercaseValue(int baseASCIIValue, int keyASCIIValue) {
         return (baseASCIIValue + keyASCIIValue) - 'A';
     }
@@ -44,12 +48,39 @@ class ASCIIUtils {
         return (baseASCIIValue + 'a') - keyASCIIValue;
     }
 
-    /*int convertToCaesar(int base, int key) {
-        int caesarAmount;
-        //Caesar enoding: (base - (key + 'A')) = result
-        //if result < 0 => 'Z' + result
-        //Vigenere encoding: (base + key) - 'A'
-        //if the answer to (base + key) - 'A' > key
-        return caesarAmount;
-    }*/
+    int convertToLowercase(int currentCharValue) {
+        return currentCharValue + ' ';
+    }
+
+    int convertToUppercase(int currentCharValue) {
+        return currentCharValue - ' ';
+    }
+
+    int convertToASCIINumber(int currentCharValue) {
+        return currentCharValue + '0';
+    }
+
+    int convertToNumber(int currentCharValue) {
+        return currentCharValue - '0';
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    int findElementRow(final Character[][] array, final Character element) { //generics for char and int, for example
+        for(int i = 0; i < array.length; i++) {
+            for(int j = 0; j < array[i].length; j++) {
+                if(array[i][j].equals(element)) return i + 1;
+            }
+        }
+        return 0;
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    int findElementColumn(final Character[][] array, final Character element) {
+        for(int i = 0; i < array.length; i++) {
+            for(int j = 0; j < array[i].length; j++) {
+                if(array[i][j].equals(element)) return j + 1;
+            }
+        }
+        return 0;
+    }
 }
