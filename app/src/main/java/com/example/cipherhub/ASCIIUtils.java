@@ -2,7 +2,7 @@ package com.example.cipherhub;
 
 class ASCIIUtils {
 
-    boolean isSpecialCharacter(int currentCharValue) { //attempt to encapsulate method as one from CaesarActivity or use it from global import class containing it
+    boolean isSpecialCharacter(int currentCharValue) { //attempt to encapsulate method as one from CaesarActivity or use it from global import class containing it -> done
         return currentCharValue == '.' || currentCharValue == '!' || currentCharValue == '?' ||
                 currentCharValue == ',' || currentCharValue == ':' || currentCharValue == ';' ||
                 currentCharValue == '-' || currentCharValue == ' ';
@@ -83,4 +83,21 @@ class ASCIIUtils {
         }
         return 0;
     }
+
+    int pureCharacterLength(final String base) {
+        int length = 0;
+        for(int i = 0; i < base.length(); i++, length++) {
+            if(isSpecialCharacter(base.charAt(i))) length--;
+        }
+        return length;
+    }
+
+    int specialCharacterAmount(final String base) {
+        int count = 0;
+        for(int i = 0; i < base.length(); i++) {
+            if(isSpecialCharacter(base.charAt(i))) count++;
+        }
+        return count;
+    }
+
 }

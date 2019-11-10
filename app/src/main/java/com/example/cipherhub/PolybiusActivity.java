@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,8 +12,10 @@ public class PolybiusActivity extends AppCompatActivity {
 
     EditText inputText;
     EditText polybiusText;
+    TextView lengthView;
 
     PolybiusCipher polybiusCipher;
+    int polybiusLength;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class PolybiusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_polybius);
 
         polybiusCipher = new PolybiusCipher();
+        lengthView = (TextView) findViewById(R.id.lengthView);
 
         final TextWatcher InputToPolybius = new TextWatcher() {
             @Override
@@ -59,8 +63,13 @@ public class PolybiusActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if(!polybiusCipher.getDecodeState()) {
                     polybiusCipher.setEncodeEvoked(true);
-                    if(s.toString().length() % 2 == 0) inputText.setText(polybiusCipher.PolybiusDecode(s.toString(), inputText.toString()));
+                    //if(isNormalInput(s)) {
+                        if(polybiusCipher.getCharacterValidator().pureCharacterLength(s.toString()) % 2 == 0)
+                            inputText.setText(polybiusCipher.PolybiusDecode(s.toString(), inputText.toString()));
+                    //}
+                    //else polybiusLength++;
                 }
+
                 polybiusCipher.setEncodeEvoked(false);
             }
         };

@@ -15,23 +15,10 @@ public class MainActivity extends AppCompatActivity { //main class that inherits
 
         setContentView(R.layout.activity_main); //set the screen's layout to the xml file in layout (can interact with it)
 
-        //Button helloButton = (Button) findViewById(R.id.printHelloButton); //R = resources; id property accesses your id as input
         Button CaesarButton = (Button) findViewById(R.id.CaesarButton);
         Button VigenereButton = (Button) findViewById(R.id.VigenereButton);
         Button AtbashButton = (Button) findViewById(R.id.AtbashButton);
         Button PolybiusButton = (Button) findViewById(R.id.PolybiusButton);
-        //final TextView helloText = (TextView) findViewById(R.id.HelloText);
-
-        /*helloButton.setOnClickListener(new View.OnClickListener() { //We set the listener for the event
-            // to new View (view = rectangular area with stuff in it) onClickListener
-            //and override its method of onclick to what we want
-            //View = android:view (accesses from XML file)
-            @Override
-            public void onClick(View v) {
-                if(helloText.isShown())helloText.setVisibility(View.INVISIBLE); //INVISIBLE is an int that is hardcoded to mean INVISIBLE and is property of the View
-                else helloText.setVisibility(View.VISIBLE); //same with VISIBLE
-            }
-        });*/
 
         PolybiusButton.setOnClickListener(new View.OnClickListener() {
             @Override

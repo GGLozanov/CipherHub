@@ -68,6 +68,7 @@ public class VigenereActivity extends AppCompatActivity {
                         return; //< or >?
                     }
 
+                    String inputString = s.toString();
                     if(!isEncodeEvoked) {
 
                         if(vigenereCipher.isKeyChanged(keyTemplate, currentkeyTemplate)) { //replace key if key is changed
@@ -75,15 +76,15 @@ public class VigenereActivity extends AppCompatActivity {
                             //need to keep track of templates
                             //crashes
                             vigenereCipher.setKeyString(keyString.replaceAll(currentkeyTemplate, keyTemplate)); //crashes if key is entirely changed
-                            if(vigenereCipher.keyExceedsMessage(s)) vigenereCipher.trimKeyString(s); //trims the key if the new one is too long
+                            if(vigenereCipher.keyExceedsMessage(inputString)) vigenereCipher.trimKeyString(inputString); //trims the key if the new one is too long
                             vigenereCipher.setCurrentKeyTemplate(keyTemplate);
                             vigenereCipher.resetEncodeIndexCounter();
                         }
-                        else vigenereCipher.updateEncodingKey(s);
+                        else vigenereCipher.updateEncodingKey(inputString);
                         updateVariables();
                         keyView.setText(keyString);
                         vigenereCipher.setDecodeEvoked(true);
-                        vigenereText.setText(vigenereCipher.VigenereEncode(keyString, s.toString()));
+                        vigenereText.setText(vigenereCipher.VigenereEncode(keyString, inputString));
                     }
 
                     vigenereCipher.setCurrentKeyTemplate(keyTemplate);
@@ -119,21 +120,23 @@ public class VigenereActivity extends AppCompatActivity {
 
                     //PHANTOM LETTERS WHEN DELETING PARTS OF KEY AND WHEN WRITING
 
+                    String outputString = s.toString();
+
                     if(!isDecodeEvoked) {
 
                         if(vigenereCipher.isKeyChanged(keyTemplate, currentkeyTemplate)) { //reset everything if key has changed
                             //should use compareEquals
                             //need to keep track of template
                             vigenereCipher.setKeyString(keyString.replaceAll(currentkeyTemplate, keyTemplate)); //crashes if key is changed entirely
-                            if(vigenereCipher.keyExceedsMessage(s)) vigenereCipher.trimKeyString(s);
+                            if(vigenereCipher.keyExceedsMessage(outputString)) vigenereCipher.trimKeyString(outputString);
                             vigenereCipher.setCurrentKeyTemplate(keyTemplate);
                             vigenereCipher.resetDecodeIndexCounter();
                         }
-                        else vigenereCipher.updateDecodingKey(s);
+                        else vigenereCipher.updateDecodingKey(outputString);
                         updateVariables();
                         keyView.setText(keyString);
                         vigenereCipher.setEncodeEvoked(true);
-                        inputText.setText(vigenereCipher.VigenereDecode(keyString, s.toString()));
+                        inputText.setText(vigenereCipher.VigenereDecode(keyString, outputString));
                     }
 
                     vigenereCipher.setCurrentKeyTemplate(keyTemplate);

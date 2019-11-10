@@ -6,6 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".PolybiusActivity">
 
+    <TextView
+        android:id="@+id/lengthView"
+        android:layout_width="206dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="177dp"
+        android:layout_marginLeft="177dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginRight="176dp"
+        android:layout_marginBottom="66dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/VigenereStringInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <EditText
         android:id="@+id/PolybiusStringOutput"
         android:layout_width="wrap_content"
@@ -44,4 +62,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
