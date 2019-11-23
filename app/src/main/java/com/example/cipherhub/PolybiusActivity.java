@@ -7,21 +7,43 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-public class PolybiusActivity extends AppCompatActivity {
+import ciphers.PolybiusCipher;
+import ui.QuadrupButtonFragment;
+import ui.SectionFragment;
+import ui.SectionPageAdapter;
+import ui.SetUpPagerInterface;
+
+public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInterface {
 
     EditText inputText;
     EditText polybiusText;
     TextView lengthView;
 
     PolybiusCipher polybiusCipher;
-    int polybiusLength;
+
+    ViewPager viewPager;
+    SectionPageAdapter sectionPageAdapter;
+
+    public void setUpViewPager(ViewPager viewPager) {
+        SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new SectionFragment(), "Polybius Screen");
+        viewPager.setAdapter(adapter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polybius);
+
+        sectionPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
+        viewPager = findViewById(R.id.container);
+
+        setUpViewPager(viewPager);
+
+        viewPager.setCurrentItem(0);
 
         polybiusCipher = new PolybiusCipher();
         lengthView = (TextView) findViewById(R.id.lengthView);
@@ -63,11 +85,9 @@ public class PolybiusActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if(!polybiusCipher.getDecodeState()) {
                     polybiusCipher.setEncodeEvoked(true);
-                    //if(isNormalInput(s)) {
-                        if(polybiusCipher.getCharacterValidator().pureCharacterLength(s.toString()) % 2 == 0)
-                            inputText.setText(polybiusCipher.PolybiusDecode(s.toString(), inputText.toString()));
-                    //}
-                    //else polybiusLength++;
+                    if(polybiusCipher.getCharacterValidator().pureCharacterLength(s.toString()) % 2 == 0) {
+                        inputText.setText(polybiusCipher.PolybiusDecode(s.toString(), inputText.toString()));
+                    }
                 }
 
                 polybiusCipher.setEncodeEvoked(false);
@@ -82,4 +102,5 @@ public class PolybiusActivity extends AppCompatActivity {
         inputText.addTextChangedListener(InputToPolybius);
         polybiusText.addTextChangedListener(PolybiusToInput);
     }
+
 }

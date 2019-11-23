@@ -7,8 +7,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-public class VigenereActivity extends AppCompatActivity {
+import ciphers.VigenereCipher;
+import ui.SectionFragment;
+import ui.SectionPageAdapter;
+import ui.SetUpPagerInterface;
+
+public class VigenereActivity extends AppCompatActivity implements SetUpPagerInterface {
 
     EditText inputText;
     EditText keyText;
@@ -24,6 +30,15 @@ public class VigenereActivity extends AppCompatActivity {
     boolean isEncodeEvoked;
     boolean isDecodeEvoked;
 
+    ViewPager viewPager;
+    SectionPageAdapter sectionPageAdapter;
+
+    public void setUpViewPager(ViewPager viewPager) {
+        SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new SectionFragment(), "Vigenere Screen");
+        viewPager.setAdapter(adapter);
+    }
+
     private void updateVariables() {
         keyTemplate = vigenereCipher.getKeyTemplate();
         currentkeyTemplate = vigenereCipher.getCurrentKeyTemplate();
@@ -37,6 +52,13 @@ public class VigenereActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_vigenere);
+
+        sectionPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
+        viewPager = findViewById(R.id.container);
+
+        setUpViewPager(viewPager);
+
+        viewPager.setCurrentItem(0);
 
         keyView = (TextView) findViewById(R.id.KeyView);
         newKeyView = (TextView) findViewById(R.id.NewKeyView);
@@ -57,14 +79,11 @@ public class VigenereActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                    //vigenereCipher.setKeyString(vigenereCipher.getKeyString()).setCurrentKeyTemplate(vigenereCipher.getCurrentKeyTemplate()).setTemplate(vigenereCipher.getKeyTemplate()).setEncodeEvoked(vigenereCipher.getEncodeState()).setDecodeEvoked(vigenereCipher.getDecodeState());
-
                     updateVariables();
 
                     if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) {
                         vigenereCipher.setKeyString(keyTemplate);
                         vigenereCipher.setCurrentKeyTemplate(keyTemplate);
-                       // vigenereCipher.updateEncodingKey(s);
                         return; //< or >?
                     }
 
@@ -88,7 +107,6 @@ public class VigenereActivity extends AppCompatActivity {
                     }
 
                     vigenereCipher.setCurrentKeyTemplate(keyTemplate);
-                    //keyString = previousKeyString;
                     vigenereCipher.setEncodeEvoked(false); //might change
 
             }

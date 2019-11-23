@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".PolybiusActivity">
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/lengthView"
         android:layout_width="206dp"

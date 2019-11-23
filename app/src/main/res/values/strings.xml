@@ -13,4 +13,16 @@
     <string name="decoded_input_atbash">Enter Decoded Text</string>
     <string name="coded_output_atbash">Enter Encoded Text (Reverse)</string>
     <string name="change_activity_polybius">Polybius</string>
+
+    <string name="app_title">Welcome to CipherHub!</string>
+    <string name="app_description">Your one-stop shop for all necessary cryptography needs! Dynamic translations included!</string>
+    <string name="caesar_title">Caesar Cipher</string>
+    <string name="caesar_description">The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which each letter in the plaintext is "shifted" a certain number of places down the alphabet. For example, with a shift of 1, A would be replaced by B, B would become C, and so on.</string>
+    <string name="vigenere_title">Vigenere Cipher</string>
+    <string name="vigenere_description">The Vigenère cipher (French pronunciation: ​[viʒnɛːʁ]) is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It employs a form of polyalphabetic substitution.</string>
+    <string name="atbash_title">Atbash Cipher</string>
+    <string name="atbash_description">Atbash (Hebrew: אתבש‎; also transliterated Atbaš) is a monoalphabetic substitution cipher originally used to encrypt the Hebrew alphabet. It can be modified for use with any known writing system with a standard collating order.</string>
+    <string name="polybius_title">Polybius Cipher</string>
+    <string name="polybius_description">In cryptography, the Polybius square, also known as the Polybius checkerboard, is a device invented by the Ancient Greeks Cleoxenus and Democleitus, and perfected by the Ancient Greek historian and scholar Polybius,[1] for fractionating plaintext characters so that they can be represented by a smaller set of symbols.</string>
+
 </resources>
