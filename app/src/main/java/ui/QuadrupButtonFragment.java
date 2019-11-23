@@ -40,6 +40,9 @@ public class QuadrupButtonFragment extends Fragment {
         buttonFour = view.findViewById(R.id.buttonFour);
 
         buttonOne.setText(getArguments().getString("ButtonOne"));
+        buttonTwo.setText(getArguments().getString("ButtonTwo"));
+        buttonThree.setText(getArguments().getString("ButtonThree"));
+        buttonFour.setText(getArguments().getString("ButtonFour"));
     }
 
     @Override

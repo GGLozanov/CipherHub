@@ -20,10 +20,10 @@ public class SectionPageAdapter extends FragmentStatePagerAdapter {
     private static String titleKey = "Title";
     private static String descriptionKey = "Description";
 
-    private static String buttonOneKey = "ButtonOne";
-    private static String buttonTwoKey = "ButtonTwo";
-    private static String buttonThreeKey = "ButtonThree";
-    private static String buttonFourKey = "ButtonFour";
+    static String buttonOneKey = "ButtonOne";
+    static String buttonTwoKey = "ButtonTwo";
+    static String buttonThreeKey = "ButtonThree";
+    static String buttonFourKey = "ButtonFour";
 
 
     public SectionPageAdapter(FragmentManager fm) { //call parent constructor for FragmentManager in order to override methods
@@ -69,6 +69,8 @@ public class SectionPageAdapter extends FragmentStatePagerAdapter {
             default:
                 break;
         }
+
+        fragments.get(position).setArguments(bundle);
 
         return fragments.get(position); //get the position of the current fragment from out fragment array list
     }
