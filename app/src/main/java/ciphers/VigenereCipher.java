@@ -1,0 +1,4 @@
+package ciphers;
+
+class VigenereCipher {
+}
