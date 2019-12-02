@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import ciphers.VigenereCipher;
+import ui.CipherFragment;
 import ui.SectionFragment;
 import ui.SectionPageAdapter;
 import ui.SetUpPagerInterface;
@@ -36,6 +37,7 @@ public class VigenereActivity extends AppCompatActivity implements SetUpPagerInt
     public void setUpViewPager(ViewPager viewPager) {
         SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new SectionFragment(), "Vigenere Screen");
+        adapter.addFragment(new CipherFragment(), "Vigenere Cipher");
         viewPager.setAdapter(adapter);
     }
 

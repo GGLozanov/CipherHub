@@ -14,11 +14,12 @@ import java.util.*;
 
 public class SectionPageAdapter extends FragmentStatePagerAdapter {
 
-    private List<Fragment> fragments = new ArrayList<>(); //list for both quadrup and section fragments
+    private List<Fragment> fragments = new ArrayList<>(); //list for both quadrup, cipher and section fragments
     private List<String> fragmentTitles = new ArrayList<>();
 
     private static String titleKey = "Title";
     private static String descriptionKey = "Description";
+    private static String cipherKey = "Cipher";
 
     static String buttonOneKey = "ButtonOne";
     static String buttonTwoKey = "ButtonTwo";
@@ -41,30 +42,42 @@ public class SectionPageAdapter extends FragmentStatePagerAdapter {
 
         switch(fragmentTitles.get(position)) {
             case "Main Screen": //main activity
-                bundle.putString(titleKey, Resources.getSystem().getString(R.string.app_title));
-                bundle.putString(descriptionKey, Resources.getSystem().getString(R.string.app_description));
+                bundle.putString(titleKey, "Cipherhub");
+                bundle.putString(descriptionKey, "Your one-stop shop for all your cryptography-oriented needs!");
                 break;
             case "Caesar Screen": //caesar
-                bundle.putString(titleKey, Resources.getSystem().getString(R.string.caesar_title));
-                bundle.putString(descriptionKey, Resources.getSystem().getString(R.string.caesar_description));
+                bundle.putString(titleKey, "Caesar Cipher");
+                bundle.putString(descriptionKey, "The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which each letter in the plaintext is \"shifted\" a certain number of places down the alphabet. For example, with a shift of 1, A would be replaced by B, B would become C, and so on.");
                 break;
             case "Vigenere Screen": //vigenere
-                bundle.putString(titleKey, Resources.getSystem().getString(R.string.vigenere_title));
-                bundle.putString(descriptionKey, Resources.getSystem().getString(R.string.vigenere_description));
+                bundle.putString(titleKey, "Vigenere Cipher");
+                bundle.putString(descriptionKey, "The Vigenère cipher (French pronunciation: [viʒnɛːʁ]) is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It employs a form of polyalphabetic substitution.");
                 break;
             case "Atbash Screen": //atbash
-                bundle.putString(titleKey, Resources.getSystem().getString(R.string.atbash_title));
-                bundle.putString(descriptionKey, Resources.getSystem().getString(R.string.atbash_description));
+                bundle.putString(titleKey, "Atbash Cipher");
+                bundle.putString(descriptionKey, "Atbash (Hebrew: אתבש\u200E; also transliterated Atbaš) is a monoalphabetic substitution cipher originally used to encrypt the Hebrew alphabet. It can be modified for use with any known writing system with a standard collating order");
                 break;
             case "Polybius Screen": //polybius
-                bundle.putString(titleKey, Resources.getSystem().getString(R.string.polybius_title));
-                bundle.putString(descriptionKey, Resources.getSystem().getString(R.string.polybius_description));
+                bundle.putString(titleKey, "Polybius Cipher");
+                bundle.putString(descriptionKey, "In cryptography, the Polybius square, also known as the Polybius checkerboard, is a device invented by the Ancient Greeks Cleoxenus and Democleitus, and perfected by the Ancient Greek historian and scholar Polybius,[1] for fractionating plaintext characters so that they can be represented by a smaller set of symbols.");
                 break;
             case "Page 1":
-                bundle.putString(buttonOneKey, Resources.getSystem().getString(R.string.change_activity_caesar));
-                bundle.putString(buttonTwoKey, Resources.getSystem().getString(R.string.change_activity_vigenere));
-                bundle.putString(buttonThreeKey, Resources.getSystem().getString(R.string.change_activity_atbash));
-                bundle.putString(buttonFourKey, Resources.getSystem().getString(R.string.change_activity_polybius));
+                bundle.putString(buttonOneKey, "Caesar");
+                bundle.putString(buttonTwoKey, "Vigenere");
+                bundle.putString(buttonThreeKey, "Atbash");
+                bundle.putString(buttonFourKey, "Polybius");
+                break;
+            case "Caesar Cipher":
+                bundle.putString(cipherKey, "Caesar");
+                break;
+            case "Vigenere Cipher":
+                bundle.putString(cipherKey, "Vigenere");
+                break;
+            case "Atbash Cipher":
+                bundle.putString(cipherKey, "Atbash");
+                break;
+            case "Polybius Cipher":
+                bundle.putString(cipherKey, "Polybius");
                 break;
             default:
                 break;

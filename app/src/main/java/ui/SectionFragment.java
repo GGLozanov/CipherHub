@@ -35,6 +35,8 @@ public class SectionFragment extends Fragment {
         description = view.findViewById(R.id.sectionDescription);
 
         title.setText(getArguments().getString("Title"));
+        //Bundle -> a map of key strings to various Parcelable values (strings, most likely)
+        //getArguments() method selects the current Bundle (savedInstanceState) and returns the bundled arguments.
         description.setText(getArguments().getString("Description"));
         //getActivity() method returns the context of the current activity the fragment is in
 

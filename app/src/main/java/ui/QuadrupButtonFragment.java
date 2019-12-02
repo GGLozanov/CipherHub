@@ -56,28 +56,28 @@ public class QuadrupButtonFragment extends Fragment {
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenPolybiusActivity();
+                OpenCaesarActivity();
             }
         });
 
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenCaesarActivity();
+                OpenVigenereActivity();
             }
         });
 
         buttonThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenVigenereActivity();
+                OpenAtbashActivity();
             }
         });
 
         buttonFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenAtbashActivity();
+                OpenPolybiusActivity();
             }
         });
         // Inflate the layout for this fragment

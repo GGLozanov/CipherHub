@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/sectionTitle"
-        android:layout_width="236dp"
-        android:layout_height="71dp"
+        android:layout_width="348dp"
+        android:layout_height="97dp"
         android:layout_marginStart="87dp"
         android:layout_marginLeft="87dp"
         android:layout_marginTop="46dp"
@@ -23,7 +23,6 @@
         app:fontFamily="cursive"
         app:layout_constraintBottom_toTopOf="@+id/sectionDescription"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +40,6 @@
         app:fontFamily="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sectionTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

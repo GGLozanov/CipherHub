@@ -25,4 +25,7 @@
     <string name="polybius_title">Polybius Cipher</string>
     <string name="polybius_description">In cryptography, the Polybius square, also known as the Polybius checkerboard, is a device invented by the Ancient Greeks Cleoxenus and Democleitus, and perfected by the Ancient Greek historian and scholar Polybius,[1] for fractionating plaintext characters so that they can be represented by a smaller set of symbols.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
