@@ -12,22 +12,22 @@ import com.example.cipherhub.R;
 
 import java.util.*;
 
-public class SectionPageAdapter extends FragmentStatePagerAdapter {
+public class FragmentPageAdapter extends FragmentStatePagerAdapter {
 
     private List<Fragment> fragments = new ArrayList<>(); //list for both quadrup, cipher and section fragments
     private List<String> fragmentTitles = new ArrayList<>();
 
-    private static String titleKey = "Title";
-    private static String descriptionKey = "Description";
-    private static String cipherKey = "Cipher";
+    private static final String titleKey = "Title";
+    private static final String descriptionKey = "Description";
+    private static final String cipherKey = "Cipher";
 
-    static String buttonOneKey = "ButtonOne";
-    static String buttonTwoKey = "ButtonTwo";
-    static String buttonThreeKey = "ButtonThree";
-    static String buttonFourKey = "ButtonFour";
+    private static final String buttonOneKey = "ButtonOne";
+    private static final String buttonTwoKey = "ButtonTwo";
+    private static final String buttonThreeKey = "ButtonThree";
+    private static final String buttonFourKey = "ButtonFour";
 
 
-    public SectionPageAdapter(FragmentManager fm) { //call parent constructor for FragmentManager in order to override methods
+    public FragmentPageAdapter(FragmentManager fm) { //call parent constructor for FragmentManager in order to override methods
         super(fm);
     }
 

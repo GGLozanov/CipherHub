@@ -42,9 +42,6 @@ public class CipherFragment extends Fragment {
                 cipherManager.CaesarCipher();
                 break;
 
-            case "Vigenere":
-                break;
-
             case "Atbash":
                 cipherManager.AtbashCipher();
                 break;

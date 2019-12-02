@@ -1,8 +1,6 @@
 package com.example.cipherhub;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import ciphers.AtbashCipher;
 import ui.CipherFragment;
 import ui.SectionFragment;
-import ui.SectionPageAdapter;
+import ui.FragmentPageAdapter;
 import ui.SetUpPagerInterface;
 
 public class AtbashActivity extends AppCompatActivity implements SetUpPagerInterface {
@@ -22,10 +20,10 @@ public class AtbashActivity extends AppCompatActivity implements SetUpPagerInter
     AtbashCipher atbashCipher;
 
     ViewPager viewPager;
-    SectionPageAdapter sectionPageAdapter;
+    FragmentPageAdapter fragmentPageAdapter;
 
     public void setUpViewPager(ViewPager viewPager) {
-        SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
+        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new SectionFragment(), "Atbash Screen");
         adapter.addFragment(new CipherFragment(), "Atbash Cipher");
         viewPager.setAdapter(adapter);
@@ -37,7 +35,7 @@ public class AtbashActivity extends AppCompatActivity implements SetUpPagerInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atbash);
 
-        sectionPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);

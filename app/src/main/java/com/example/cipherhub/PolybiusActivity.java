@@ -1,8 +1,6 @@
 package com.example.cipherhub;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -11,9 +9,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import ciphers.PolybiusCipher;
 import ui.CipherFragment;
-import ui.QuadrupButtonFragment;
 import ui.SectionFragment;
-import ui.SectionPageAdapter;
+import ui.FragmentPageAdapter;
 import ui.SetUpPagerInterface;
 
 public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInterface {
@@ -25,10 +22,10 @@ public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInt
     PolybiusCipher polybiusCipher;
 
     ViewPager viewPager;
-    SectionPageAdapter sectionPageAdapter;
+    FragmentPageAdapter fragmentPageAdapter;
 
     public void setUpViewPager(ViewPager viewPager) {
-        SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
+        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new SectionFragment(), "Polybius Screen");
         adapter.addFragment(new CipherFragment(), "Polybius Cipher");
         viewPager.setAdapter(adapter);
@@ -40,7 +37,7 @@ public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polybius);
 
-        sectionPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);

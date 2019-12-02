@@ -20,13 +20,9 @@ public class CipherCallerManager {
     CaesarCipher caesarCipher;
     PolybiusCipher polybiusCipher;
     AtbashCipher atbashCipher;
-    VigenereCipher vigenereCipher;
 
     public void setDecodedInput(EditText decodedInput) {this.decodedInput = decodedInput;}
     public void setEncodedOutput(EditText encodedOutput) {this.encodedOutput = encodedOutput;}
-
-    public EditText getDecodedInput() {return decodedInput;}
-    public EditText getEncodedOutput() {return encodedOutput;}
 
 
     public void CaesarCipher() {
@@ -81,10 +77,6 @@ public class CipherCallerManager {
 
         decodedInput.addTextChangedListener(normaltoCaesarListener);
         encodedOutput.addTextChangedListener(CaesartoNormalListener);
-
-    }
-
-    public void VigenereCipher() {
 
     }
 
