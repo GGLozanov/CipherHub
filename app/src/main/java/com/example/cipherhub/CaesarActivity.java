@@ -18,7 +18,7 @@ public class CaesarActivity extends AppCompatActivity implements SetUpPagerInter
     FragmentPageAdapter fragmentPageAdapter;
 
     public void setUpViewPager(ViewPager viewPager) {
-        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager());
+        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         adapter.addFragment(new SectionFragment(), "Caesar Screen");
         adapter.addFragment(new CipherFragment(), "Caesar Cipher");
         viewPager.setAdapter(adapter);
@@ -30,7 +30,7 @@ public class CaesarActivity extends AppCompatActivity implements SetUpPagerInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caesar);
 
-        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager());
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);

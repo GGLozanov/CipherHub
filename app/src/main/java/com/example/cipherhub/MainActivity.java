@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements SetUpPagerInterfa
     FragmentPageAdapter fragmentPageAdapter;
 
     public void setUpViewPager(ViewPager viewPager) {
-        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager());
+        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         adapter.addFragment(new SectionFragment(), "Main Screen"); //add quadruple button fragment later on (once for main activity)
         adapter.addFragment(new QuadrupButtonFragment(), "Page 1");
         viewPager.setAdapter(adapter);
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements SetUpPagerInterfa
 
         setContentView(R.layout.activity_main); //set the screen's layout to the xml file in layout (can interact with it)
 
-        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager());
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);

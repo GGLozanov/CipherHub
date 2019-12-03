@@ -16,7 +16,7 @@ public class VigenereActivity extends AppCompatActivity implements SetUpPagerInt
     FragmentPageAdapter fragmentPageAdapter;
 
     public void setUpViewPager(ViewPager viewPager) {
-        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager());
+        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         adapter.addFragment(new SectionFragment(), "Vigenere Screen");
         adapter.addFragment(new KeyCipherFragment(), "Vigenere Cipher");
         viewPager.setAdapter(adapter);
@@ -28,7 +28,7 @@ public class VigenereActivity extends AppCompatActivity implements SetUpPagerInt
 
         setContentView(R.layout.activity_vigenere);
 
-        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager());
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);

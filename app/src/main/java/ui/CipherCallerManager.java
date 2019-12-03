@@ -3,14 +3,10 @@ package ui;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import com.example.cipherhub.R;
 
 import ciphers.AtbashCipher;
 import ciphers.CaesarCipher;
 import ciphers.PolybiusCipher;
-import ciphers.VigenereCipher;
 
 public class CipherCallerManager {
 

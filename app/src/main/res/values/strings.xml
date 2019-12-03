@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">CipherHub</string>
-    <string name="hello">Hello</string>
-    <string name="button">Click me.</string>
     <string name="change_activity_caesar">Caesar</string>
     <string name="change_activity_vigenere">Vigenere</string>
     <string name="decoded_input_caesar">Enter Decoded Text</string>
@@ -14,7 +12,7 @@
     <string name="coded_output_atbash">Enter Encoded Text (Reverse)</string>
     <string name="change_activity_polybius">Polybius</string>
 
-    <string name="app_title">Welcome to CipherHub!</string>
+    <string name="app_title">CipherHub</string>
     <string name="app_description">Your one-stop shop for all necessary cryptography needs! Dynamic translations included!</string>
     <string name="caesar_title">Caesar Cipher</string>
     <string name="caesar_description">The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which each letter in the plaintext is "shifted" a certain number of places down the alphabet. For example, with a shift of 1, A would be replaced by B, B would become C, and so on.</string>
@@ -25,7 +23,9 @@
     <string name="polybius_title">Polybius Cipher</string>
     <string name="polybius_description">In cryptography, the Polybius square, also known as the Polybius checkerboard, is a device invented by the Ancient Greeks Cleoxenus and Democleitus, and perfected by the Ancient Greek historian and scholar Polybius,[1] for fractionating plaintext characters so that they can be represented by a smaller set of symbols.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="caesar">Caesar</string>
+    <string name="vigenere">Vigenere</string>
+    <string name="atbash">Atbash</string>
+    <string name="polybius">Polybius</string>
 
 </resources>

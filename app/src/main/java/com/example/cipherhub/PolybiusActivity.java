@@ -25,7 +25,7 @@ public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInt
     FragmentPageAdapter fragmentPageAdapter;
 
     public void setUpViewPager(ViewPager viewPager) {
-        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager());
+        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         adapter.addFragment(new SectionFragment(), "Polybius Screen");
         adapter.addFragment(new CipherFragment(), "Polybius Cipher");
         viewPager.setAdapter(adapter);
@@ -37,7 +37,7 @@ public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polybius);
 
-        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager());
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);
