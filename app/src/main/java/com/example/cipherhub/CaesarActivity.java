@@ -1,75 +1,41 @@
 package com.example.cipherhub;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-public class CaesarActivity extends AppCompatActivity {
+import ui.CipherFragment;
+import ui.SectionFragment;
+import ui.FragmentPageAdapter;
+import ui.SetUpPagerInterface;
 
-    CaesarCipher caesarCipher;
-    EditText caesarText;
-    EditText normalInput;
+public class CaesarActivity extends AppCompatActivity implements SetUpPagerInterface {
 
-    //TextView caesarInput;
+    //include viewpager for activities -> done
+
+    ViewPager viewPager;
+    FragmentPageAdapter fragmentPageAdapter;
+
+    public void setUpViewPager(ViewPager viewPager) {
+        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
+        adapter.addFragment(new SectionFragment(), "Caesar Screen");
+        adapter.addFragment(new CipherFragment(), "Caesar Cipher");
+        viewPager.setAdapter(adapter);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caesar);
 
-        caesarCipher = new CaesarCipher(3);
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
+        viewPager = findViewById(R.id.container);
 
-        TextWatcher normaltoCaesarListener = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        setUpViewPager(viewPager);
 
-            }
+        viewPager.setCurrentItem(0);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(!caesarCipher.getEncodeState()) {
-                    caesarCipher.setDecodeEvoked(true);
-                    caesarText.setText(caesarCipher.CaesarEncoder(s));
-                }
-                caesarCipher.setEncodeEvoked(false);
-            }
-        };
-
-        TextWatcher CaesartoNormalListener = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //normalInput.setText(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(!caesarCipher.getDecodeState()) {
-                    caesarCipher.setEncodeEvoked(true);
-                    normalInput.setText(caesarCipher.CaesarDecoder(s));
-                    //isDecodeEvoked = false;
-                }
-                caesarCipher.setDecodeEvoked(false);
-            }
-        };
-
-        caesarCipher.setIOTexts((EditText) findViewById(R.id.CaesarStringInput), (EditText) findViewById(R.id.CaesarStringOutput));
-
-        normalInput = caesarCipher.getInputText();
-        caesarText = caesarCipher.getOutputText();
-
-        normalInput.addTextChangedListener(normaltoCaesarListener);
-        caesarText.addTextChangedListener(CaesartoNormalListener);
     }
 }

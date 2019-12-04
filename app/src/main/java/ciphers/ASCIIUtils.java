@@ -1,6 +1,6 @@
-package com.example.cipherhub;
+package ciphers;
 
-class ASCIIUtils {
+public class ASCIIUtils {
 
     boolean isSpecialCharacter(int currentCharValue) { //attempt to encapsulate method as one from CaesarActivity or use it from global import class containing it -> done
         return currentCharValue == '.' || currentCharValue == '!' || currentCharValue == '?' ||
@@ -84,7 +84,7 @@ class ASCIIUtils {
         return 0;
     }
 
-    int pureCharacterLength(final String base) {
+    public int pureCharacterLength(final String base) {
         int length = 0;
         for(int i = 0; i < base.length(); i++, length++) {
             if(isSpecialCharacter(base.charAt(i))) length--;
@@ -92,7 +92,7 @@ class ASCIIUtils {
         return length;
     }
 
-    int specialCharacterAmount(final String base) {
+    public int specialCharacterAmount(final String base) {
         int count = 0;
         for(int i = 0; i < base.length(); i++) {
             if(isSpecialCharacter(base.charAt(i))) count++;
