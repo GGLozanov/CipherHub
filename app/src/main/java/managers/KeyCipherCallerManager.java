@@ -1,10 +1,11 @@
-package ui;
+package managers;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
 import ciphers.VigenereCipher;
+import managers.CipherCallerManager;
 
 public class KeyCipherCallerManager extends CipherCallerManager {
 

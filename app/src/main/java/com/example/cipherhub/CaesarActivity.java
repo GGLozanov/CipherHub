@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import ui.CipherFragment;
+import ui.CustomCaesarFragment;
 import ui.SectionFragment;
 import ui.FragmentPageAdapter;
 import ui.SetUpPagerInterface;
@@ -21,6 +22,7 @@ public class CaesarActivity extends AppCompatActivity implements SetUpPagerInter
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         adapter.addFragment(new SectionFragment(), "Caesar Screen");
         adapter.addFragment(new CipherFragment(), "Caesar Cipher");
+        adapter.addFragment(new CustomCaesarFragment(), "Custom Caesar");
         viewPager.setAdapter(adapter);
     }
 

@@ -1,7 +1,6 @@
 package ui;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,11 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.cipherhub.AtbashActivity;
-import com.example.cipherhub.CaesarActivity;
-import com.example.cipherhub.PolybiusActivity;
 import com.example.cipherhub.R;
-import com.example.cipherhub.VigenereActivity;
+
+import managers.ActivityCallerManager;
 
 
 /**
@@ -28,6 +25,8 @@ public class QuadrupButtonFragment extends Fragment {
     private Button buttonTwo;
     private Button buttonThree;
     private Button buttonFour;
+
+    private ActivityCallerManager activityCallerManager = new ActivityCallerManager(this); //constructor takes current fragment as reference
 
     public QuadrupButtonFragment() {
         // Required empty public constructor
@@ -56,59 +55,32 @@ public class QuadrupButtonFragment extends Fragment {
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenCaesarActivity();
+                activityCallerManager.OpenCaesarActivity();
             }
         });
 
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenVigenereActivity();
+                activityCallerManager.OpenVigenereActivity();
             }
         });
 
         buttonThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenAtbashActivity();
+                activityCallerManager.OpenAtbashActivity();
             }
         });
 
         buttonFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenPolybiusActivity();
+                activityCallerManager.OpenPolybiusActivity();
             }
         });
         // Inflate the layout for this fragment
         return view;
-    }
-
-
-    private void OpenCaesarActivity(){
-        Intent CaesarIntent = new Intent(getActivity(), CaesarActivity.class);
-        //first constructor argument takes the CONTEXT of the package (this package, the one we're currently  -> getActiviy() gets current context for fragment).
-        //second constructor argument takes the class of the Activity we want to start; we can access the class through the property 'class' of the Activity.
-        //Research ContentProviders (abstract data providers) and URI - Uniform Resource Identifier (string of characters that represent a resource).
-        startActivity(CaesarIntent);
-    }
-
-    private void OpenVigenereActivity() {
-        Intent VigenereIntent = new Intent(getActivity(), VigenereActivity.class);
-
-        startActivity(VigenereIntent);
-    }
-
-    private void OpenAtbashActivity() {
-        Intent AtbashIntent = new Intent(getActivity(), AtbashActivity.class);
-
-        startActivity(AtbashIntent);
-    }
-
-    private void OpenPolybiusActivity() {
-        Intent PolybiusIntent = new Intent(getActivity(), PolybiusActivity.class);
-
-        startActivity(PolybiusIntent);
     }
 
 

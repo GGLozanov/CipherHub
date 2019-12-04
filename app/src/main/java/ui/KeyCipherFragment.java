@@ -12,6 +12,8 @@ import android.widget.EditText;
 
 import com.example.cipherhub.R;
 
+import managers.KeyCipherCallerManager;
+
 
 /**
  * A simple {@link Fragment} subclass.

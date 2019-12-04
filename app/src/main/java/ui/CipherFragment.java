@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 import com.example.cipherhub.R;
 
-import ciphers.CaesarCipher;
+import managers.CipherCallerManager;
 
 
 /**

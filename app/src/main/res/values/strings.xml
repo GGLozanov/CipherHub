@@ -28,4 +28,7 @@
     <string name="atbash">Atbash</string>
     <string name="polybius">Polybius</string>
 
+    <string name="custom_caesar_title">Custom Caesar</string>
+    <string name="custom_caesar_description">If you wanted to somehow simulate even an extra layer of security to your encodings, then you needn\'t fret, because we\'ve got you covered! By pressing the button above, you can input your own key value by which to shift the Cipher!</string>
+    <string name="custom_caesar_button">Custom</string>
 </resources>

@@ -1,4 +1,4 @@
-package ui;
+package managers;
 
 import android.text.Editable;
 import android.text.TextWatcher;

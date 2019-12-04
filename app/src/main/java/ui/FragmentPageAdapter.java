@@ -18,14 +18,17 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> fragments = new ArrayList<>(); //list for both quadrup, cipher and section fragments
     private List<String> fragmentTitles = new ArrayList<>();
 
-    private static final String titleKey = "Title";
-    private static final String descriptionKey = "Description";
-    private static final String cipherKey = "Cipher";
+    static final String titleKey = "Title";
+    static final String descriptionKey = "Description";
 
-    private static final String buttonOneKey = "ButtonOne";
-    private static final String buttonTwoKey = "ButtonTwo";
-    private static final String buttonThreeKey = "ButtonThree";
-    private static final String buttonFourKey = "ButtonFour";
+    static final String cipherKey = "Cipher";
+
+    static final String customKey = "Custom";
+
+    static final String buttonOneKey = "ButtonOne";
+    static final String buttonTwoKey = "ButtonTwo";
+    static final String buttonThreeKey = "ButtonThree";
+    static final String buttonFourKey = "ButtonFour";
 
     private Context context;
 
@@ -86,6 +89,12 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
                 break;
             case "Polybius Cipher":
                 bundle.putString(cipherKey, appResources.getString(R.string.polybius));
+                break;
+            case "Custom Caesar":
+                bundle.putString(titleKey, context.getResources().getString(R.string.custom_caesar_title));
+                bundle.putString(descriptionKey, context.getResources().getString(R.string.custom_caesar_description));
+                bundle.putString(buttonOneKey, context.getResources().getString(R.string.custom_caesar_button));
+                bundle.putString(customKey, context.getResources().getString(R.string.caesar));
                 break;
             default:
                 break;
