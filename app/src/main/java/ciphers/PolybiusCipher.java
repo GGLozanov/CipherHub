@@ -42,7 +42,7 @@ public class PolybiusCipher extends Ciphers {
 
         for(int i = 0, counter = 0; i + 1 < base.length(); i += 2, counter++) {
             currentCharacter = base.charAt(i);
-            //fix seg fault when trying to decrement i for ignoring space
+            //fix seg fault when trying to decrement i for ignoring space -> done
 
             if(characterValidator.isSpecialCharacter(currentCharacter)) {
                 decodedText += (char) currentCharacter;
@@ -63,7 +63,7 @@ public class PolybiusCipher extends Ciphers {
 
             int x = characterValidator.convertToNumber(currentCharacter), y = characterValidator.convertToNumber(nextCharacter);
             if(x > 6 || y > 6) continue;
-            //Fix uppercase and lowercase bug
+            //Fix uppercase and lowercase bug -> done
             if(characterValidator.isCapitalLetter(inputText.charAt(counter)) ||
                     characterValidator.isNumber(PolybiusSquare[x - 1][y - 1])) decodedText += PolybiusSquare[x - 1][y - 1];
             else decodedText += (char)characterValidator.convertToLowercase(PolybiusSquare[x - 1][y - 1]);

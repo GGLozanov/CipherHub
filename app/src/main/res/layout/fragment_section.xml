@@ -5,9 +5,10 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.SectionFragment">
+    tools:context="ui.SectionFragment"
+    android:background="@color/backgroundColor">
 
-    <TextView
+    <TextView style="@style/Text"
         android:id="@+id/sectionTitle"
         android:layout_width="348dp"
         android:layout_height="97dp"
@@ -26,8 +27,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <TextView style="@style/Text"
         android:id="@+id/sectionDescription"
+        android:textSize="18dp"
         android:layout_width="339dp"
         android:layout_height="338dp"
         android:layout_marginStart="36dp"
@@ -35,7 +37,7 @@
         android:layout_marginTop="77dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
-        android:layout_marginBottom="199dp"
+        android:layout_marginBottom="185dp"
         android:text="@string/app_description"
         app:fontFamily="serif"
         app:layout_constraintBottom_toBottomOf="parent"

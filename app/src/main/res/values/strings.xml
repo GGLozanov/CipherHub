@@ -13,7 +13,7 @@
     <string name="change_activity_polybius">Polybius</string>
 
     <string name="app_title">CipherHub</string>
-    <string name="app_description">Your one-stop shop for all necessary cryptography needs! Dynamic translations included!</string>
+    <string name="app_description">Your one-stop shop for all necessary cryptography needs, featuring real-time encoding and decoding of a multitude of ciphers, and, our latest feature: Custom Ciphers! The author sincerely hopes you enjoy his little app :)</string>
     <string name="caesar_title">Caesar Cipher</string>
     <string name="caesar_description">The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which each letter in the plaintext is "shifted" a certain number of places down the alphabet. For example, with a shift of 1, A would be replaced by B, B would become C, and so on.</string>
     <string name="vigenere_title">Vigenere Cipher</string>
@@ -31,4 +31,14 @@
     <string name="custom_caesar_title">Custom Caesar</string>
     <string name="custom_caesar_description">If you wanted to somehow simulate even an extra layer of security to your encodings, then you needn\'t fret, because we\'ve got you covered! By pressing the button above, you can input your own key value by which to shift the Cipher!</string>
     <string name="custom_caesar_button">Custom</string>
+
+    <string name="custom_caesar_dialog_title">Custom Cipher</string>
+    <string name="cusom_caesar_dialog_message">Set the key (shift amount) for the cipher</string>
+    <string name="custom_caesar_dialog_hint">Enter Custom Key</string>
+    <string name="custom_caesar_dialog_positive_button_message">Submit</string>
+    <string name="custom_caesar_dialog_negative_button_message">Cancel</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

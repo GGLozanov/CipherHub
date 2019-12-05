@@ -1,14 +1,17 @@
 package ciphers;
 
 import android.text.Editable;
+import android.util.Log;
 
 public class CaesarCipher extends Ciphers {
 
-    private int key;
+    private Integer key;
 
     public CaesarCipher(int key) {this.key = key;}
 
-    public String CaesarDecoder(Editable base){
+    public String CaesarDecoder(Editable base) {
+
+        Log.d("KEY IN CLASS", key.toString());
         decodedText = "";
         String defaultInput = base.toString();
         for(int i = 0; i < defaultInput.length(); i++) {
@@ -26,8 +29,6 @@ public class CaesarCipher extends Ciphers {
 
             if(characterValidator.isCaesarDecodeSpecialCase(currentCharValue, currentCharValue > 'Z' ? ('z' - key) : ('Z' - key))) asciiValue -= 26;
 
-            //if(((asciiValue != ' ' && (asciiValue < 'A')) || (asciiValue > 'z'))continue;
-
             decodedText += (char)asciiValue;
         }
 
@@ -35,7 +36,7 @@ public class CaesarCipher extends Ciphers {
         return decodedText;
     }
 
-    public String CaesarEncoder(Editable base){
+    public String CaesarEncoder(Editable base) {
         encodedText = "";
         String defaultInput = base.toString();
         for(int i = 0; i < defaultInput.length(); i++) {

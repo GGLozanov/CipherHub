@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements SetUpPagerInterfa
     ViewPager viewPager;
     FragmentPageAdapter fragmentPageAdapter;
 
+    @Override
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         adapter.addFragment(new SectionFragment(), "Main Screen"); //add quadruple button fragment later on (once for main activity)

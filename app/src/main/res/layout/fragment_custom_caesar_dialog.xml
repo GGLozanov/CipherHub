@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ui.CustomCaesarDialogFragment"
+    android:orientation="vertical"
+    android:paddingLeft="45dp"
+    android:background="@color/backgroundColor"
+    >
+
+    <TextView style="@style/Text"
+        android:id="@+id/CustomCaesarHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="83dp"
+
+        android:layout_marginRight="50dp"
+        android:gravity="center"
+        android:text="@string/cusom_caesar_dialog_message"
+        android:textFontWeight="@android:integer/config_mediumAnimTime"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:fontFamily="serif"
+        app:layout_constraintBottom_toTopOf="@+id/CustomCaesarInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp">
+
+        <EditText style="@style/EditText"
+            android:maxLength="2"
+            android:id="@+id/CustomCaesarInput"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="@string/custom_caesar_dialog_hint"
+            android:inputType="number"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CustomCaesarHeading" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/CustomCaesarCancel"
+            android:layout_width="107dp"
+            android:layout_height="39dp"
+
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:text="@string/custom_caesar_dialog_negative_button_message"
+            android:textColor="#ff12"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/CustomCaesarOk"
+            android:layout_width="107dp"
+            android:layout_height="39dp"
+
+            android:gravity="center"
+            android:text="@string/custom_caesar_dialog_positive_button_message"
+            android:textColor="#ffd204"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -7,6 +7,8 @@ import android.widget.EditText;
 import ciphers.AtbashCipher;
 import ciphers.CaesarCipher;
 import ciphers.PolybiusCipher;
+import ui.CustomCaesarDialogFragment;
+import ui.CustomCaesarFragment;
 
 public class CipherCallerManager {
 
@@ -22,7 +24,8 @@ public class CipherCallerManager {
 
 
     public void CaesarCipher() {
-        caesarCipher = new CaesarCipher(3);
+
+        caesarCipher = new CaesarCipher(Integer.parseInt(CustomCaesarFragment.caesarKey));
 
         TextWatcher normaltoCaesarListener = new TextWatcher() {
             @Override
@@ -52,7 +55,6 @@ public class CipherCallerManager {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //normalInput.setText(s);
             }
 
             @Override
@@ -60,7 +62,6 @@ public class CipherCallerManager {
                 if(!caesarCipher.getDecodeState()) {
                     caesarCipher.setEncodeEvoked(true);
                     decodedInput.setText(caesarCipher.CaesarDecoder(s));
-                    //isDecodeEvoked = false;
                 }
                 caesarCipher.setDecodeEvoked(false);
             }

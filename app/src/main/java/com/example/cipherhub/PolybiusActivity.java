@@ -15,12 +15,6 @@ import ui.SetUpPagerInterface;
 
 public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInterface {
 
-    EditText inputText;
-    EditText polybiusText;
-    TextView lengthView;
-
-    PolybiusCipher polybiusCipher;
-
     ViewPager viewPager;
     FragmentPageAdapter fragmentPageAdapter;
 

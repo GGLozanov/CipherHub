@@ -5,12 +5,13 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.QuadrupButtonFragment">
+    tools:context="ui.QuadrupButtonFragment"
+    android:background="@color/backgroundColor">
 
-    <Button
+    <Button style="@style/ColouredButton"
         android:id="@+id/buttonTwo"
-        android:layout_width="108dp"
-        android:layout_height="68dp"
+        android:layout_width="133dp"
+        android:layout_height="71dp"
         android:layout_marginStart="152dp"
         android:layout_marginLeft="152dp"
         android:layout_marginTop="67dp"
@@ -24,10 +25,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonOne" />
 
-    <Button
+    <Button style="@style/ColouredButton"
         android:id="@+id/buttonThree"
-        android:layout_width="108dp"
-        android:layout_height="68dp"
+        android:layout_width="133dp"
+        android:layout_height="71dp"
         android:layout_marginStart="151dp"
         android:layout_marginLeft="151dp"
         android:layout_marginTop="20dp"
@@ -41,10 +42,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonTwo" />
 
-    <Button
+    <Button style="@style/ColouredButton"
         android:id="@+id/buttonFour"
-        android:layout_width="108dp"
-        android:layout_height="68dp"
+        android:layout_width="133dp"
+        android:layout_height="71dp"
         android:layout_marginStart="152dp"
         android:layout_marginLeft="152dp"
         android:layout_marginTop="40dp"
@@ -58,10 +59,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonThree" />
 
-    <Button
+    <Button style="@style/ColouredButton"
         android:id="@+id/buttonOne"
-        android:layout_width="108dp"
-        android:layout_height="68dp"
+        android:layout_width="133dp"
+        android:layout_height="71dp"
         android:layout_marginStart="152dp"
         android:layout_marginLeft="152dp"
         android:layout_marginTop="68dp"
