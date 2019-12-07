@@ -2,6 +2,7 @@ package managers;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 import ciphers.AtbashCipher;
@@ -15,17 +16,20 @@ public class CipherCallerManager {
     EditText decodedInput;
     EditText encodedOutput;
 
-    CaesarCipher caesarCipher;
+    static CaesarCipher caesarCipher;
     PolybiusCipher polybiusCipher;
     AtbashCipher atbashCipher;
 
     public void setDecodedInput(EditText decodedInput) {this.decodedInput = decodedInput;}
     public void setEncodedOutput(EditText encodedOutput) {this.encodedOutput = encodedOutput;}
 
+    public static void instantiateCaesarCipher() {
+        caesarCipher = new CaesarCipher(Integer.parseInt(CustomCaesarFragment.getCaesarKey()));
+    } //static method for reinstantiating the caesarcipher after input has been received CustomCaesarFragment (or class is instantiated by fragment)
 
     public void CaesarCipher() {
 
-        caesarCipher = new CaesarCipher(Integer.parseInt(CustomCaesarFragment.caesarKey));
+        instantiateCaesarCipher();
 
         TextWatcher normaltoCaesarListener = new TextWatcher() {
             @Override

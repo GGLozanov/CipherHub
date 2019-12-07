@@ -8,10 +8,11 @@
     tools:context="ui.SectionFragment"
     android:background="@color/backgroundColor">
 
-    <TextView style="@style/Text"
+    <TextView
         android:id="@+id/sectionTitle"
-        android:layout_width="348dp"
-        android:layout_height="97dp"
+        style="@style/Text"
+        android:layout_width="368dp"
+        android:layout_height="129dp"
         android:layout_marginStart="87dp"
         android:layout_marginLeft="87dp"
         android:layout_marginTop="46dp"
@@ -29,7 +30,7 @@
 
     <TextView style="@style/Text"
         android:id="@+id/sectionDescription"
-        android:textSize="18dp"
+        android:textSize="20sp"
         android:layout_width="339dp"
         android:layout_height="338dp"
         android:layout_marginStart="36dp"

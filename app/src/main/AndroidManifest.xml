@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".PolybiusActivity"></activity>
-        <activity android:name=".AtbashActivity" />
-        <activity android:name=".VigenereActivity" />
-        <activity android:name=".CaesarActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".PolybiusActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".AtbashActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".VigenereActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CaesarActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

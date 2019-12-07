@@ -1,11 +1,6 @@
 package ui;
 
-
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,7 +17,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cipherhub.CaesarActivity;
 import com.example.cipherhub.R;
 
 import ciphers.ASCIIUtils;
@@ -30,6 +24,7 @@ import ciphers.ASCIIUtils;
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class CustomCaesarDialogFragment extends DialogFragment {
 
     private String caesarShiftAmount;
@@ -43,7 +38,6 @@ public class CustomCaesarDialogFragment extends DialogFragment {
     private ASCIIUtils asciiUtils = new ASCIIUtils();
 
 
-    private TextView title, submit, cancel;
     private EditText input;
 
     public CustomCaesarDialogFragment() {
@@ -52,11 +46,11 @@ public class CustomCaesarDialogFragment extends DialogFragment {
 
     @Override @NonNull
     public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        TextView submit, cancel;
 
         // Resources resources = getActivity().getResources();
         View view = inflater.inflate(R.layout.fragment_custom_caesar_dialog , container, false);
 
-        title = view.findViewById(R.id.CustomCaesarHeading); //init layout elements
         submit = view.findViewById(R.id.CustomCaesarOk);
         cancel = view.findViewById(R.id.CustomCaesarCancel);
         input = view.findViewById(R.id.CustomCaesarInput);

@@ -16,6 +16,10 @@ import android.widget.TextView;
 
 import com.example.cipherhub.R;
 
+import javax.crypto.Cipher;
+
+import managers.CipherCallerManager;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,12 +30,14 @@ public class CustomCaesarFragment extends Fragment implements CustomCaesarDialog
     TextView description;
     Button dialogButton;
 
-    static public String caesarKey = "3";
+    static private String caesarKey = "3";
+
+    static public String getCaesarKey() {return caesarKey;}
 
     @Override
     public void sendInput(String input) {
         caesarKey = input;
-        Log.d("input: ", input);
+        CipherCallerManager.instantiateCaesarCipher();
     }
 
     public CustomCaesarFragment() {

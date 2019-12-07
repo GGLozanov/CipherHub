@@ -20,7 +20,7 @@ import managers.KeyCipherCallerManager;
  */
 public class KeyCipherFragment extends Fragment {
 
-    KeyCipherCallerManager keycipherManager = new KeyCipherCallerManager();
+    private KeyCipherCallerManager keyCipherCallerManager = new KeyCipherCallerManager();
 
     public KeyCipherFragment() {
         // Required empty public constructor
@@ -33,11 +33,11 @@ public class KeyCipherFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_key_cipher, container, false);
 
-        keycipherManager.setKeyText((EditText) view.findViewById(R.id.KeyString));
-        keycipherManager.setDecodedInput((EditText) view.findViewById(R.id.DecodedInputString));
-        keycipherManager.setEncodedOutput((EditText) view.findViewById(R.id.EncodedOutputString));
+        keyCipherCallerManager.setKeyText((EditText) view.findViewById(R.id.KeyString));
+        keyCipherCallerManager.setDecodedInput((EditText) view.findViewById(R.id.DecodedInputString));
+        keyCipherCallerManager.setEncodedOutput((EditText) view.findViewById(R.id.EncodedOutputString));
 
-        keycipherManager.VigenereCipher();
+        keyCipherCallerManager.VigenereCipher();
 
         return view;
     }
