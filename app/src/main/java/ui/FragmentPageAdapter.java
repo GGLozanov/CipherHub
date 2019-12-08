@@ -15,23 +15,34 @@ import java.util.*;
 
 public class FragmentPageAdapter extends FragmentStatePagerAdapter {
 
-    private List<Fragment> fragments = new ArrayList<>(); //list for both quadrup, cipher and section fragments
-    private List<String> fragmentTitles = new ArrayList<>();
+    private List<Fragment> fragments = new ArrayList<>(); //list for both quadrup, cipher and section fragments (all fragments classes that extent Fragment)
+    private List<String> fragmentTitles = new ArrayList<>(); //list for fragment titles by which to search in switch()
 
     static final String titleKey = "Title";
     static final String descriptionKey = "Description";
 
     static final String cipherKey = "Cipher";
 
-    static final String customKey = "Custom";
+    static final String resetKey = "Reset";
 
     static final String buttonOneKey = "ButtonOne";
     static final String buttonTwoKey = "ButtonTwo";
     static final String buttonThreeKey = "ButtonThree";
     static final String buttonFourKey = "ButtonFour";
 
-    private Context context;
 
+    static public String getTitleKey() {return titleKey;}
+    static public String getDescriptionKey() {return descriptionKey;}
+
+    static public String getCipherKey() {return cipherKey;}
+    static public String getResetKey() {return resetKey;}
+
+    static public String getButtonOneKey() {return buttonOneKey;}
+    static public String getButtonTwoKey() {return buttonTwoKey;}
+    static public String getButtonThreeKey() {return buttonThreeKey;}
+    static public String getButtonFourKey() {return buttonFourKey;}
+
+    private Context context;
 
     public FragmentPageAdapter(FragmentManager fm, final Context context) {
         //call parent constructor for FragmentManager in order to override methods
@@ -93,8 +104,14 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
             case "Custom Caesar":
                 bundle.putString(titleKey, context.getResources().getString(R.string.custom_caesar_title));
                 bundle.putString(descriptionKey, context.getResources().getString(R.string.custom_caesar_description));
-                bundle.putString(buttonOneKey, context.getResources().getString(R.string.custom_caesar_button));
-                bundle.putString(customKey, context.getResources().getString(R.string.caesar));
+                bundle.putString(buttonOneKey, context.getResources().getString(R.string.custom_button));
+                bundle.putString(resetKey, context.getResources().getString(R.string.custom_reset_button));
+                break;
+            case "Custom Atbash":
+                bundle.putString(titleKey, context.getResources().getString(R.string.custom_atbash_title));
+                bundle.putString(descriptionKey, context.getResources().getString(R.string.custom_atbash_description));
+                bundle.putString(buttonOneKey, context.getResources().getString(R.string.custom_button));
+                bundle.putString(resetKey, context.getResources().getString(R.string.custom_reset_button));
                 break;
             default:
                 break;

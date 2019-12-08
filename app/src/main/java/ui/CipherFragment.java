@@ -35,7 +35,7 @@ public class CipherFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cipher, container, false);
-        cipherKey = getArguments().getString("Cipher");
+        cipherKey = getArguments().getString(FragmentPageAdapter.getCipherKey());
 
         cipherManager.setDecodedInput((EditText) view.findViewById(R.id.DecodedInputString)); //findViewById is a method from the View type class
         cipherManager.setEncodedOutput((EditText) view.findViewById(R.id.EncodedOutputString));

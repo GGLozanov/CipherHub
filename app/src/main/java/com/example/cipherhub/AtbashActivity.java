@@ -11,6 +11,7 @@ import ui.CipherFragment;
 import ui.SectionFragment;
 import ui.FragmentPageAdapter;
 import ui.SetUpPagerInterface;
+import ui.ui_custom.CustomAtbashFragment;
 
 public class AtbashActivity extends AppCompatActivity implements SetUpPagerInterface {
 
@@ -26,6 +27,7 @@ public class AtbashActivity extends AppCompatActivity implements SetUpPagerInter
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         adapter.addFragment(new SectionFragment(), "Atbash Screen");
         adapter.addFragment(new CipherFragment(), "Atbash Cipher");
+        adapter.addFragment(new CustomAtbashFragment(), "Custom Atbash");
         viewPager.setAdapter(adapter);
     }
 

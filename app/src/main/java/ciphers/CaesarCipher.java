@@ -10,8 +10,6 @@ public class CaesarCipher extends Ciphers {
     public CaesarCipher(int key) {this.key = key;}
 
     public String CaesarDecoder(Editable base) {
-
-        Log.d("KEY IN CLASS", key.toString());
         decodedText = "";
         String defaultInput = base.toString();
         for(int i = 0; i < defaultInput.length(); i++) {

@@ -34,10 +34,10 @@ public class SectionFragment extends Fragment {
         title = view.findViewById(R.id.sectionTitle);
         description = view.findViewById(R.id.sectionDescription);
 
-        title.setText(getArguments().getString("Title"));
+        title.setText(getArguments().getString(FragmentPageAdapter.getTitleKey()));
         //Bundle -> a map of key strings to various Parcelable values (strings, most likely)
         //getArguments() method selects the current Bundle (savedInstanceState) and returns the bundled arguments.
-        description.setText(getArguments().getString("Description"));
+        description.setText(getArguments().getString(FragmentPageAdapter.getDescriptionKey()));
         //getActivity() method returns the context of the current activity the fragment is in
 
         return view;

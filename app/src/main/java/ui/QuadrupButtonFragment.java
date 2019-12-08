@@ -38,10 +38,10 @@ public class QuadrupButtonFragment extends Fragment {
         buttonThree = view.findViewById(R.id.buttonThree);
         buttonFour = view.findViewById(R.id.buttonFour);
 
-        buttonOne.setText(getArguments().getString("ButtonOne"));
-        buttonTwo.setText(getArguments().getString("ButtonTwo"));
-        buttonThree.setText(getArguments().getString("ButtonThree"));
-        buttonFour.setText(getArguments().getString("ButtonFour"));
+        buttonOne.setText(getArguments().getString(FragmentPageAdapter.getButtonOneKey()));
+        buttonTwo.setText(getArguments().getString(FragmentPageAdapter.getButtonTwoKey()));
+        buttonThree.setText(getArguments().getString(FragmentPageAdapter.getButtonThreeKey()));
+        buttonFour.setText(getArguments().getString(FragmentPageAdapter.getButtonFourKey()));
     }
 
     @Override

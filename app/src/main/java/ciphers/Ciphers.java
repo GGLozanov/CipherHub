@@ -4,7 +4,7 @@ import android.text.Editable;
 import android.util.Log;
 import android.widget.EditText;
 
-public class Ciphers {
+public class Ciphers { //superclass for all ciphers
 
     ASCIIUtils characterValidator = new ASCIIUtils();
 

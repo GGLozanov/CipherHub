@@ -19,10 +19,10 @@ public class AtbashCipher extends KeyCiphers {
         }
     }
 
-    //default key for now is alphabet; will add support for more in the future
+    //default key for now is alphabet; will add support for more in the future -> added
     public AtbashCipher(String key) {
         keyString = key;
-        keyTemplate = keyString.toUpperCase();
+        keyTemplate = keyString.toUpperCase(); //keyTemplate acts as holder for uppercase key in this case
         reverseUpperKeyString();
         reverseLowerKeyString();
     }
@@ -34,7 +34,11 @@ public class AtbashCipher extends KeyCiphers {
             char currentCharacter = base.charAt(i);
 
             if(characterValidator.isInvalidCharacter(currentCharacter)) continue;
-            if(characterValidator.isSpecialCharacter(currentCharacter)) encodedText += currentCharacter;
+            if(characterValidator.isSpecialCharacter(currentCharacter) || (keyString.indexOf(currentCharacter) == -1
+                    && keyTemplate.indexOf(currentCharacter) == -1)) {
+                encodedText += currentCharacter;
+                continue;
+            }
 
             if(characterValidator.isLowercaseLetter(currentCharacter)) {
                 encodedText += reverseLowerKeyString.charAt(keyString.indexOf(currentCharacter));
@@ -55,7 +59,11 @@ public class AtbashCipher extends KeyCiphers {
             char currentCharacter = base.charAt(i);
 
             if(characterValidator.isInvalidCharacter(currentCharacter)) continue;
-            if(characterValidator.isSpecialCharacter(currentCharacter)) decodedText += currentCharacter;
+            if(characterValidator.isSpecialCharacter(currentCharacter)|| (reverseLowerKeyString.indexOf(currentCharacter) == -1
+                    && reverseUpperKeyString.indexOf(currentCharacter) == -1)) {
+                decodedText += currentCharacter;
+                continue;
+            }
 
             if(characterValidator.isLowercaseLetter(currentCharacter)) {
                 decodedText += keyString.charAt(reverseLowerKeyString.indexOf(currentCharacter));

@@ -2,14 +2,13 @@ package managers;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.EditText;
 
 import ciphers.AtbashCipher;
 import ciphers.CaesarCipher;
 import ciphers.PolybiusCipher;
-import ui.CustomCaesarDialogFragment;
-import ui.CustomCaesarFragment;
+import ui.ui_custom.CustomAtbashFragment;
+import ui.ui_custom.CustomCaesarFragment;
 
 public class CipherCallerManager {
 
@@ -18,14 +17,18 @@ public class CipherCallerManager {
 
     static CaesarCipher caesarCipher;
     PolybiusCipher polybiusCipher;
-    AtbashCipher atbashCipher;
+    static AtbashCipher atbashCipher;
 
     public void setDecodedInput(EditText decodedInput) {this.decodedInput = decodedInput;}
     public void setEncodedOutput(EditText encodedOutput) {this.encodedOutput = encodedOutput;}
 
     public static void instantiateCaesarCipher() {
         caesarCipher = new CaesarCipher(Integer.parseInt(CustomCaesarFragment.getCaesarKey()));
-    } //static method for reinstantiating the caesarcipher after input has been received CustomCaesarFragment (or class is instantiated by fragment)
+    } //static method for reinstantiating the caesarcipher after input has been received CustomCipherFragment (or class is instantiated by fragment)
+
+    public static void instantiateAtbashCipher() {
+        atbashCipher = new AtbashCipher(CustomAtbashFragment.getAtbashKey());
+    }
 
     public void CaesarCipher() {
 
@@ -82,7 +85,8 @@ public class CipherCallerManager {
     }
 
     public void AtbashCipher() {
-        atbashCipher = new AtbashCipher("abcdefghijklmnopqrstuvwxyz");
+
+        instantiateAtbashCipher();
 
         TextWatcher InputtoAtbash = new TextWatcher() {
             @Override

@@ -28,16 +28,20 @@
     <string name="atbash">Atbash</string>
     <string name="polybius">Polybius</string>
 
+    <string name="custom_dialog_hint">Enter Custom Key</string>
+    <string name="custom_dialog_positive_button_message">Submit</string>
+    <string name="custom_dialog_negative_button_message">Cancel</string>
+    <string name="custom_button">Custom</string>
+    <string name="custom_reset_button">Reset</string>
+
     <string name="custom_caesar_title">Custom Caesar</string>
     <string name="custom_caesar_description">If you wanted to somehow simulate even an extra layer of security to your encodings, then you needn\'t fret, because we\'ve got you covered! By pressing the button above, you can input your own key value by which to shift the Cipher!</string>
-    <string name="custom_caesar_button">Custom</string>
+    <string name="custom_caesar_dialog_message">Set the key (shift amount) for the cipher</string>
 
-    <string name="custom_caesar_dialog_title">Custom Cipher</string>
-    <string name="cusom_caesar_dialog_message">Set the key (shift amount) for the cipher</string>
-    <string name="custom_caesar_dialog_hint">Enter Custom Key</string>
-    <string name="custom_caesar_dialog_positive_button_message">Submit</string>
-    <string name="custom_caesar_dialog_negative_button_message">Cancel</string>
+    <string name="custom_atbash_title">Custom Atbash</string>
+    <string name="custom_atbash_description">If you wanted to somehow simulate even an extra layer of security to your encodings, then you needn\'t fret, because we\'ve got you covered! By pressing the button above, you can input your own alphabetic key value by which to shift the Cipher!</string>
 
+    <string name="custom_atbash_dialog_message">Enter the alphabetic key (shift amount) for the cipher</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
