@@ -22,5 +22,33 @@
 
     <style name="EditText" parent="android:style/Widget.EditText">
         <item name="android:textColorHint">@color/textColor</item>
+        <item name="android:textColor">@color/textColor</item>
     </style>
+
+    <style name="DialogEditText" parent="android:style/Widget.EditText">
+        <item name="android:textColorHint">@color/textColor</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:layout_width">55dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:maxLength">1</item>
+    </style>
+
+    <style name="DialogText" parent="android:style/Widget.TextView">
+        <item name="android:layout_width">107dp</item>
+        <item name="android:layout_height">39dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DialogReferralText" parent="android:style/Widget.TextView">
+        <item name="android:background">@drawable/dialog_button_background</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
+
 </resources>

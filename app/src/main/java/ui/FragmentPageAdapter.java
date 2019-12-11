@@ -113,6 +113,11 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
                 bundle.putString(buttonOneKey, context.getResources().getString(R.string.custom_button));
                 bundle.putString(resetKey, context.getResources().getString(R.string.custom_reset_button));
                 break;
+            case "Custom Polybius":
+                bundle.putString(titleKey, appResources.getString(R.string.custom_polybius_title));
+                bundle.putString(descriptionKey, appResources.getString(R.string.custom_polybius_description));
+                bundle.putString(buttonOneKey, appResources.getString(R.string.custom_button));
+                bundle.putString(resetKey, appResources.getString(R.string.custom_reset_button));
             default:
                 break;
         }

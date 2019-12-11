@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ui.ui_custom.ui_table_key_ciphers.CustomTableDialogFragment"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical"
+    >
+
+
+    <TextView style="@style/Text"
+        android:id="@+id/CustomTableCipherHeading"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="35dp"
+        android:text="@string/custom_polybius_dialog_message"
+        android:gravity ="center"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"
+        />
+
+    <LinearLayout
+        android:layout_width="342dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="55dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ReferralOne"
+            style="@style/DialogReferralText"
+            android:text="@string/custom_polybius_ref_message_one" />
+
+        <TextView
+            android:id="@+id/ReferralTwo"
+            style="@style/DialogReferralText"
+            android:text="@string/custom_polybius_ref_message_two" />
+
+        <TextView
+            android:id="@+id/ReferralThree"
+            style="@style/DialogReferralText"
+            android:text="@string/custom_polybius_ref_message_three" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="35dp"
+        android:orientation="horizontal">
+
+        <TextView style="@style/DialogText"
+            android:id="@+id/CustomCipherCancel"
+
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:text="@string/custom_dialog_negative_button_message"
+            android:textColor="#ff8000" />
+
+        <TextView style="@style/DialogText"
+            android:id="@+id/CustomCipherOk"
+
+            android:gravity="center"
+            android:text="@string/custom_dialog_positive_button_message"
+            android:textColor="#0ce1ff" />
+    </LinearLayout>
+
+</LinearLayout>

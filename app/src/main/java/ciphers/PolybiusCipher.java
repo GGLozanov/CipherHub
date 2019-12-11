@@ -4,29 +4,36 @@ import android.util.Log;
 
 public class PolybiusCipher extends Ciphers {
 
-    private static final Character[][] PolybiusSquare = {
-            {'A', 'B', 'C', 'D', 'E', 'F'},
-            {'G', 'H', 'I', 'J', 'K', 'L'},
-            {'M', 'N', 'O', 'P', 'Q', 'R'},
-            {'S', 'T', 'U', 'V', 'W', 'X'},
-            {'Y', 'Z', '0', '1', '2', '3'},
-            {'4', '5', '6', '7', '8', '9'}
-    };
+    private static Character[][] PolybiusSquare;
+
+    public PolybiusCipher(Character[][] PolybiusSquare) {
+        PolybiusCipher.PolybiusSquare = PolybiusSquare;
+    }
+
+    private boolean isCharacterInSquare(Character character) {
+        for(int i = 0; i < PolybiusSquare.length; i++) {
+            for(int j = 0; j < PolybiusSquare[0].length; j++) {
+                if(PolybiusSquare[i][j] == character) return true;
+            }
+        }
+        return false;
+    }
 
     public String PolybiusEncode(String base) {
         encodedText = "";
 
         //TO-DO: Put these variables in superclass Ciphers
-        //add functionality for user to choose lowercase or uppercase
+        //add functionality for user to choose lowercase or uppercase -> done
 
         for(int i = 0; i < base.length(); i++) {
 
             currentCharacter = base.charAt(i);
 
-            if(characterValidator.isInvalidCharacter(currentCharacter)) continue;
+            if(!isCharacterInSquare((char) currentCharacter) && characterValidator.isInvalidCharacter(currentCharacter)) continue; // add as customization feature -> add invalid character or skip?
             if(characterValidator.isSpecialCharacter(currentCharacter)) encodedText += (char)currentCharacter;
             else {
-                if(characterValidator.isLowercaseLetter(currentCharacter)) currentCharacter = characterValidator.convertToUppercase(currentCharacter);
+                if(characterValidator.isLowercaseLetter(currentCharacter) && !isCharacterInSquare((char) currentCharacter)) currentCharacter = characterValidator.convertToUppercase(currentCharacter);
+                else if(characterValidator.isCapitalLetter(currentCharacter) && !isCharacterInSquare((char) currentCharacter)) currentCharacter = characterValidator.convertToLowercase(currentCharacter);
                 encodedText += (char) characterValidator.convertToASCIINumber(characterValidator.findElementRow(PolybiusSquare, (char)currentCharacter));
                 encodedText += (char) characterValidator.convertToASCIINumber(characterValidator.findElementColumn(PolybiusSquare, (char)currentCharacter));
             }

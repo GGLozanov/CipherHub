@@ -1,4 +1,4 @@
-package ui.ui_custom;
+package ui.ui_custom.ui_single_key_ciphers;
 
 import android.os.Bundle;
 import android.text.InputFilter;

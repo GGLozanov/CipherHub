@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import ui.CipherFragment;
-import ui.ui_custom.CustomCaesarDialogFragment;
-import ui.ui_custom.CustomCaesarFragment;
-import ui.ui_custom.CustomCipherFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
 import ui.SectionFragment;
 import ui.FragmentPageAdapter;
 import ui.SetUpPagerInterface;

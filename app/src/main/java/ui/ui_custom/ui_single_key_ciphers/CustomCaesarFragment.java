@@ -1,4 +1,4 @@
-package ui.ui_custom;
+package ui.ui_custom.ui_single_key_ciphers;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.example.cipherhub.R;
 
 import managers.CipherCallerManager;
-import ui.FragmentPageAdapter;
 
 public class CustomCaesarFragment extends CustomCipherFragment implements CustomCipherDialogFragment.OnInputSelected {
 

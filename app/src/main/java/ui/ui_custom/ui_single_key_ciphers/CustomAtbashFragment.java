@@ -1,6 +1,5 @@
-package ui.ui_custom;
+package ui.ui_custom.ui_single_key_ciphers;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +17,6 @@ public class CustomAtbashFragment extends CustomCipherFragment implements Custom
     @Override
     public void sendInput(String input) {
         atbashKey = input;
-        Log.d("atbash key", atbashKey);
         CipherCallerManager.instantiateAtbashCipher();
     }
 

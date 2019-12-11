@@ -1,4 +1,4 @@
-package ui.ui_custom;
+package ui.ui_custom.ui_single_key_ciphers;
 
 
 import android.os.Bundle;
@@ -22,10 +22,10 @@ import ui.FragmentPageAdapter;
  */
 public class CustomCipherFragment extends Fragment {
 
-    TextView title;
-    TextView description;
-    Button dialogButton;
-    Button resetButton;
+    protected TextView title;
+    protected TextView description;
+    protected Button dialogButton;
+    protected  Button resetButton;
 
     public CustomCipherFragment() {
         // Required empty public constructor

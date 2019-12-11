@@ -18,7 +18,6 @@ public class KeyCipherCallerManager extends CipherCallerManager {
 
     VigenereCipher vigenereCipher;
 
-
     public void setKeyText(EditText keyText) {this.keyText = keyText;}
 
     private void updateVariables() {

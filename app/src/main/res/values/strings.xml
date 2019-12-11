@@ -13,7 +13,7 @@
     <string name="change_activity_polybius">Polybius</string>
 
     <string name="app_title">CipherHub</string>
-    <string name="app_description">Your one-stop shop for all necessary cryptography needs, featuring real-time encoding and decoding of a multitude of ciphers, and, our latest feature: Custom Ciphers! The author sincerely hopes you enjoy his little app :)</string>
+    <string name="app_description">Your one-stop shop for all necessary cryptography needs, featuring real-time encoding and decoding of a multitude of famous ciphers, and, our latest feature: Custom Ciphers! The author sincerely hopes you enjoy his little app as he learns how to write software :)</string>
     <string name="caesar_title">Caesar Cipher</string>
     <string name="caesar_description">The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which each letter in the plaintext is "shifted" a certain number of places down the alphabet. For example, with a shift of 1, A would be replaced by B, B would become C, and so on.</string>
     <string name="vigenere_title">Vigenere Cipher</string>
@@ -21,7 +21,7 @@
     <string name="atbash_title">Atbash Cipher</string>
     <string name="atbash_description">Atbash (Hebrew: אתבש‎; also transliterated Atbaš) is a monoalphabetic substitution cipher originally used to encrypt the Hebrew alphabet. It can be modified for use with any known writing system with a standard collating order.</string>
     <string name="polybius_title">Polybius Cipher</string>
-    <string name="polybius_description">In cryptography, the Polybius square, also known as the Polybius checkerboard, is a device invented by the Ancient Greeks Cleoxenus and Democleitus, and perfected by the Ancient Greek historian and scholar Polybius,[1] for fractionating plaintext characters so that they can be represented by a smaller set of symbols.</string>
+    <string name="polybius_description">In cryptography, the Polybius square, also known as the Polybius checkerboard, is a device invented by the Ancient Greeks Cleoxenus and Democleitus, and perfected by the Ancient Greek historian and scholar Polybius, for fractionating plaintext characters so that they can be represented by a smaller set of symbols.\nThis implementation uses a 6x6 square (numbers included for the nerds!)</string>
 
     <string name="caesar">Caesar</string>
     <string name="vigenere">Vigenere</string>
@@ -40,9 +40,14 @@
 
     <string name="custom_atbash_title">Custom Atbash</string>
     <string name="custom_atbash_description">If you wanted to somehow simulate even an extra layer of security to your encodings, then you needn\'t fret, because we\'ve got you covered! By pressing the button above, you can input your own alphabetic key value by which to shift the Cipher!</string>
-
     <string name="custom_atbash_dialog_message">Enter the alphabetic key (shift amount) for the cipher</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="custom_polybius_title">Custom Polybius</string>
+    <string name="custom_polybius_description">A way to create your own Polybius square and maximize the customisation opportunities for your Polybius cipher! You\'ll have access to each of the fields in the 6x6 square to change to your pleasure!</string>
+
+    <string name="custom_polybius_dialog_message">Choose one of the three sections to begin customising the square (each is 1/3 of square).</string>
+    <string name="custom_polybius_ref_message_one">First</string>
+    <string name="custom_polybius_ref_message_two">Second</string>
+    <string name="custom_polybius_ref_message_three">Third</string>
+
 </resources>

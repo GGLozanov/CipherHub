@@ -1,8 +1,6 @@
-package ui.ui_custom;
+package ui.ui_custom.ui_single_key_ciphers;
 
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

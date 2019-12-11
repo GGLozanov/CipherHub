@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp">
+
+        <EditText
+            android:id="@+id/Field1"
+            style="@style/DialogEditText"
+
+            android:gravity="center"
+
+            android:hint="1"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/Field2"
+            style="@style/DialogEditText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:hint="2"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/Field3"
+            style="@style/DialogEditText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
+
+            android:width="250dp"
+            android:gravity="center"
+            android:hint="3"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp">
+
+        <EditText
+            android:id="@+id/Field4"
+            style="@style/DialogEditText"
+
+
+            android:gravity="center"
+
+            android:hint="4"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/Field5"
+            style="@style/DialogEditText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:hint="5"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/Field6"
+            style="@style/DialogEditText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
+
+            android:width="250dp"
+            android:gravity="center"
+            android:hint="6"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp">
+
+        <EditText
+            android:id="@+id/Field7"
+            style="@style/DialogEditText"
+
+
+            android:gravity="center"
+
+            android:hint="7"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/Field8"
+            style="@style/DialogEditText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:hint="8"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/Field9"
+            style="@style/DialogEditText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
+
+            android:width="250dp"
+            android:gravity="center"
+            android:hint="9"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp">
+
+        <EditText
+            android:id="@+id/Field10"
+            style="@style/DialogEditText"
+
+
+            android:gravity="center"
+
+            android:hint="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/Field11"
+            style="@style/DialogEditText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:hint="11"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/Field12"
+            style="@style/DialogEditText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
+
+            android:width="250dp"
+            android:gravity="center"
+            android:hint="12"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="15dp"
+        android:orientation="horizontal">
+
+        <TextView style="@style/DialogText"
+            android:id="@+id/TableInputCancel"
+
+            android:layout_marginRight="65dp"
+            android:gravity="center"
+            android:text="@string/custom_dialog_negative_button_message"
+            android:textColor="#ff8000" />
+
+        <TextView style="@style/DialogText"
+            android:id="@+id/TableInputOk"
+
+            android:gravity="center"
+            android:text="@string/custom_dialog_positive_button_message"
+            android:textColor="#0ce1ff" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -11,7 +11,7 @@ import ui.CipherFragment;
 import ui.SectionFragment;
 import ui.FragmentPageAdapter;
 import ui.SetUpPagerInterface;
-import ui.ui_custom.CustomAtbashFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
 
 public class AtbashActivity extends AppCompatActivity implements SetUpPagerInterface {
 

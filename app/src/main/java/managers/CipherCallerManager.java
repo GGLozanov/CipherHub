@@ -7,8 +7,9 @@ import android.widget.EditText;
 import ciphers.AtbashCipher;
 import ciphers.CaesarCipher;
 import ciphers.PolybiusCipher;
-import ui.ui_custom.CustomAtbashFragment;
-import ui.ui_custom.CustomCaesarFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
+import ui.ui_custom.ui_table_key_ciphers.CustomPolybiusFragment;
 
 public class CipherCallerManager {
 
@@ -16,7 +17,7 @@ public class CipherCallerManager {
     EditText encodedOutput;
 
     static CaesarCipher caesarCipher;
-    PolybiusCipher polybiusCipher;
+    static PolybiusCipher polybiusCipher;
     static AtbashCipher atbashCipher;
 
     public void setDecodedInput(EditText decodedInput) {this.decodedInput = decodedInput;}
@@ -28,6 +29,9 @@ public class CipherCallerManager {
 
     public static void instantiateAtbashCipher() {
         atbashCipher = new AtbashCipher(CustomAtbashFragment.getAtbashKey());
+    }
+    public static void instantiatePolybiusCipher() {
+        polybiusCipher = new PolybiusCipher(CustomPolybiusFragment.getPolybiusKey());
     }
 
     public void CaesarCipher() {
@@ -141,7 +145,7 @@ public class CipherCallerManager {
     }
 
     public void PolybiusCipher() {
-        polybiusCipher = new PolybiusCipher();
+        instantiatePolybiusCipher();
 
         final TextWatcher InputToPolybius = new TextWatcher() {
             @Override

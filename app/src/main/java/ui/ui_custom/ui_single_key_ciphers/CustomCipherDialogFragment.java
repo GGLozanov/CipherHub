@@ -1,4 +1,4 @@
-package ui.ui_custom;
+package ui.ui_custom.ui_single_key_ciphers;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -45,10 +45,10 @@ public class CustomCipherDialogFragment extends DialogFragment {
     }
 
     protected void setParameters(View view) {
-        title = view.findViewById(R.id.CustomCaesarHeading);
-        submit = view.findViewById(R.id.CustomCaesarOk);
-        cancel = view.findViewById(R.id.CustomCaesarCancel);
-        input = view.findViewById(R.id.CustomCaesarInput);
+        title = view.findViewById(R.id.CustomCipherHeading);
+        submit = view.findViewById(R.id.CustomCipherOk);
+        cancel = view.findViewById(R.id.CustomCipherCancel);
+        input = view.findViewById(R.id.CustomCipherInput);
 
         title.setText(titleText);
         input.setHint(editText);
@@ -73,7 +73,7 @@ public class CustomCipherDialogFragment extends DialogFragment {
 
 
     @Override
-    public void onAttach(Context context) {  //method to be executed when a fragment is connected to an activity (attached)
+    public void onAttach(Context context) {  //method to be executed when a fragment is connected to an activity (attached). First in the lifecycle.
         super.onAttach(context);
         try {
             onInputSelected = (OnInputSelected) getTargetFragment(); //getTargetFragment() returns the current fragment set by the dialog
