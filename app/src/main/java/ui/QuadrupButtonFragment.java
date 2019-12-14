@@ -44,14 +44,7 @@ public class QuadrupButtonFragment extends Fragment {
         buttonFour.setText(getArguments().getString(FragmentPageAdapter.getButtonFourKey()));
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_quadrup_button, container, false);
-
-        initButtons(view);
-
+    private void setListeners() {
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +72,17 @@ public class QuadrupButtonFragment extends Fragment {
                 activityCallerManager.OpenPolybiusActivity();
             }
         });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_quadrup_button, container, false);
+
+        initButtons(view);
+        setListeners();
+
         // Inflate the layout for this fragment
         return view;
     }

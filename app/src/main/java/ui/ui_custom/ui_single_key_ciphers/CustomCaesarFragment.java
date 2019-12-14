@@ -14,6 +14,7 @@ import managers.CipherCallerManager;
 public class CustomCaesarFragment extends CustomCipherFragment implements CustomCipherDialogFragment.OnInputSelected {
 
     public CustomCaesarFragment() {
+
     }
 
     static private String caesarKey = "3";

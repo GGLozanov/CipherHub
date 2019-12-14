@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AdditionalVigenereLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/customCipherDescription"
+        style="@style/Text"
+        android:layout_width="340dp"
+        android:layout_height="289dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="56dp"
+        android:text="@string/additional_vigenere_description"
+        android:textSize="20sp"
+        app:fontFamily="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keyString" />
+
+    <TextView
+        android:id="@+id/customCipherTitle"
+        style="@style/Text"
+        android:layout_width="371dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="@string/additional_vigenere_title"
+        android:textSize="60sp"
+        app:fontFamily="cursive"
+        app:layout_constraintBottom_toTopOf="@+id/keyEnableSwitch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/keyEnableSwitch"
+        style="@style/Text"
+        android:layout_width="180dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginLeft="164dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginRight="165dp"
+        android:layout_marginBottom="25dp"
+        android:text="@string/toggle_additional_key_text"
+        app:layout_constraintBottom_toTopOf="@+id/keyString"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customCipherTitle" />
+
+    <EditText
+        android:id="@+id/keyString"
+        style="@style/EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="40dp"
+        android:width="250dp"
+        android:ems="10"
+        android:hint="@string/key_vigenere"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/customCipherDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keyEnableSwitch" />
+</androidx.constraintlayout.widget.ConstraintLayout>

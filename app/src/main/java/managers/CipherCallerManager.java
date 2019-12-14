@@ -52,7 +52,7 @@ public class CipherCallerManager {
             public void afterTextChanged(Editable s) {
                 if(!caesarCipher.getEncodeState()) {
                     caesarCipher.setDecodeEvoked(true);
-                    encodedOutput.setText(caesarCipher.CaesarEncoder(s));
+                    encodedOutput.setText(caesarCipher.CaesarEncoder(s.toString()));
                 }
                 caesarCipher.setEncodeEvoked(false);
             }
@@ -72,7 +72,7 @@ public class CipherCallerManager {
             public void afterTextChanged(Editable s) {
                 if(!caesarCipher.getDecodeState()) {
                     caesarCipher.setEncodeEvoked(true);
-                    decodedInput.setText(caesarCipher.CaesarDecoder(s));
+                    decodedInput.setText(caesarCipher.CaesarDecoder(s.toString()));
                 }
                 caesarCipher.setDecodeEvoked(false);
             }

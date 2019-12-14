@@ -66,7 +66,7 @@ class KeyCiphers extends Ciphers {
         EnlargeKey(keyTemplate, s, keyDecodeIndexCounter++, false); //goes out of bounds when changed
     }
 
-    public void trimKeyString(String s) {
+    public void trimKeyString(String s) { // method to trim a string from the beginning to either the length of the input or the key
         keyString = keyString.substring(0, Math.min(keyString.length(), s.length()));
     }
 

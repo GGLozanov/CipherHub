@@ -53,18 +53,18 @@ public class CustomPolybiusTableFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 String currentEditTextValue; // variable to hold currentEditText's text
-                int maxElement = (6 + offset);
-                int columns = 0;
-                for(Integer count = 1; count < 13; count++, columns++) {
+                int columns = 0, rows = (offset / 6);
+                for(Integer count = 1; count < 13; count++) {
                     final EditText currentEditText = getEditTextByName(view, count);
                     currentEditTextValue = currentEditText.getText().toString();
 
-                    if(columns == 6) columns = 0;
-
-                    int position = (count + offset);
+                    if(columns == 6) {
+                        rows++;
+                        columns = 0;
+                    }
 
                     if(!currentEditTextValue.equals("")) { // may need to implement more error checks (cyrillic for ex.)
-                        Square[(int) Math.floor(position / maxElement)][columns] = currentEditTextValue.charAt(0);
+                        Square[rows][columns++] = currentEditTextValue.charAt(0);
                         // CustomPolybiusFragment.setCharacterInPolybiusKey(currentEditTextValue.charAt(0), (count - 1) / 5, count);
                         // (count/6) - 1 -> round up after we divide to find row (and -1 to fit array indexing)
                     } else {
@@ -97,10 +97,12 @@ public class CustomPolybiusTableFragment extends DialogFragment {
         int rows = (offset / 6), columns = 0; // variable to keep track of columns and rows (WAY EASIER)
         for(Integer count = 1; count < 13; count++) {
             tempHolder = "";
+
             if(columns == 6) {
                 rows++;
                 columns = 0;
             }
+
             // id format: "Field" + <integer> (count) -> find id by name with such format and use to manipulate editText
             // ex: id name = "Field1". EditText1 ==> "Field" + 1.toString() = "Field1"
             currentEditText = getEditTextByName(view, count);
@@ -111,7 +113,7 @@ public class CustomPolybiusTableFragment extends DialogFragment {
             tempHolder += currentEditCharacter;
             // increment the current (index + offset) with 64 to generate the capital letter character for the editText
             // typecast to fit into Character class and setText() method
-            currentEditText.setText(tempHolder); // may cause bugs
+            currentEditText.setText(tempHolder);
         }
     }
 

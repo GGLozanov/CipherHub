@@ -7,4 +7,5 @@
     <color name="redTinge">#ff4c4c</color>
     <color name="backgroundColor">#3f3f3f</color>
     <color name="textColor">#cccccc</color>
+    <color name="dialogButtonColor">#7a7a7a</color>
 </resources>

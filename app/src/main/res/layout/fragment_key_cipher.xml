@@ -8,8 +8,9 @@
     tools:context="ui.KeyCipherFragment"
     android:background="@color/backgroundColor">
 
-    <EditText style="@style/EditText"
+    <EditText
         android:id="@+id/EncodedOutputString"
+        style="@style/EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -20,7 +21,7 @@
         android:layout_marginBottom="218dp"
         android:width="250dp"
         android:ems="10"
-        android:hint="@string/coded_output_caesar"
+        android:hint="@string/encoded_output"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +41,7 @@
         android:layout_marginBottom="50dp"
         android:width="250dp"
         android:ems="10"
-        android:hint="@string/decoded_input_caesar"
+        android:hint="@string/decoded_input"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/KeyString"
         app:layout_constraintEnd_toEndOf="parent"

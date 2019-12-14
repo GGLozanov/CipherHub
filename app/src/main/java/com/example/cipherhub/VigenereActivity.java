@@ -9,6 +9,7 @@ import ui.KeyCipherFragment;
 import ui.SectionFragment;
 import ui.FragmentPageAdapter;
 import ui.SetUpPagerInterface;
+import ui.ui_custom.ui_table_key_ciphers.AdditionalVigenereFragment;
 
 public class VigenereActivity extends AppCompatActivity implements SetUpPagerInterface {
 
@@ -19,6 +20,7 @@ public class VigenereActivity extends AppCompatActivity implements SetUpPagerInt
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         adapter.addFragment(new SectionFragment(), "Vigenere Screen");
         adapter.addFragment(new KeyCipherFragment(), "Vigenere Cipher");
+        adapter.addFragment(new AdditionalVigenereFragment(), "Custom Vigenere");
         viewPager.setAdapter(adapter);
     }
 

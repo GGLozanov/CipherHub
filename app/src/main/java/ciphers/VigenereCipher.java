@@ -2,7 +2,18 @@ package ciphers;
 
 public class VigenereCipher extends KeyCiphers {
 
-    public VigenereCipher() {keyString = ""; keyTemplate =  ""; currentkeyTemplate = ""; keyEncodeIndexCounter = 0; keyDecodeIndexCounter = 0;}
+    String extraKey;
+
+    public VigenereCipher(String extraKey) {
+        keyString = "";
+        keyTemplate =  "";
+        currentkeyTemplate = "";
+        keyEncodeIndexCounter = 0;
+        keyDecodeIndexCounter = 0;
+        this.extraKey = extraKey;
+    }
+
+    public String getExtraKey() {return extraKey;}
 
     public String VigenereEncode(String key, String base) {
 

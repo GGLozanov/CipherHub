@@ -124,7 +124,7 @@ public class CustomTableDialogFragment extends DialogFragment { // base class fo
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Context context) { // override first method of Fragment lifecycle (onAttach -> attaches to a given activity)
         super.onAttach(context);
         try {
             onInputSelected = (OnInputSelected) getTargetFragment(); // typecast to interface to accept type (interface becomes of type Fragment)

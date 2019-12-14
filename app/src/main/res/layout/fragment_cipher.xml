@@ -8,8 +8,9 @@
     tools:context="ui.CipherFragment"
     android:background="@color/backgroundColor">
 
-    <EditText style="@style/EditText"
+    <EditText
         android:id="@+id/DecodedInputString"
+        style="@style/EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -20,15 +21,16 @@
         android:layout_marginBottom="75dp"
         android:width="250dp"
         android:ems="10"
-        android:hint="@string/decoded_input_caesar"
+        android:hint="@string/decoded_input"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/EncodedOutputString"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText style="@style/EditText"
+    <EditText
         android:id="@+id/EncodedOutputString"
+        style="@style/EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -39,7 +41,7 @@
         android:layout_marginBottom="293dp"
         android:width="250dp"
         android:ems="10"
-        android:hint="@string/coded_output_caesar"
+        android:hint="@string/encoded_output"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
