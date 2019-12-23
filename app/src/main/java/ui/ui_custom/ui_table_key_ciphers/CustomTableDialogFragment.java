@@ -2,6 +2,7 @@ package ui.ui_custom.ui_table_key_ciphers;
 
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.util.*;
 import com.example.cipherhub.R;
@@ -74,24 +76,21 @@ public class CustomTableDialogFragment extends DialogFragment { // base class fo
         refOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomPolybiusTableFragment tableOneFrag = new CustomPolybiusTableFragment(1);
-                initDialog(tableOneFrag, 4, "Referral One");
+                initDialog(new CustomPolybiusTableFragment(1), 4, "Referral One");
             }
         });
 
         refTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomPolybiusTableFragment tableTwoFrag = new CustomPolybiusTableFragment(2);
-                initDialog(tableTwoFrag, 5, "Referral Two");
+                initDialog(new CustomPolybiusTableFragment(2), 5, "Referral Two");
             }
         });
 
         refThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomPolybiusTableFragment tableThreeFrag = new CustomPolybiusTableFragment(3);
-                initDialog(tableThreeFrag, 6, "Referral Three");
+                initDialog(new CustomPolybiusTableFragment(3), 6, "Referral Three");
             }
         });
 
@@ -116,6 +115,9 @@ public class CustomTableDialogFragment extends DialogFragment { // base class fo
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_custom_table_cipher_dialog, container, false);
+
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT)); // set the window to transparent
+        view.findViewById(R.id.tableDialogLayout).setBackgroundResource(R.drawable.dialog_background);
 
         setParameters(view);
         setListeners();

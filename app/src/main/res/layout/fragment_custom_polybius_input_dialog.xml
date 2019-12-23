@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/customPolybiusInputDialog"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
-    >
+    android:background="@color/backgroundDarkColor"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -40,8 +41,8 @@
             android:layout_marginStart="60dp"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="50dp"
-            android:layout_marginRight="15dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
 
             android:width="250dp"
             android:gravity="center"
@@ -85,8 +86,8 @@
             android:layout_marginStart="60dp"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="50dp"
-            android:layout_marginRight="15dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
 
             android:width="250dp"
             android:gravity="center"
@@ -130,8 +131,8 @@
             android:layout_marginStart="60dp"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="50dp"
-            android:layout_marginRight="15dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
 
             android:width="250dp"
             android:gravity="center"
@@ -175,8 +176,8 @@
             android:layout_marginStart="60dp"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="50dp"
-            android:layout_marginRight="15dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
 
             android:width="250dp"
             android:gravity="center"
@@ -188,20 +189,22 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="45dp"
         android:orientation="horizontal">
 
-        <TextView style="@style/DialogText"
+        <TextView
             android:id="@+id/TableInputCancel"
+            style="@style/DialogText"
 
             android:layout_marginRight="65dp"
             android:gravity="center"
             android:text="@string/custom_dialog_negative_button_message"
             android:textColor="#ff8000" />
 
-        <TextView style="@style/DialogText"
+        <TextView
             android:id="@+id/TableInputOk"
+            style="@style/DialogText"
 
             android:gravity="center"
             android:text="@string/custom_dialog_positive_button_message"

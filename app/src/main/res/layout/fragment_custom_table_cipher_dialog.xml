@@ -1,11 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tableDialogLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.ui_custom.ui_table_key_ciphers.CustomTableDialogFragment"
-    android:background="@color/backgroundColor"
+    android:background="@color/backgroundDarkColor"
     android:orientation="vertical"
-    >
+    tools:context="ui.ui_custom.ui_table_key_ciphers.CustomTableDialogFragment">
 
 
     <TextView
@@ -22,7 +22,7 @@
         android:textStyle="bold" />
 
     <LinearLayout
-        android:layout_width="342dp"
+        android:layout_width="338dp"
         android:layout_height="50dp"
         android:layout_marginTop="55dp"
         android:orientation="horizontal">
@@ -51,20 +51,22 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
         android:layout_marginLeft="35dp"
+        android:layout_marginTop="35dp"
         android:orientation="horizontal">
 
-        <TextView style="@style/DialogText"
+        <TextView
             android:id="@+id/CustomCipherCancel"
+            style="@style/DialogText"
 
             android:layout_marginRight="60dp"
             android:gravity="center"
             android:text="@string/custom_dialog_negative_button_message"
             android:textColor="#ff8000" />
 
-        <TextView style="@style/DialogText"
+        <TextView
             android:id="@+id/CustomCipherOk"
+            style="@style/DialogText"
 
             android:gravity="center"
             android:text="@string/custom_dialog_positive_button_message"

@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ui.ui_custom.ui_single_key_ciphers.CustomCipherFragment"
-    android:background="@color/backgroundColor">
+    android:background="@color/backgroundDarkColor">
 
     <Button
         android:id="@+id/DialogButton"
         style="@style/ColouredButton"
-        android:layout_width="140dp"
-        android:layout_height="71dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:layout_marginStart="135dp"
         android:layout_marginLeft="135dp"
         android:layout_marginTop="46dp"
@@ -29,8 +29,8 @@
     <Button
         android:id="@+id/ResetButton"
         style="@style/ColouredButton"
-        android:layout_width="140dp"
-        android:layout_height="71dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:layout_marginStart="135dp"
         android:layout_marginLeft="135dp"
         android:layout_marginTop="25dp"

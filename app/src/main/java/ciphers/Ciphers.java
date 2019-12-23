@@ -29,9 +29,6 @@ public class Ciphers { //superclass for all ciphers
     public void setEncodeEvoked(boolean encodeEvoke) {isEncodeEvoked = encodeEvoke;}
     public void setDecodeEvoked(boolean decodeEvoke) {isDecodeEvoked = decodeEvoke;}
 
-    public boolean updateEncodeEvoked(boolean encodeEvoke) {return isEncodeEvoked = encodeEvoke;}
-    public boolean updateDecodeEvoked(boolean decodeEvoke) {return isDecodeEvoked = decodeEvoke;}
-
     public ASCIIUtils getCharacterValidator() {
         return characterValidator;
     }

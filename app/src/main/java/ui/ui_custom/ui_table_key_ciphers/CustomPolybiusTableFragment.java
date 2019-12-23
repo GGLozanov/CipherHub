@@ -1,6 +1,7 @@
 package ui.ui_custom.ui_table_key_ciphers;
 
 import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -31,7 +32,7 @@ public class CustomPolybiusTableFragment extends DialogFragment {
     final private String idFormat = "Field";
     static private int referralNum;
 
-    final static Integer[] offsets = {0, 12, 24};
+    private final static Integer[] offsets = {0, 12, 24};
 
     static Character[][] Square; // initialise square by last square taken by custom polybius fragment
 
@@ -121,6 +122,9 @@ public class CustomPolybiusTableFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_custom_polybius_input_dialog, container, false);
+
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT)); // set the window to transparent
+        view.findViewById(R.id.customPolybiusInputDialog).setBackgroundResource(R.drawable.dialog_background);
 
         initTable(view);
 

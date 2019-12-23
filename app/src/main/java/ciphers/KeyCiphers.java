@@ -1,5 +1,6 @@
 package ciphers;
 
+import android.util.Log;
 import android.widget.EditText;
 
 class KeyCiphers extends Ciphers {
@@ -27,19 +28,16 @@ class KeyCiphers extends Ciphers {
     public void resetEncodeIndexCounter() {keyEncodeIndexCounter = 0;}
     public void resetDecodeIndexCounter() {keyDecodeIndexCounter = 0;}
 
+    public void enlargeEncodeKey(String s) {
 
-    public void EnlargeKey(String template, String s, int characterIndex, boolean mode) {
+        if(s.equals("")) return;
 
-        char editTextCharacter = s.charAt(characterIndex);
+        char editTextCharacter = s.charAt(keyEncodeIndexCounter);
 
-        System.out.print(keyString);
-
-        if(/*!characterValidator.isInvalidCharacter((int) editTextCharacter) ||*/
-                !characterValidator.isSpecialCharacter((int) editTextCharacter)) keyString += template.charAt(characterIndex);
+        if(!characterValidator.isSpecialCharacter((int) editTextCharacter)) keyString += keyTemplate.charAt(keyEncodeIndexCounter);
             //separate invalid check and special char check due to different ending outputs
         else {
-            if(mode) keyEncodeIndexCounter--;
-            else keyDecodeIndexCounter--;
+            keyEncodeIndexCounter--;
             keyString += editTextCharacter;
         }
 
@@ -47,8 +45,42 @@ class KeyCiphers extends Ciphers {
 
         if(keyExceedsMessage(s)) {
             trimKeyString(s); //crashes if there is no substring or key is smaller than editable
-            if(mode) keyEncodeIndexCounter = 0;
-            else keyDecodeIndexCounter = 0;
+            keyEncodeIndexCounter = 0;
+        }
+    }
+
+
+    public void enlargeDecodeKey(String s) {
+
+        if(s.equals("")) return;
+
+        char editTextCharacter = s.charAt(keyDecodeIndexCounter);
+
+        if(!characterValidator.isSpecialCharacter((int) editTextCharacter)) keyString += keyTemplate.charAt(keyDecodeIndexCounter);
+            //separate invalid check and special char check due to different ending outputs
+        else {
+            keyDecodeIndexCounter--;
+            keyString += editTextCharacter;
+        }
+
+        //need to add ability to shorten key if Editable is shortened (!) -> implemented
+
+        if(keyExceedsMessage(s)) {
+            trimKeyString(s); //crashes if there is no substring or key is smaller than editable
+            keyDecodeIndexCounter = 0;
+        }
+    }
+
+
+    public void updateEncodingKeyByBase(String inputString) { // method to update the key multiple times in a given range (length of a string, usually encoded/decoded text)
+        for(int i = 0; i < inputString.length(); i++) {
+            updateEncodingKey(inputString);
+        }
+    }
+
+    public void updateDecodingKeyByBase(String inputString) {
+        for(int i = 0; i < inputString.length(); i++) {
+            updateDecodingKey(inputString);
         }
     }
 
@@ -58,12 +90,14 @@ class KeyCiphers extends Ciphers {
 
     public void updateEncodingKey(String s) {
         if(keyEncodeIndexCounter == keyTemplate.length()) keyEncodeIndexCounter = 0;
-        EnlargeKey(keyTemplate, s, keyEncodeIndexCounter++, true);
+        enlargeEncodeKey(s);
+        keyEncodeIndexCounter++;
     }
 
     public void updateDecodingKey(String s) {
         if(keyDecodeIndexCounter == keyTemplate.length()) keyDecodeIndexCounter = 0;
-        EnlargeKey(keyTemplate, s, keyDecodeIndexCounter++, false); //goes out of bounds when changed
+        enlargeDecodeKey(s); // goes out of bounds when changed
+        keyDecodeIndexCounter++;
     }
 
     public void trimKeyString(String s) { // method to trim a string from the beginning to either the length of the input or the key

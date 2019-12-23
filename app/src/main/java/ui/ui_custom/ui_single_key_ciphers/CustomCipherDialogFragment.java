@@ -1,6 +1,7 @@
 package ui.ui_custom.ui_single_key_ciphers;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -65,8 +66,10 @@ public class CustomCipherDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_custom_cipher_dialog, container, false);
         //center EditText input by using setGravity method. Gravity of a text is its alignment.
 
-        setParameters(view);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT)); // set the window to transparent
+        view.findViewById(R.id.customCipherDialogLayout).setBackgroundResource(R.drawable.dialog_background);
 
+        setParameters(view);
 
         return view;
     }

@@ -3,6 +3,7 @@ package ui.ui_custom.ui_table_key_ciphers;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,44 +20,54 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cipherhub.R;
 
+import ciphers.ASCIIUtils;
+import ciphers.VigenereCipher;
 import managers.KeyCipherCallerManager;
 
 public class AdditionalVigenereFragment extends Fragment {
 
     TextView title, description;
-    static EditText keyInput;
+    private static EditText keyInput;
     Switch keyEnableSwitch;
+    static VigenereCipher keyParserCipher;
 
     public AdditionalVigenereFragment() {
+        keyParserCipher = new VigenereCipher();
         // required public empty constructor
     }
 
     public void initParameters(View view) {
         title = view.findViewById(R.id.customCipherTitle);
         description = view.findViewById(R.id.customCipherDescription);
-        keyInput = view.findViewById(R.id.keyString);
+        keyInput = view.findViewById(R.id.additionalKeyString);
         keyEnableSwitch = view.findViewById(R.id.keyEnableSwitch);
 
         keyInput.setVisibility(View.INVISIBLE);
     }
 
-    static public String getExtraKey() {
+    public static String getExtraKey() {
         if(keyInput == null) return "";
-        return keyInput.getText().toString();
+        return keyParserCipher.getKeyString();
     }
 
+    public static EditText getKeyInput() {
+        return keyInput;
+    }
+
+    public static VigenereCipher getKeyParserCipher() {return keyParserCipher;}
+
     private void clearKeyConstraints(ConstraintSet constraintSet) {
-        constraintSet.clear(R.id.keyString, ConstraintSet.TOP); // clear() method removes a constraint with argument id of widget and anchor (which constraint)
-        constraintSet.clear(R.id.keyString, ConstraintSet.BOTTOM);
-        constraintSet.clear(R.id.keyString, ConstraintSet.END);
-        constraintSet.clear(R.id.keyString, ConstraintSet.START); // constraints are written in xml file (use that as a guide)
+        constraintSet.clear(R.id.additionalKeyString, ConstraintSet.TOP); // clear() method removes a constraint with argument id of widget and anchor (which constraint)
+        constraintSet.clear(R.id.additionalKeyString, ConstraintSet.BOTTOM);
+        constraintSet.clear(R.id.additionalKeyString, ConstraintSet.END);
+        constraintSet.clear(R.id.additionalKeyString, ConstraintSet.START); // constraints are written in xml file (use that as a guide)
     }
 
     private void setKeyConstraints(ConstraintSet constraintSet) {
-        constraintSet.connect(R.id.keyString, ConstraintSet.TOP, R.id.keyEnableSwitch, ConstraintSet.BOTTOM); // from -> to widgets
-        constraintSet.connect(R.id.keyString, ConstraintSet.BOTTOM, R.id.customCipherDescription, ConstraintSet.TOP);
-        constraintSet.connect(R.id.keyString, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END); // PARENT_ID references parent view element
-        constraintSet.connect(R.id.keyString, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
+        constraintSet.connect(R.id.additionalKeyString, ConstraintSet.TOP, R.id.keyEnableSwitch, ConstraintSet.BOTTOM); // from -> to widgets
+        constraintSet.connect(R.id.additionalKeyString, ConstraintSet.BOTTOM, R.id.customCipherDescription, ConstraintSet.TOP);
+        constraintSet.connect(R.id.additionalKeyString, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END); // PARENT_ID references parent view element
+        constraintSet.connect(R.id.additionalKeyString, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
     }
 
     private void hideInput(ConstraintLayout constraintLayout, ConstraintSet constraintSet) {
@@ -74,7 +85,7 @@ public class AdditionalVigenereFragment extends Fragment {
     private void showInput(ConstraintLayout constraintLayout, ConstraintSet constraintSet) {
         setKeyConstraints(constraintSet);
         constraintSet.clear(R.id.keyEnableSwitch, ConstraintSet.BOTTOM);
-        constraintSet.connect(R.id.keyEnableSwitch, ConstraintSet.BOTTOM, R.id.keyString, ConstraintSet.TOP);
+        constraintSet.connect(R.id.keyEnableSwitch, ConstraintSet.BOTTOM, R.id.additionalKeyString, ConstraintSet.TOP);
         constraintSet.applyTo(constraintLayout);
         keyInput.setVisibility(View.VISIBLE);
     }
@@ -119,12 +130,16 @@ public class AdditionalVigenereFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                KeyCipherCallerManager.instantiateVigenereCipher();
+                keyParserCipher = new VigenereCipher();
+                keyParserCipher.setTemplate(s.toString());
+
+                keyParserCipher.updateEncodingKeyByBase(KeyCipherCallerManager.getVigenereCipher().getKeyTemplate()); // enlarge additional key by the original key (use it as margin)
+
+                KeyCipherCallerManager.getKeyText().setText(keyParserCipher.VigenereEncode(keyParserCipher.getKeyString(), KeyCipherCallerManager.getVigenereCipher().getKeyTemplate()));
             }
         };
 
         keyInput.addTextChangedListener(textChangedListener);
-
     }
 
     @Nullable

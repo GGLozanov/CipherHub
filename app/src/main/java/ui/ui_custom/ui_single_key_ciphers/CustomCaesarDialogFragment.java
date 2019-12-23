@@ -1,5 +1,7 @@
 package ui.ui_custom.ui_single_key_ciphers;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -11,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.cipherhub.R;
+
 public class CustomCaesarDialogFragment extends CustomCipherDialogFragment {
 
     private String caesarShiftAmount;
@@ -20,7 +24,7 @@ public class CustomCaesarDialogFragment extends CustomCipherDialogFragment {
         super(title, editText, positiveBtnText, negativeBtnText);
     }
 
-    private void configInput() { //method for configurating our input EditText with an InputFilter arr to limit the max length programmatically (as well as input type)
+    private void configInput() { // method for configurating our input EditText with an InputFilter arr to limit the max length programmatically (as well as input type)
         input.setInputType(InputType.TYPE_CLASS_NUMBER); // set editText input type to numbers
         input.setFilters(new InputFilter[] {new InputFilter.LengthFilter(3)}); // define unnamed InputFilter's LengthFilter subclass with a value of 3 max numbers
     }

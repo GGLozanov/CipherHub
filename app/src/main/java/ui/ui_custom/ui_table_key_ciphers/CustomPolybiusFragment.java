@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.cipherhub.R;
@@ -36,10 +37,6 @@ public class CustomPolybiusFragment extends CustomCipherFragment implements Cust
     }
 
     static public Character[][] getPolybiusKey() {return PolybiusSquare;}
-
-    static public void setCharacterInPolybiusKey(Character character, int row, int position) { // slightly banal modification.
-        PolybiusSquare[row][position] = character;
-    }
 
 
     @Override

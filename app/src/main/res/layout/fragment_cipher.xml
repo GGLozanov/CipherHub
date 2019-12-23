@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ui.CipherFragment"
-    android:background="@color/backgroundColor">
+    android:background="@color/backgroundDarkColor">
 
     <EditText
         android:id="@+id/DecodedInputString"
