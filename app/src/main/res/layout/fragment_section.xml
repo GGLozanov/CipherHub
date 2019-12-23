@@ -8,6 +8,14 @@
     tools:context="ui.SectionFragment"
     android:background="@color/backgroundDarkColor">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/sectionTitle"
         style="@style/Text"
@@ -26,7 +34,7 @@
         app:layout_constraintBottom_toTopOf="@+id/sectionDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/sectionDescription"

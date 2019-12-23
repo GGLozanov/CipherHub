@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="25dp"
         android:orientation="horizontal">
 
         <TextView style="@style/DialogText"
@@ -60,14 +60,14 @@
             android:layout_marginRight="40dp"
             android:gravity="center"
             android:text="@string/custom_dialog_negative_button_message"
-            android:textColor="#ff8000" />
+            android:textColor="@color/cancelButtonColor" />
 
         <TextView style="@style/DialogText"
             android:id="@+id/CustomCipherOk"
 
             android:gravity="center"
             android:text="@string/custom_dialog_positive_button_message"
-            android:textColor="#0ce1ff" />
+            android:textColor="@color/okButtonColor" />
     </LinearLayout>
 
 </LinearLayout>

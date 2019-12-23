@@ -130,6 +130,8 @@ public class AdditionalVigenereFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if(s.toString().equals("")) return;
+
                 keyParserCipher = new VigenereCipher();
                 keyParserCipher.setTemplate(s.toString());
 

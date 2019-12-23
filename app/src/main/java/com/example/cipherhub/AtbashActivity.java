@@ -5,6 +5,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.widget.Toolbar;
 
 import ciphers.AtbashCipher;
 import ui.CipherFragment;
@@ -13,12 +14,7 @@ import ui.FragmentPageAdapter;
 import ui.SetUpPagerInterface;
 import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
 
-public class AtbashActivity extends AppCompatActivity implements SetUpPagerInterface {
-
-    EditText inputText;
-    EditText atbashText;
-
-    AtbashCipher atbashCipher;
+public class AtbashActivity extends Activity implements SetUpPagerInterface {
 
     ViewPager viewPager;
     FragmentPageAdapter fragmentPageAdapter;
@@ -36,6 +32,9 @@ public class AtbashActivity extends AppCompatActivity implements SetUpPagerInter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atbash);
+
+        Toolbar toolbar = findViewById(R.id.toolbar); // get Toolbar widget
+        setSupportActionBar(toolbar); // set it as supporting action bar
 
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);

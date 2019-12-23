@@ -17,7 +17,7 @@
     <string name="atbash_title">Atbash Cipher</string>
     <string name="atbash_description">Atbash (Hebrew: אתבש‎; also transliterated Atbaš) is a monoalphabetic substitution cipher originally used to encrypt the Hebrew alphabet. It can be modified for use with any known writing system with a standard collating order. The idea of the cipher is to use a base (the alphabet by default) and reverse it to generate the key ("A" -> "Z", "B" -> "Y", so on).</string>
     <string name="polybius_title">Polybius Cipher</string>
-    <string name="polybius_description">In cryptography, the Polybius square, also known as the Polybius checkerboard, is a device invented by the Ancient Greeks Cleoxenus and Democleitus, and perfected by the Ancient Greek historian and scholar Polybius, for fractionating plaintext characters so that they can be represented by a smaller set of symbols.\nThis implementation uses a 6x6 square (numbers included for the nerds!)</string>
+    <string name="polybius_description">In cryptography, the Polybius square, also known as the Polybius checkerboard, is a device invented by the Ancient Greeks Cleoxenus and Democleitus, and perfected by the Ancient Greek historian and scholar Polybius, for fractionating plaintext characters so that they can be represented by a smaller set of symbols. This implementation uses a 6x6 square (numbers included for the nerds!)</string>
 
     <string name="caesar">Caesar</string>
     <string name="vigenere">Vigenere</string>

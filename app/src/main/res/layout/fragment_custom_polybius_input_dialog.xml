@@ -200,7 +200,7 @@
             android:layout_marginRight="65dp"
             android:gravity="center"
             android:text="@string/custom_dialog_negative_button_message"
-            android:textColor="#ff8000" />
+            android:textColor="@color/cancelButtonColor" />
 
         <TextView
             android:id="@+id/TableInputOk"
@@ -208,7 +208,7 @@
 
             android:gravity="center"
             android:text="@string/custom_dialog_positive_button_message"
-            android:textColor="#0ce1ff" />
+            android:textColor="@color/okButtonColor" />
     </LinearLayout>
 
 </LinearLayout>

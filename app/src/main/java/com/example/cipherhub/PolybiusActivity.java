@@ -5,6 +5,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import ciphers.PolybiusCipher;
@@ -14,7 +15,7 @@ import ui.FragmentPageAdapter;
 import ui.SetUpPagerInterface;
 import ui.ui_custom.ui_table_key_ciphers.CustomPolybiusFragment;
 
-public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInterface {
+public class PolybiusActivity extends Activity implements SetUpPagerInterface {
 
     ViewPager viewPager;
     FragmentPageAdapter fragmentPageAdapter;
@@ -32,6 +33,9 @@ public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInt
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polybius);
+
+        Toolbar toolbar = findViewById(R.id.toolbar); // get Toolbar widget
+        setSupportActionBar(toolbar); // set it as supporting action bar
 
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
