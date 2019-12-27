@@ -2,7 +2,7 @@ package ciphers;
 
 import android.util.Log;
 
-public class VigenereCipher extends KeyCiphers {
+public class VigenereCipher extends KeyCipher {
 
     public VigenereCipher() {
         keyString = "";

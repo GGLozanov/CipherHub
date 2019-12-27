@@ -1,6 +1,6 @@
 package ciphers;
 
-public class AtbashCipher extends KeyCiphers {
+public class AtbashCipher extends KeyCipher {
 
     private String reverseLowerKeyString = "";
     private String reverseUpperKeyString = "";

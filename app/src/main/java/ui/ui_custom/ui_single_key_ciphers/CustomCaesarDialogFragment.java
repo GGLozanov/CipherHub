@@ -26,7 +26,7 @@ public class CustomCaesarDialogFragment extends CustomCipherDialogFragment {
 
     private void configInput() { // method for configurating our input EditText with an InputFilter arr to limit the max length programmatically (as well as input type)
         input.setInputType(InputType.TYPE_CLASS_NUMBER); // set editText input type to numbers
-        input.setFilters(new InputFilter[] {new InputFilter.LengthFilter(3)}); // define unnamed InputFilter's LengthFilter subclass with a value of 3 max numbers
+        input.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)}); // define unnamed InputFilter's LengthFilter subclass with a value of 3 max numbers
     }
 
     @NonNull

@@ -31,16 +31,16 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
     static final String buttonFourKey = "ButtonFour";
 
 
-    static public String getTitleKey() {return titleKey;}
-    static public String getDescriptionKey() {return descriptionKey;}
+    public static String getTitleKey() {return titleKey;}
+    public static String getDescriptionKey() {return descriptionKey;}
 
-    static public String getCipherKey() {return cipherKey;}
-    static public String getResetKey() {return resetKey;}
+    public static String getCipherKey() {return cipherKey;}
+    public static String getResetKey() {return resetKey;}
 
-    static public String getButtonOneKey() {return buttonOneKey;}
-    static public String getButtonTwoKey() {return buttonTwoKey;}
-    static public String getButtonThreeKey() {return buttonThreeKey;}
-    static public String getButtonFourKey() {return buttonFourKey;}
+    public static String getButtonOneKey() {return buttonOneKey;}
+    public static String getButtonTwoKey() {return buttonTwoKey;}
+    public static String getButtonThreeKey() {return buttonThreeKey;}
+    public static String getButtonFourKey() {return buttonFourKey;}
 
     private Context context;
 
@@ -55,6 +55,8 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
         fragments.add(fragment);
         fragmentTitles.add(title);
     }
+
+    public List<Fragment> getFragments() {return fragments;}
 
     @Override
     public Fragment getItem(int position) {

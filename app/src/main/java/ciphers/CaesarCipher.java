@@ -1,9 +1,6 @@
 package ciphers;
 
-import android.text.Editable;
-import android.util.Log;
-
-public class CaesarCipher extends Ciphers {
+public class CaesarCipher extends Cipher {
 
     private Integer key;
 

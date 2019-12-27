@@ -3,8 +3,6 @@ package ui.ui_custom.ui_table_key_ciphers;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
-import android.util.Log;
-
-import java.util.*;
 
 public class CustomPolybiusTableFragment extends DialogFragment {
 
@@ -124,7 +120,10 @@ public class CustomPolybiusTableFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_custom_polybius_input_dialog, container, false);
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT)); // set the window to transparent
-        view.findViewById(R.id.customPolybiusInputDialog).setBackgroundResource(R.drawable.dialog_background);
+        view.findViewById(R.id.customPolybiusInputDialogLayout).setBackgroundResource(
+                Activity.getMode() ?
+                R.drawable.dialog_dark_background :
+                R.drawable.dialog_light_background);
 
         initTable(view);
 

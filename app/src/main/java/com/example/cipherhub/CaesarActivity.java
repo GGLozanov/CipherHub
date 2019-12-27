@@ -2,7 +2,6 @@ package com.example.cipherhub;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
@@ -10,9 +9,9 @@ import ui.CipherFragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
 import ui.SectionFragment;
 import ui.FragmentPageAdapter;
-import ui.SetUpPagerInterface;
+import ui.SetUpViewPager;
 
-public class CaesarActivity extends Activity implements SetUpPagerInterface {
+public class CaesarActivity extends Activity implements SetUpViewPager {
 
     // include viewpager for activities -> done
 
@@ -33,8 +32,7 @@ public class CaesarActivity extends Activity implements SetUpPagerInterface {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caesar);
 
-        Toolbar toolbar = findViewById(R.id.toolbar); // get Toolbar widget
-        setSupportActionBar(toolbar); // set it as supporting action bar
+        configureToolbar();
 
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
@@ -42,6 +40,5 @@ public class CaesarActivity extends Activity implements SetUpPagerInterface {
         setUpViewPager(viewPager);
 
         viewPager.setCurrentItem(0);
-
     }
 }

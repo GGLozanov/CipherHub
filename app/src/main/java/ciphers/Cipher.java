@@ -4,7 +4,7 @@ import android.text.Editable;
 import android.util.Log;
 import android.widget.EditText;
 
-public class Ciphers { //superclass for all ciphers
+public abstract class Cipher { //superclass for all ciphers
 
     ASCIIUtils characterValidator = new ASCIIUtils();
 
@@ -34,4 +34,4 @@ public class Ciphers { //superclass for all ciphers
     }
 }
 
-//Polybius for Cyrillic...?
+// Polybius for Cyrillic...?

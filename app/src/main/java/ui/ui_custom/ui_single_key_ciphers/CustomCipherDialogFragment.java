@@ -17,7 +17,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
+import com.example.cipherhub.SetVisibilityModes;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,13 +63,14 @@ public class CustomCipherDialogFragment extends DialogFragment {
 
     @Override @NonNull
     public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
-        // Resources resources = getActivity().getResources();
         View view = inflater.inflate(R.layout.fragment_custom_cipher_dialog, container, false);
         //center EditText input by using setGravity method. Gravity of a text is its alignment.
 
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT)); // set the window to transparent
-        view.findViewById(R.id.customCipherDialogLayout).setBackgroundResource(R.drawable.dialog_background);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT)); // set the window to transparent as to not see the rest of the corner
+        view.findViewById(R.id.customCipherDialogLayout).setBackgroundResource(
+                Activity.getMode() ?
+                        R.drawable.dialog_dark_background :
+                        R.drawable.dialog_light_background); // set the background resource to the layout by checking sharedprefs beforehand
 
         setParameters(view);
 

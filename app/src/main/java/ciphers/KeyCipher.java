@@ -1,9 +1,8 @@
 package ciphers;
 
-import android.util.Log;
 import android.widget.EditText;
 
-class KeyCiphers extends Ciphers {
+public abstract class KeyCipher extends Cipher {
 
     EditText keyText;
 

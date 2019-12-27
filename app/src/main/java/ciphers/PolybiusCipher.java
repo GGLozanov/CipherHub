@@ -1,8 +1,6 @@
 package ciphers;
 
-import android.util.Log;
-
-public class PolybiusCipher extends Ciphers {
+public class PolybiusCipher extends Cipher {
 
     private static Character[][] PolybiusSquare;
 
@@ -22,7 +20,7 @@ public class PolybiusCipher extends Ciphers {
     public String PolybiusEncode(String base) {
         encodedText = "";
 
-        //TO-DO: Put these variables in superclass Ciphers
+        //TO-DO: Put these variables in superclass Cipher
         //add functionality for user to choose lowercase or uppercase -> done
 
         for(int i = 0; i < base.length(); i++) {

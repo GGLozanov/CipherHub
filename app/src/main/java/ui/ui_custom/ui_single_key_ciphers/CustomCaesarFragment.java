@@ -8,10 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cipherhub.R;
+import com.example.cipherhub.SetVisibilityModes;
 
 import managers.CipherCallerManager;
 
-public class CustomCaesarFragment extends CustomCipherFragment implements CustomCipherDialogFragment.OnInputSelected {
+public class CustomCaesarFragment extends CustomCipherFragment implements CustomCipherDialogFragment.OnInputSelected, SetVisibilityModes {
 
     public CustomCaesarFragment() {
 

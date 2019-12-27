@@ -1,5 +1,6 @@
 package ui.ui_custom.ui_table_key_ciphers;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -16,20 +18,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
+import com.example.cipherhub.SetVisibilityModes;
 
+import adapters.LayoutAdapter;
 import ciphers.ASCIIUtils;
 import ciphers.VigenereCipher;
 import managers.KeyCipherCallerManager;
 
-public class AdditionalVigenereFragment extends Fragment {
+public class AdditionalVigenereFragment extends Fragment implements SetVisibilityModes {
 
     TextView title, description;
     private static EditText keyInput;
     Switch keyEnableSwitch;
     static VigenereCipher keyParserCipher;
+
+    private SharedPreferences.Editor editor = Activity.getEditor(); // superclass Fragment soon^TM
 
     public AdditionalVigenereFragment() {
         keyParserCipher = new VigenereCipher();
@@ -115,6 +123,26 @@ public class AdditionalVigenereFragment extends Fragment {
         });
     }
 
+    @Override
+    public void setLightMode(View view) {
+        editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
+
+        LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.AdditionalVigenereLayout));
+        layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(getActivity(), R.color.backgroundLightColor));
+
+        editor.apply();
+    }
+
+    @Override
+    public void setDarkMode(View view) {
+        editor.putBoolean(Activity.getModeKey(), true);
+
+        LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.AdditionalVigenereLayout));
+        layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(getActivity(), R.color.backgroundDarkColor));
+
+        editor.apply();
+    }
+
     public void setInputListener() {
 
         TextWatcher textChangedListener = new TextWatcher() {
@@ -154,6 +182,9 @@ public class AdditionalVigenereFragment extends Fragment {
         initParameters(view);
         setKeySwitchListener(constraintLayout);
         setInputListener();
+
+        if(Activity.getMode()) setDarkMode(view);
+        else setLightMode(view);
 
         return view;
     }

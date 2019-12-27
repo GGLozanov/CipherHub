@@ -7,11 +7,31 @@
 
     <item
         android:id="@+id/actionChangeMode"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         android:title="Change Theme"
         android:textStyle="bold"
         app:showAsAction="never">
 
+        <menu>
+            <item
+                android:id="@+id/lightMode"
+                android:title="Light"
+                android:orderInCategory="1"
+                />
+
+            <item
+                android:id="@+id/darkMode"
+                android:title="Dark"
+                android:orderInCategory="2" />
+        </menu>
+
     </item>
+
+    <item
+        android:id="@+id/actionUITemplate"
+        android:orderInCategory="1"
+        android:title="Change UI Theme"
+        android:textStyle="bold"
+        app:showAsAction="never" />
 
 </menu>
