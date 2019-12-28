@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
@@ -25,7 +23,7 @@ import managers.KeyCipherCallerManager;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class KeyCipherFragment extends Fragment implements SetVisibilityModes {
+public class KeyCipherFragment extends VisibilityFragment implements SetVisibilityModes {
 
     private KeyCipherCallerManager keyCipherCallerManager = new KeyCipherCallerManager();
     private SharedPreferences.Editor editor = Activity.getEditor();
@@ -35,7 +33,7 @@ public class KeyCipherFragment extends Fragment implements SetVisibilityModes {
     }
 
     @Override
-    public void setLightMode(View view) {
+    public void setLightTheme() {
         editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.keyCipherLayout));
@@ -45,7 +43,7 @@ public class KeyCipherFragment extends Fragment implements SetVisibilityModes {
     }
 
     @Override
-    public void setDarkMode(View view) {
+    public void setDarkTheme() {
         editor.putBoolean(Activity.getModeKey(), true);
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.keyCipherLayout));
@@ -59,16 +57,16 @@ public class KeyCipherFragment extends Fragment implements SetVisibilityModes {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_key_cipher, container, false);
+        view = inflater.inflate(R.layout.fragment_key_cipher, container, false);
 
-        keyCipherCallerManager.setKeyText((EditText) view.findViewById(R.id.KeyString));
-        keyCipherCallerManager.setDecodedInput((EditText) view.findViewById(R.id.DecodedInputString));
-        keyCipherCallerManager.setEncodedOutput((EditText) view.findViewById(R.id.EncodedOutputString));
+        keyCipherCallerManager.setKeyText(view.findViewById(R.id.KeyString));
+        keyCipherCallerManager.setDecodedInput(view.findViewById(R.id.DecodedInputString));
+        keyCipherCallerManager.setEncodedOutput(view.findViewById(R.id.EncodedOutputString));
 
         keyCipherCallerManager.VigenereCipher();
 
-        if(Activity.getMode()) setDarkMode(view);
-        else setLightMode(view);
+        if(Activity.getMode()) setDarkTheme();
+        else setLightTheme();
 
         return view;
     }

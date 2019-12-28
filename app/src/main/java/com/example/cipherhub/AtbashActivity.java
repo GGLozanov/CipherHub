@@ -3,7 +3,9 @@ package com.example.cipherhub;
 import android.os.Bundle;
 
 import androidx.viewpager.widget.ViewPager;
+
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import ui.CipherFragment;
 import ui.SectionFragment;
@@ -18,9 +20,9 @@ public class AtbashActivity extends Activity implements SetUpViewPager {
 
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        adapter.addFragment(new SectionFragment(), "Atbash Screen");
-        adapter.addFragment(new CipherFragment(), "Atbash Cipher");
-        adapter.addFragment(new CustomAtbashFragment(), "Custom Atbash");
+        for(Fragment fragment : fragmentCollection.get(3).keySet()) {
+            adapter.addFragment(fragment, fragmentCollection.get(3).get(fragment));
+        }
         viewPager.setAdapter(adapter);
     }
 

@@ -2,27 +2,74 @@ package com.example.cipherhub;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupMenu;
+
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import adapters.LayoutAdapter;
+import ui.CipherFragment;
+import ui.KeyCipherFragment;
+import ui.QuadrupButtonFragment;
+import ui.SectionFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomCipherFragment;
+import ui.ui_custom.ui_table_key_ciphers.AdditionalVigenereFragment;
+import ui.ui_custom.ui_table_key_ciphers.CustomPolybiusFragment;
 
 public abstract class Activity extends AppCompatActivity { // abstract superclass for all activities
+
+    List<LinkedHashMap<Fragment, String>> fragmentCollection = new ArrayList<>(); // linked HashMap keeps track of insertion order3
+
+    private void addFragments(Fragment[] fragments, String[] keys) {
+        if(fragments.length != keys.length) return;
+
+        LinkedHashMap<Fragment, String> fragmentMap = new LinkedHashMap<>();
+
+        for(int fragment = 0; fragment < fragments.length; fragment++) {
+            fragmentMap.put(fragments[fragment], keys[fragment]);
+        }
+
+        fragmentCollection.add(fragmentMap);
+    }
+
+    private void initFragmentMap() {
+        // create separate variable for insertion in hashmap due to the dangers of double-brace initialisation (memory leaks!)
+
+        // Main Activity
+
+        addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment()}, new String[]{"Main Screen", "Page 1"});
+
+        // Caesar Cipher
+
+        addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomCaesarFragment()}, new String[]{"Caesar Screen", "Caesar Cipher", "Custom Caesar"});
+
+        // Vigenere Cipher
+
+        addFragments(new Fragment[]{new SectionFragment(), new KeyCipherFragment(), new AdditionalVigenereFragment()}, new String[]{"Vigenere Screen", "Vigenere Cipher", "Custom Vigenere"});
+
+        // Atbash Cipher
+
+        addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomAtbashFragment()}, new String[]{"Atbash Screen", "Atbash Cipher", "Custom Atbash"});
+
+        // Polybius Cipher
+
+        addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomPolybiusFragment()}, new String[]{"Polybius Screen", "Polybius Cipher", "Custom Polybius"});
+
+    }
 
     protected static SharedPreferences sharedPreferences;
     protected static SharedPreferences.Editor editor; // reference static subclass
@@ -74,15 +121,63 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
 
     }
 
+    private void applyLightTheme() {
+        for(LinkedHashMap<Fragment, String> map : fragmentCollection) {
+            for(Fragment fragment : map.keySet()) {
+                if(fragment instanceof CipherFragment && ((CipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((CipherFragment) fragment).setLightTheme();
+                } else if(fragment instanceof KeyCipherFragment && ((KeyCipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((KeyCipherFragment) fragment).setLightTheme();
+                } else if(fragment instanceof QuadrupButtonFragment && ((QuadrupButtonFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((QuadrupButtonFragment) fragment).setLightTheme();
+                } else if(fragment instanceof SectionFragment && ((SectionFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((SectionFragment) fragment).setLightTheme();
+                } else if(fragment instanceof CustomCipherFragment && ((CustomCipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((CustomCipherFragment) fragment).setLightTheme();
+                } else if(fragment instanceof AdditionalVigenereFragment && ((AdditionalVigenereFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((AdditionalVigenereFragment) fragment).setLightTheme();
+                }
+            }
+        }
+
+        configureToolbar();
+    }
+
+    private void applyDarkTheme() {
+        for(LinkedHashMap<Fragment, String> map : fragmentCollection) {
+            for(Fragment fragment : map.keySet()) {
+                if(fragment instanceof CipherFragment && ((CipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((CipherFragment) fragment).setDarkTheme();
+                } else if(fragment instanceof KeyCipherFragment && ((KeyCipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((KeyCipherFragment) fragment).setDarkTheme();
+                } else if(fragment instanceof QuadrupButtonFragment && ((QuadrupButtonFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((QuadrupButtonFragment) fragment).setDarkTheme();
+                } else if(fragment instanceof SectionFragment && ((SectionFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((SectionFragment) fragment).setDarkTheme();
+                } else if(fragment instanceof CustomCipherFragment && ((CustomCipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((CustomCipherFragment) fragment).setDarkTheme();
+                } else if(fragment instanceof AdditionalVigenereFragment && ((AdditionalVigenereFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((AdditionalVigenereFragment) fragment).setDarkTheme();
+                }
+            }
+        }
+
+        configureToolbar();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // Call AppCompatActivity implementation of onCreate()
 
         sharedPreferences = getApplicationContext().getSharedPreferences("CustomPrefs", Context.MODE_PRIVATE);
+
         // Initialisation through first getting the context of the application -> calling the getSharedPreferences() method with filename of preferences and mode
         // Context.MODE_PRIVATE macro means the file can only be accessed by the calling application
+
         editor = sharedPreferences.edit(); // initialise through edit() method of current sharedprefs
         editor.apply();
+
+        initFragmentMap();
     }
 
     @Override
@@ -94,12 +189,14 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
             case R.id.actionChangeMode: // pressed change mode
                 return true; // stop the function here if we have selected the id of a menu option
             case R.id.lightMode:
-                editor.putBoolean(modeKey, false);
-                editor.apply();
+                editor.putBoolean(modeKey, false).apply();
+                applyLightTheme();
+                Toast.makeText(this, "Light theme applied!", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.darkMode:
-                editor.putBoolean(modeKey, true);
-                editor.apply();
+                editor.putBoolean(modeKey, true).apply();
+                applyDarkTheme();
+                Toast.makeText(this, "Dark theme applied!", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.actionUITemplate:
                 return true;

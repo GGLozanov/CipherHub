@@ -1,10 +1,12 @@
 package com.example.cipherhub; //main designated package
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
 
 import adapters.LayoutAdapter;
 import ui.QuadrupButtonFragment;
@@ -20,11 +22,17 @@ public class MainActivity extends Activity implements SetUpViewPager { //main cl
 
     // sharedPreferences for different user modes (novice cipher student, adept, master, etc.)
 
+
     @Override
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        adapter.addFragment(new SectionFragment(), "Main Screen"); //add quadruple button fragment later on (once for main activity)
-        adapter.addFragment(new QuadrupButtonFragment(), "Page 1");
+
+        for(Fragment fragment : fragmentCollection.get(0).keySet()) {
+            Log.d("Value in ", fragmentCollection.get(0).get(fragment));
+
+            adapter.addFragment(fragment, fragmentCollection.get(0).get(fragment)); // get key by fragment and place it in adapter
+        }
+
         viewPager.setAdapter(adapter);
     }
 

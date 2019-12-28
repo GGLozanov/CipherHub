@@ -3,6 +3,7 @@ package com.example.cipherhub;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import ui.CipherFragment;
@@ -18,9 +19,9 @@ public class PolybiusActivity extends Activity implements SetUpViewPager {
 
     public void setUpViewPager(ViewPager viewPager) { // UI template theme here
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        adapter.addFragment(new SectionFragment(), "Polybius Screen");
-        adapter.addFragment(new CipherFragment(), "Polybius Cipher");
-        adapter.addFragment(new CustomPolybiusFragment(), "Custom Polybius");
+        for(Fragment fragment : fragmentCollection.get(4).keySet()) {
+            adapter.addFragment(fragment, fragmentCollection.get(4).get(fragment));
+        }
         viewPager.setAdapter(adapter);
     }
 

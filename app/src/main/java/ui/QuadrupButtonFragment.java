@@ -24,7 +24,7 @@ import managers.ActivityCallerManager;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuadrupButtonFragment extends Fragment implements SetVisibilityModes {
+public class QuadrupButtonFragment extends VisibilityFragment implements SetVisibilityModes {
 
     //fragment containing 4 buttons -> for main activity navigation
     private Button buttonOne;
@@ -36,23 +36,19 @@ public class QuadrupButtonFragment extends Fragment implements SetVisibilityMode
 
     SharedPreferences.Editor editor = Activity.getEditor();
 
-
     @Override
-    public void setLightMode(View view) {
-
+    public void setLightTheme() {
         editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.quadrupButtonLayout));
-
         layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(getActivity(), R.color.backgroundLightColor));
         layoutAdapter.setButtonsLightMode(new Button[]{view.findViewById(R.id.buttonOne), view.findViewById(R.id.buttonTwo), view.findViewById(R.id.buttonThree), view.findViewById(R.id.buttonFour)});
-        // layoutAdapter.setDialogLayoutBackgroundColor(ContextCompat.getColor(this, R.color.backgroundDarkColor));
 
         editor.apply();
     }
 
     @Override
-    public void setDarkMode(View view) {
+    public void setDarkTheme() {
         editor.putBoolean(Activity.getModeKey(), true);
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.quadrupButtonLayout));
@@ -78,47 +74,29 @@ public class QuadrupButtonFragment extends Fragment implements SetVisibilityMode
         buttonFour.setText(getArguments().getString(FragmentPageAdapter.getButtonFourKey()));
     }
 
+    // Warning: Won't work below Java 8 (lambdas)
+
     private void setListeners() {
-        buttonOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityCallerManager.OpenCaesarActivity();
-            }
-        });
+        buttonOne.setOnClickListener((View v) -> activityCallerManager.OpenCaesarActivity());
 
-        buttonTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityCallerManager.OpenVigenereActivity();
-            }
-        });
+        buttonTwo.setOnClickListener((View v) -> activityCallerManager.OpenVigenereActivity());
 
-        buttonThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityCallerManager.OpenAtbashActivity();
-            }
-        });
+        buttonThree.setOnClickListener((View v) -> activityCallerManager.OpenAtbashActivity());
 
-        buttonFour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityCallerManager.OpenPolybiusActivity();
-            }
-        });
+        buttonFour.setOnClickListener((View v) -> activityCallerManager.OpenPolybiusActivity()); // lambda onClick() function designated with '->' and argument list before that
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_quadrup_button, container, false);
+        view = inflater.inflate(R.layout.fragment_quadrup_button, container, false);
 
         initButtons(view);
         setListeners();
 
-        if(Activity.getMode()) setDarkMode(view);
-        else setLightMode(view);
+        if(Activity.getMode()) setDarkTheme();
+        else setLightTheme();
 
         // Inflate the layout for this fragment
         return view;

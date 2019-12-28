@@ -4,11 +4,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -19,18 +17,17 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 
 import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
 import adapters.LayoutAdapter;
-import ciphers.ASCIIUtils;
 import ciphers.VigenereCipher;
 import managers.KeyCipherCallerManager;
+import ui.VisibilityFragment;
 
-public class AdditionalVigenereFragment extends Fragment implements SetVisibilityModes {
+public class AdditionalVigenereFragment extends VisibilityFragment implements SetVisibilityModes {
 
     TextView title, description;
     private static EditText keyInput;
@@ -124,7 +121,7 @@ public class AdditionalVigenereFragment extends Fragment implements SetVisibilit
     }
 
     @Override
-    public void setLightMode(View view) {
+    public void setLightTheme() {
         editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.AdditionalVigenereLayout));
@@ -134,7 +131,7 @@ public class AdditionalVigenereFragment extends Fragment implements SetVisibilit
     }
 
     @Override
-    public void setDarkMode(View view) {
+    public void setDarkTheme() {
         editor.putBoolean(Activity.getModeKey(), true);
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.AdditionalVigenereLayout));
@@ -175,7 +172,7 @@ public class AdditionalVigenereFragment extends Fragment implements SetVisibilit
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_additional_vigenere, container, false);
+        view = inflater.inflate(R.layout.fragment_additional_vigenere, container, false);
 
         ConstraintLayout constraintLayout = view.findViewById(R.id.AdditionalVigenereLayout);
 
@@ -183,8 +180,8 @@ public class AdditionalVigenereFragment extends Fragment implements SetVisibilit
         setKeySwitchListener(constraintLayout);
         setInputListener();
 
-        if(Activity.getMode()) setDarkMode(view);
-        else setLightMode(view);
+        if(Activity.getMode()) setDarkTheme();
+        else setLightTheme();
 
         return view;
     }

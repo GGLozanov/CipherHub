@@ -3,6 +3,7 @@ package com.example.cipherhub;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import ui.KeyCipherFragment;
@@ -18,9 +19,9 @@ public class VigenereActivity extends Activity implements SetUpViewPager {
 
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        adapter.addFragment(new SectionFragment(), "Vigenere Screen");
-        adapter.addFragment(new KeyCipherFragment(), "Vigenere Cipher");
-        adapter.addFragment(new AdditionalVigenereFragment(), "Custom Vigenere");
+        for(Fragment fragment : fragmentCollection.get(2).keySet()) {
+            adapter.addFragment(fragment, fragmentCollection.get(2).get(fragment));
+        }
         viewPager.setAdapter(adapter);
     }
 

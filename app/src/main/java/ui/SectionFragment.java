@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cipherhub.Activity;
@@ -24,7 +23,7 @@ import adapters.LayoutAdapter;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SectionFragment extends Fragment implements SetVisibilityModes {
+public class SectionFragment extends VisibilityFragment implements SetVisibilityModes {
 
     TextView title;
     TextView description;
@@ -36,8 +35,7 @@ public class SectionFragment extends Fragment implements SetVisibilityModes {
     SharedPreferences.Editor editor = Activity.getEditor();
 
     @Override
-    public void setLightMode(View view) {
-
+    public void setLightTheme() {
         editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.sectionLayout));
@@ -48,7 +46,7 @@ public class SectionFragment extends Fragment implements SetVisibilityModes {
     }
 
     @Override
-    public void setDarkMode(View view) {
+    public void setDarkTheme() {
         editor.putBoolean(Activity.getModeKey(), true);
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.sectionLayout));
@@ -62,18 +60,19 @@ public class SectionFragment extends Fragment implements SetVisibilityModes {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_section, container, false);
+        view = inflater.inflate(R.layout.fragment_section, container, false);
+
         title = view.findViewById(R.id.sectionTitle);
         description = view.findViewById(R.id.sectionDescription);
 
         title.setText(getArguments().getString(FragmentPageAdapter.getTitleKey()));
-        //Bundle -> a map of key strings to various Parcelable values (strings, most likely)
-        //getArguments() method selects the current Bundle (savedInstanceState) and returns the bundled arguments.
+        // Bundle -> a map of key strings to various Parcelable values (strings, most likely)
+        // getArguments() method selects the current Bundle (savedInstanceState) and returns the bundled arguments.
         description.setText(getArguments().getString(FragmentPageAdapter.getDescriptionKey()));
-        //getActivity() method returns the context of the current activity the fragment is in
+        // getActivity() method returns the context of the current activity the fragment is in
 
-        if(Activity.getMode()) setDarkMode(view);
-        else setLightMode(view);
+        if(Activity.getMode()) setDarkTheme();
+        else setLightTheme();
 
         return view;
     }

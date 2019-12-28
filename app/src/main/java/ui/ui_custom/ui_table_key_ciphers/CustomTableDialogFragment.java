@@ -6,8 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -15,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -45,6 +42,8 @@ public class CustomTableDialogFragment extends DialogFragment implements SetVisi
     protected TextView refThree;
     protected TextView cancel;
     protected TextView submit;
+
+    View view = getView();
 
     private SharedPreferences.Editor editor = Activity.getEditor();
 
@@ -121,7 +120,7 @@ public class CustomTableDialogFragment extends DialogFragment implements SetVisi
     }
 
     @Override
-    public void setLightMode(View view) {
+    public void setLightTheme() {
         editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((LinearLayout) view.findViewById(R.id.tableDialogLayout));
@@ -134,7 +133,7 @@ public class CustomTableDialogFragment extends DialogFragment implements SetVisi
     }
 
     @Override
-    public void setDarkMode(View view) {
+    public void setDarkTheme() {
         editor.putBoolean(Activity.getModeKey(), true);
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((LinearLayout) view.findViewById(R.id.tableDialogLayout));
@@ -149,15 +148,15 @@ public class CustomTableDialogFragment extends DialogFragment implements SetVisi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_custom_table_cipher_dialog, container, false);
+        view = inflater.inflate(R.layout.fragment_custom_table_cipher_dialog, container, false);
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT)); // set the window to transparent
 
         setParameters(view);
         setListeners();
 
-        if(Activity.getMode()) setDarkMode(view);
-        else setLightMode(view);
+        if(Activity.getMode()) setDarkTheme();
+        else setLightTheme();
 
         return view;
     }

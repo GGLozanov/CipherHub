@@ -4,8 +4,8 @@ import android.view.View;
 
 public interface SetVisibilityModes {
 
-    void setLightMode(View view);
+    void setLightTheme();
 
-    void setDarkMode(View view);
+    void setDarkTheme();
 
 }

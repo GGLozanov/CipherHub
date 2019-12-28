@@ -19,14 +19,14 @@ import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
 import adapters.LayoutAdapter;
-import managers.CipherCallerManager;
 import ui.FragmentPageAdapter;
+import ui.VisibilityFragment;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CustomCipherFragment extends Fragment implements SetVisibilityModes {
+public class CustomCipherFragment extends VisibilityFragment implements SetVisibilityModes {
 
     protected TextView title;
     protected TextView description;
@@ -40,7 +40,7 @@ public class CustomCipherFragment extends Fragment implements SetVisibilityModes
     }
 
     @Override
-    public void setLightMode(View view) {
+    public void setLightTheme() {
         editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.customCipherLayout));
@@ -52,7 +52,7 @@ public class CustomCipherFragment extends Fragment implements SetVisibilityModes
     }
 
     @Override
-    public void setDarkMode(View view) {
+    public void setDarkTheme() {
         editor.putBoolean(Activity.getModeKey(), true);
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.customCipherLayout));
@@ -83,12 +83,12 @@ public class CustomCipherFragment extends Fragment implements SetVisibilityModes
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_custom_cipher, container, false);
+        view = inflater.inflate(R.layout.fragment_custom_cipher, container, false);
 
         setParameters(view);
 
-        if(Activity.getMode()) setDarkMode(view); // affects all classes in the inheritance tree (Go inheritance!)
-        else setLightMode(view);
+        if(Activity.getMode()) setDarkTheme(); // affects all classes in the inheritance tree (Go inheritance!)
+        else setLightTheme();
 
         return view;
     }

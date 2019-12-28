@@ -3,6 +3,7 @@ package com.example.cipherhub;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import ui.CipherFragment;
@@ -20,9 +21,10 @@ public class CaesarActivity extends Activity implements SetUpViewPager {
 
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        adapter.addFragment(new SectionFragment(), "Caesar Screen");
-        adapter.addFragment(new CipherFragment(), "Caesar Cipher");
-        adapter.addFragment(new CustomCaesarFragment(), "Custom Caesar"); //replace titles with string resource references
+
+        for(Fragment fragment : fragmentCollection.get(1).keySet()) {
+            adapter.addFragment(fragment, fragmentCollection.get(1).get(fragment));
+        }
         viewPager.setAdapter(adapter);
     }
 
