@@ -49,25 +49,53 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
     private void initFragmentMap() {
         // create separate variable for insertion in hashmap due to the dangers of double-brace initialisation (memory leaks!)
 
-        // Main Activity
+        switch(sharedPreferences.getString(themeKey, "Default")) {
+            case "Minimalist":
+                // Main Activity
 
-        addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment()}, new String[]{"Main Screen", "Page 1"});
+                addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment()}, new String[]{"Main Screen", "Page 1"});
 
-        // Caesar Cipher
+                // Caesar Cipher
 
-        addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomCaesarFragment()}, new String[]{"Caesar Screen", "Caesar Cipher", "Custom Caesar"});
+                addFragments(new Fragment[]{new CipherFragment(), new CustomCaesarFragment()}, new String[]{"Caesar Cipher", "Custom Caesar"});
 
-        // Vigenere Cipher
+                // Vigenere Cipher
 
-        addFragments(new Fragment[]{new SectionFragment(), new KeyCipherFragment(), new AdditionalVigenereFragment()}, new String[]{"Vigenere Screen", "Vigenere Cipher", "Custom Vigenere"});
+                addFragments(new Fragment[]{new KeyCipherFragment(), new AdditionalVigenereFragment()}, new String[]{"Vigenere Cipher", "Custom Vigenere"});
 
-        // Atbash Cipher
+                // Atbash Cipher
 
-        addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomAtbashFragment()}, new String[]{"Atbash Screen", "Atbash Cipher", "Custom Atbash"});
+                addFragments(new Fragment[]{new CipherFragment(), new CustomAtbashFragment()}, new String[]{"Atbash Cipher", "Custom Atbash"});
 
-        // Polybius Cipher
+                // Polybius Cipher
 
-        addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomPolybiusFragment()}, new String[]{"Polybius Screen", "Polybius Cipher", "Custom Polybius"});
+                addFragments(new Fragment[]{new CipherFragment(), new CustomPolybiusFragment()}, new String[]{"Polybius Cipher", "Custom Polybius"});
+
+                break;
+
+            default: // for default layout
+                // Main Activity
+
+                addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment()}, new String[]{"Main Screen", "Page 1"});
+
+                // Caesar Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomCaesarFragment()}, new String[]{"Caesar Screen", "Caesar Cipher", "Custom Caesar"});
+
+                // Vigenere Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new KeyCipherFragment(), new AdditionalVigenereFragment()}, new String[]{"Vigenere Screen", "Vigenere Cipher", "Custom Vigenere"});
+
+                // Atbash Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomAtbashFragment()}, new String[]{"Atbash Screen", "Atbash Cipher", "Custom Atbash"});
+
+                // Polybius Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomPolybiusFragment()}, new String[]{"Polybius Screen", "Polybius Cipher", "Custom Polybius"});
+
+                break;
+        }
 
     }
 
@@ -75,6 +103,7 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
     protected static SharedPreferences.Editor editor; // reference static subclass
 
     protected static final String modeKey = "Mode";
+    protected static final String themeKey = "UITheme";
 
     public static String getModeKey() {return modeKey;}
 
@@ -199,6 +228,18 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
                 Toast.makeText(this, "Dark theme applied!", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.actionUITemplate:
+                return true;
+            case R.id.Default:
+                editor.putString(themeKey, "Default").apply();
+                Toast.makeText(this, "Default layout applied on restart!", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.Novice:
+                editor.putString(themeKey, "Novice").apply();
+                Toast.makeText(this, "Novice layout will be applied on restart!", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.Minimalist:
+                editor.putString(themeKey, "Minimalist").apply();
+                Toast.makeText(this, "Minimalist layout will be applied on restart!", Toast.LENGTH_SHORT).show();
                 return true;
             default: return super.onOptionsItemSelected(item); // otherwise call the parent implementation
         }

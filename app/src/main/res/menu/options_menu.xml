@@ -32,6 +32,26 @@
         android:orderInCategory="1"
         android:title="Change UI Theme"
         android:textStyle="bold"
-        app:showAsAction="never" />
+        app:showAsAction="never">
+
+        <menu>
+            <item
+                android:id="@+id/Default"
+                android:title="Default"
+            />
+
+            <item
+                android:id="@+id/Novice"
+                android:title="Novice"
+                android:orderInCategory="1"
+                />
+
+            <item
+                android:id="@+id/Minimalist"
+                android:title="Minimalist"
+                android:orderInCategory="2" />
+
+        </menu>
+    </item>
 
 </menu>
