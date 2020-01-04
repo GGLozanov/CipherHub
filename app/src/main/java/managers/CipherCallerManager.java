@@ -25,7 +25,7 @@ public class CipherCallerManager {
 
     public static void instantiateCaesarCipher() {
         caesarCipher = new CaesarCipher(Integer.parseInt(CustomCaesarFragment.getCaesarKey()));
-    } //static method for reinstantiating the caesarcipher after input has been received CustomCipherFragment (or class is instantiated by fragment)
+    } // static method for reinstantiating the caesarcipher after input has been received CustomCipherFragment (or class is instantiated by fragment)
 
     public static void instantiateAtbashCipher() {
         atbashCipher = new AtbashCipher(CustomAtbashFragment.getAtbashKey());

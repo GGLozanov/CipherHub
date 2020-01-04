@@ -8,8 +8,8 @@ public abstract class Cipher { //superclass for all ciphers
 
     ASCIIUtils characterValidator = new ASCIIUtils();
 
-    EditText inputText;
-    EditText outputText;
+    private EditText inputText;
+    private EditText outputText;
 
     String encodedText = "";
     String decodedText = "";

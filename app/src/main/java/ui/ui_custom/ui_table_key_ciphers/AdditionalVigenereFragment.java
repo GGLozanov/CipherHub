@@ -25,7 +25,7 @@ import com.example.cipherhub.SetVisibilityModes;
 import adapters.LayoutAdapter;
 import ciphers.VigenereCipher;
 import managers.KeyCipherCallerManager;
-import ui.VisibilityFragment;
+import ui.ui_core.VisibilityFragment;
 
 public class AdditionalVigenereFragment extends VisibilityFragment implements SetVisibilityModes {
 

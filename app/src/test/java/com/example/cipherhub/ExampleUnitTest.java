@@ -3,6 +3,7 @@ package com.example.cipherhub;
 import org.junit.Test;
 
 import ciphers.CaesarCipher;
+import ciphers.VigenereCipher;
 
 import static org.junit.Assert.*;
 
@@ -22,5 +23,8 @@ public class ExampleUnitTest {
         assertEquals(new CaesarCipher(3).CaesarEncoder("abc"), "xyz");
     }
 
+    public void vigenere_isCorrect() {
+        assertEquals(new VigenereCipher().VigenereEncode("Hi, Rachel!", "Hello"), "Om, Clqoiw!");
+    }
 }
 

@@ -1,4 +1,4 @@
-package ui;
+package ui.ui_core;
 
 
 import android.content.SharedPreferences;
@@ -63,7 +63,7 @@ public class KeyCipherFragment extends VisibilityFragment implements SetVisibili
         keyCipherCallerManager.setDecodedInput(view.findViewById(R.id.DecodedInputString));
         keyCipherCallerManager.setEncodedOutput(view.findViewById(R.id.EncodedOutputString));
 
-        keyCipherCallerManager.VigenereCipher();
+        keyCipherCallerManager.VigenereCipher(); // switch() for future key ciphers
 
         if(Activity.getMode()) setDarkTheme();
         else setLightTheme();

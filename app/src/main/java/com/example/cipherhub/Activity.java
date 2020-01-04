@@ -20,15 +20,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import adapters.LayoutAdapter;
-import ui.CipherFragment;
-import ui.KeyCipherFragment;
-import ui.QuadrupButtonFragment;
-import ui.SectionFragment;
+import ui.ui_core.CipherFragment;
+import ui.ui_core.KeyCipherFragment;
+import ui.ui_core.QuadrupButtonFragment;
+import ui.ui_core.SectionFragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomCipherFragment;
 import ui.ui_custom.ui_table_key_ciphers.AdditionalVigenereFragment;
 import ui.ui_custom.ui_table_key_ciphers.CustomPolybiusFragment;
+import ui.ui_visual.CipherDemonstrationFragment;
+import ui.ui_visual.CipherVisualisationFragment;
+import ui.ui_visual.KeyCipherDemonstrationFragment;
 
 public abstract class Activity extends AppCompatActivity { // abstract superclass for all activities
 
@@ -43,7 +46,7 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
             fragmentMap.put(fragments[fragment], keys[fragment]);
         }
 
-        fragmentCollection.add(fragmentMap);
+        fragmentCollection.add(fragmentMap); // maybe add optimisation with Arrays.aslist()?
     }
 
     private void initFragmentMap() {
@@ -165,6 +168,12 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
                     ((CustomCipherFragment) fragment).setLightTheme();
                 } else if(fragment instanceof AdditionalVigenereFragment && ((AdditionalVigenereFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
                     ((AdditionalVigenereFragment) fragment).setLightTheme();
+                } else if(fragment instanceof CipherDemonstrationFragment && ((CipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((CipherDemonstrationFragment) fragment).setLightTheme();
+                } else if(fragment instanceof CipherVisualisationFragment && ((CipherVisualisationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((CipherVisualisationFragment) fragment).setLightTheme();
+                } else if(fragment instanceof KeyCipherDemonstrationFragment && ((KeyCipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((KeyCipherDemonstrationFragment) fragment).setLightTheme();
                 }
             }
         }
@@ -187,6 +196,12 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
                     ((CustomCipherFragment) fragment).setDarkTheme();
                 } else if(fragment instanceof AdditionalVigenereFragment && ((AdditionalVigenereFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
                     ((AdditionalVigenereFragment) fragment).setDarkTheme();
+                } else if(fragment instanceof CipherDemonstrationFragment && ((CipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((CipherDemonstrationFragment) fragment).setDarkTheme();
+                } else if(fragment instanceof CipherVisualisationFragment && ((CipherVisualisationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((CipherVisualisationFragment) fragment).setDarkTheme();
+                } else if(fragment instanceof KeyCipherDemonstrationFragment && ((KeyCipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
+                    ((KeyCipherDemonstrationFragment) fragment).setDarkTheme();
                 }
             }
         }

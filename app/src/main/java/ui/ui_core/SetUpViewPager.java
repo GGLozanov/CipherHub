@@ -1,4 +1,4 @@
-package ui;
+package ui.ui_core;
 
 import androidx.viewpager.widget.ViewPager;
 

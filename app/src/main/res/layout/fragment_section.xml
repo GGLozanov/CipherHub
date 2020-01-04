@@ -5,7 +5,7 @@
     android:id="@+id/sectionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.SectionFragment"
+    tools:context="ui.ui_core.SectionFragment"
     android:background="@color/backgroundDarkColor">
 
     <include
@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/sectionTitle"
         style="@style/Text"
-        android:layout_width="388dp"
+        android:layout_width="385dp"
         android:layout_height="120dp"
         android:layout_marginStart="88dp"
         android:layout_marginLeft="88dp"

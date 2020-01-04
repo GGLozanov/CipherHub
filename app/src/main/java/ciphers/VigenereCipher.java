@@ -103,7 +103,7 @@ public class VigenereCipher extends KeyCipher {
                 //make both key and base value capital
                 sumASCIIValues = characterValidator.CalculateVigenereDecodeUppercaseValue(baseASCIIValue, keyASCIIValue);
                 if(characterValidator.isCaesarEncodeSpecialCase(sumASCIIValues, 'A')) { // decoding for Vigenere is encoding for Caesar
-                    decodedText += (char) (sumASCIIValues + 26); //
+                    decodedText += (char) (sumASCIIValues + 26);
                 }
                 else decodedText += (char) (sumASCIIValues);
             }
@@ -125,7 +125,7 @@ public class VigenereCipher extends KeyCipher {
         }
 
         isDecodeEvoked = true;
-        // if(decodedText.equals("")) return base;
+        if(decodedText.equals("")) return base;
         return decodedText;
     }
 }

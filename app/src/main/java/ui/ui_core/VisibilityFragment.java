@@ -1,4 +1,4 @@
-package ui;
+package ui.ui_core;
 
 import android.content.SharedPreferences;
 import android.view.View;

@@ -3,16 +3,11 @@ package com.example.cipherhub; //main designated package
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.fragment.app.Fragment;
 
-import adapters.LayoutAdapter;
-import ui.QuadrupButtonFragment;
-import ui.SectionFragment;
-import ui.FragmentPageAdapter;
-import ui.SetUpViewPager;
+import ui.ui_core.FragmentPageAdapter;
+import ui.ui_core.SetUpViewPager;
 //import android.Animation.animation;
 
 public class MainActivity extends Activity implements SetUpViewPager { //main class that inherits from AppCompatActivity (superclass for Activity)

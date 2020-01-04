@@ -4,14 +4,10 @@ import android.os.Bundle;
 
 import androidx.viewpager.widget.ViewPager;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import ui.CipherFragment;
-import ui.SectionFragment;
-import ui.FragmentPageAdapter;
-import ui.SetUpViewPager;
-import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
+import ui.ui_core.FragmentPageAdapter;
+import ui.ui_core.SetUpViewPager;
 
 public class AtbashActivity extends Activity implements SetUpViewPager {
 

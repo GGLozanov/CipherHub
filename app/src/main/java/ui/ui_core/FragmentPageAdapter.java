@@ -1,4 +1,4 @@
-package ui;
+package ui.ui_core;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -30,6 +30,14 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
     static final String buttonThreeKey = "ButtonThree";
     static final String buttonFourKey = "ButtonFour";
 
+    static final String inputDescriptionKey = "InputDescription";
+    static final String outputDescriptionKey = "OutputDescription";
+
+    static final String cipherkeyDescriptionKey = "KeyDescription";
+
+    static final String cipherImageKey = "ImageKey"; // String key to designate which pair of images to use
+
+    static final String visualisationKey = "Visualisation";
 
     public static String getTitleKey() {return titleKey;}
     public static String getDescriptionKey() {return descriptionKey;}
@@ -42,11 +50,20 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
     public static String getButtonThreeKey() {return buttonThreeKey;}
     public static String getButtonFourKey() {return buttonFourKey;}
 
+    public static String getInputDescriptionKey() {return inputDescriptionKey;}
+    public static String getOutputDescriptionKey() {return outputDescriptionKey;}
+
+    public static String getCipherkeyDescriptionKey() {return cipherkeyDescriptionKey;}
+
+    public static String getCipherImageKey() {return cipherImageKey;}
+
+    public static String getVisualisationKey() {return visualisationKey;}
+
     private Context context;
 
     public FragmentPageAdapter(FragmentManager fm, final Context context) {
-        //call parent constructor for FragmentManager in order to override methods
-        //also pass necessary context from instantiated FragmentPageAdapter to use for accessing the resources of the app
+        // call parent constructor for FragmentManager in order to override methods
+        // also pass necessary context from instantiated FragmentPageAdapter to use for accessing the resources of the app
         super(fm);
         this.context = context;
     }
@@ -120,6 +137,44 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
                 bundle.putString(descriptionKey, appResources.getString(R.string.custom_polybius_description));
                 bundle.putString(buttonOneKey, appResources.getString(R.string.custom_button));
                 bundle.putString(resetKey, appResources.getString(R.string.custom_reset_button));
+                break;
+            case "Caesar Demonstration":
+                bundle.putString(inputDescriptionKey, appResources.getString(R.string.caesar_input_description));
+                bundle.putString(outputDescriptionKey, appResources.getString(R.string.caesar_output_description));
+                bundle.putString(cipherImageKey, "CaesarDemonstrationImages");
+                break;
+            case "Vigenere Demonstration":
+                bundle.putString(inputDescriptionKey, appResources.getString(R.string.vigenere_input_description));
+                bundle.putString(cipherkeyDescriptionKey, appResources.getString(R.string.vigenere_key_description));
+                bundle.putString(outputDescriptionKey, appResources.getString(R.string.vigenere_output_description));
+                bundle.putString(cipherImageKey, "VigenereDemonstrationImages");
+                break;
+            case "Atbash Demonstration":
+                bundle.putString(inputDescriptionKey, appResources.getString(R.string.atbash_input_description));
+                bundle.putString(outputDescriptionKey, appResources.getString(R.string.atbash_output_description));
+                bundle.putString(cipherImageKey, "AtbashDemonstrationImages");
+                break;
+            case "Polybius Demonstration":
+                bundle.putString(inputDescriptionKey, appResources.getString(R.string.polybius_input_description));
+                bundle.putString(outputDescriptionKey, appResources.getString(R.string.polybius_output_description));
+                bundle.putString(cipherImageKey, "PolybiusDemonstrationImages");
+                break;
+            case "Caesar Visualisation":
+                bundle.putString(visualisationKey, appResources.getString(R.string.caesar_visualisation_description));
+                bundle.putString(cipherImageKey, "CaesarVisualisationImage");
+                break;
+            case "Vigenere Visualisation":
+                bundle.putString(visualisationKey, appResources.getString(R.string.vigenere_visualisation_description));
+                bundle.putString(cipherImageKey, "VigenereVisualisationImage");
+                break;
+            case "Atbash Visualisation":
+                bundle.putString(visualisationKey, appResources.getString(R.string.atbash_visualisation_description));
+                bundle.putString(cipherImageKey, "AtbashVisualisationImage");
+                break;
+            case "Polybius Visualisation":
+                bundle.putString(visualisationKey, appResources.getString(R.string.polybius_visualisation_description));
+                bundle.putString(cipherImageKey, "PolybiusVisualisationImage");
+                break;
             default:
                 break;
         }

@@ -2,15 +2,11 @@ package com.example.cipherhub;
 
 import android.os.Bundle;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import ui.CipherFragment;
-import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
-import ui.SectionFragment;
-import ui.FragmentPageAdapter;
-import ui.SetUpViewPager;
+import ui.ui_core.FragmentPageAdapter;
+import ui.ui_core.SetUpViewPager;
 
 public class CaesarActivity extends Activity implements SetUpViewPager {
 
