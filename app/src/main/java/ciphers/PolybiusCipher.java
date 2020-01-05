@@ -20,9 +20,6 @@ public class PolybiusCipher extends Cipher {
     public String PolybiusEncode(String base) {
         encodedText = "";
 
-        //TO-DO: Put these variables in superclass Cipher
-        //add functionality for user to choose lowercase or uppercase -> done
-
         for(int i = 0; i < base.length(); i++) {
 
             currentCharacter = base.charAt(i);
@@ -67,8 +64,9 @@ public class PolybiusCipher extends Cipher {
 
 
             int x = characterValidator.convertToNumber(currentCharacter), y = characterValidator.convertToNumber(nextCharacter);
+
             if((x > 6 || y > 6) || (x == 0 || y == 0)) continue; // Corner cases
-            //Fix uppercase and lowercase bug -> done
+
             if(characterValidator.isCapitalLetter(inputText.charAt(counter)) ||
                     characterValidator.isNumber(PolybiusSquare[x - 1][y - 1])) decodedText += PolybiusSquare[x - 1][y - 1];
             else decodedText += (char)characterValidator.convertToLowercase(PolybiusSquare[x - 1][y - 1]);

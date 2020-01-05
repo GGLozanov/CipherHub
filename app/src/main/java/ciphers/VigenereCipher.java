@@ -4,6 +4,18 @@ import android.util.Log;
 
 public class VigenereCipher extends KeyCipher {
 
+    private boolean sourceMethod = true; // default source method (either decode or encode for key cipher) -> true is encode, false is decode
+
+    private boolean isInputFirst = true; // do you input the input first or the key
+
+    public boolean getIsInputFirst() {return isInputFirst;}
+
+    public void setIsInputFirst(boolean isInputFirst) {this.isInputFirst = isInputFirst;}
+
+    public boolean getSourceMethod() {return sourceMethod;}
+
+    public void setSourceMethod(boolean sourceMethod) {this.sourceMethod = sourceMethod;}
+
     public VigenereCipher() {
         keyString = "";
         keyTemplate =  "";
@@ -12,62 +24,83 @@ public class VigenereCipher extends KeyCipher {
         keyDecodeIndexCounter = 0;
     }
 
+    private char getUppercaseEncodeVigenereResult(int sumASCIIValues) {
+        return characterValidator.isCaesarDecodeSpecialCase(sumASCIIValues, 'Z') ? (char) (sumASCIIValues - 26) : (char) (sumASCIIValues);
+    }
+
+    private char getLowercaseEncodeVigenereResult(int sumASCIIValues) {
+        return characterValidator.isCaesarDecodeSpecialCase(sumASCIIValues, 'z') ? (char) (sumASCIIValues - 26) : (char) (sumASCIIValues);
+    }
+
+    private char getUppercaseDecodeVigenereResult(int sumASCIIValues) {
+        return characterValidator.isCaesarEncodeSpecialCase(sumASCIIValues, 'A') ? (char) (sumASCIIValues + 26) : (char) (sumASCIIValues);
+    }
+
+    private char getLowercaseDecodeVigenereResult(int sumASCIIValues) {
+        return characterValidator.isCaesarEncodeSpecialCase(sumASCIIValues, 'a') ? (char) (sumASCIIValues + 26) : (char) (sumASCIIValues);
+    }
+
     public String VigenereEncode(String key, String base) {
 
-        Log.d("Elongated key", key);
         encodedText = "";
         int sumASCIIValues;
-        //Vigenere encode formula: (base + key) - 'A'
+
+        // Vigenere encode formula: (base + key) - 'A'
 
         if(key.length() == 0) return base;
         if(base.length() == 0) return key;
 
-        for(int counter = 0; counter < key.length(); counter++) {
+        boolean isBaseCapital, isKeyCapital;
 
-            int baseASCIIValue = base.charAt(counter);
-            int keyASCIIValue = key.charAt(counter);
+        for(int baseCounter = 0, keyCounter = 0; baseCounter < key.length() && keyCounter < key.length();) {
+
+            int baseASCIIValue = base.charAt(baseCounter);
+            int keyASCIIValue = key.charAt(keyCounter);
 
             if(characterValidator.isSpecialCharacter(baseASCIIValue)) {
                 encodedText += (char) (baseASCIIValue);
+                baseCounter++;
                 continue;
             }
 
             if(characterValidator.isSpecialCharacter(keyASCIIValue)) {
                 encodedText += (char) (keyASCIIValue);
+                keyCounter++;
                 continue;
             }
 
             if(characterValidator.isInvalidCharacter(baseASCIIValue) || characterValidator.isInvalidCharacter(keyASCIIValue) ||
                     characterValidator.isNumber(keyASCIIValue) || characterValidator.isNumber(baseASCIIValue)) continue;
 
-            if(Character.isUpperCase(baseASCIIValue) && Character.isUpperCase(keyASCIIValue)) {
+            isBaseCapital = Character.isUpperCase(baseASCIIValue);
+            isKeyCapital = Character.isUpperCase(keyASCIIValue);
+
+            if(isBaseCapital && isKeyCapital) {
 
                 sumASCIIValues = characterValidator.CalculateVigenereEncodeUppercaseValue(baseASCIIValue, keyASCIIValue);
 
-                if(characterValidator.isCaesarDecodeSpecialCase(sumASCIIValues, 'Z')) { // vigenere always uses decode caesar (3 forward)
-                    encodedText += (char) (sumASCIIValues - 26);
-                }
-                else encodedText += (char) (sumASCIIValues);
+                encodedText += getUppercaseEncodeVigenereResult(sumASCIIValues);
             }
-            else if(Character.isLowerCase(baseASCIIValue) && Character.isLowerCase(keyASCIIValue)) {
+            else if(!isBaseCapital && !isKeyCapital) {
 
                 sumASCIIValues = characterValidator.CalculateVigenereEncodeLowercaseValue(baseASCIIValue, keyASCIIValue);
 
-                if(characterValidator.isCaesarDecodeSpecialCase(sumASCIIValues, 'z')) {
-                    encodedText += (char) (sumASCIIValues  - 26);
-                }
-                else encodedText += (char) (sumASCIIValues);
+                encodedText += getLowercaseEncodeVigenereResult(sumASCIIValues);
             }
             else {
                 if(characterValidator.isCapitalLetter(baseASCIIValue)) baseASCIIValue = characterValidator.convertToLowercase(baseASCIIValue);
                 if(characterValidator.isCapitalLetter(keyASCIIValue)) keyASCIIValue = characterValidator.convertToLowercase(keyASCIIValue);
-                sumASCIIValues = characterValidator.CalculateVigenereEncodeLowercaseValue(baseASCIIValue, keyASCIIValue); //lowercase for default
-                encodedText += (char) (sumASCIIValues);
+                sumASCIIValues = characterValidator.CalculateVigenereEncodeLowercaseValue(baseASCIIValue, keyASCIIValue); // lowercase for default
+
+                encodedText += getLowercaseEncodeVigenereResult(sumASCIIValues);
             }
+
+            baseCounter++;
+            keyCounter++;
         }
 
         isEncodeEvoked = true;
-        // if(encodedText.equals("")) return base;
+        if(encodedText.equals("")) return base;
         return encodedText;
     }
 
@@ -83,45 +116,49 @@ public class VigenereCipher extends KeyCipher {
         // Vigenere decode formula: (base + 'A') - key
         // use Character class and delete redundant methods from ASCIIUtils
 
-        for(int counter = 0; counter < key.length(); counter++) {
+        boolean isBaseCapital, isKeyCapital;
 
-            int baseASCIIValue = base.charAt(counter);
-            int keyASCIIValue = key.charAt(counter);
+        for(int baseCounter = 0, keyCounter = 0; baseCounter < key.length() && keyCounter < key.length();) {
+
+            int baseASCIIValue = base.charAt(baseCounter);
+            int keyASCIIValue = key.charAt(keyCounter);
 
             if(characterValidator.isSpecialCharacter(baseASCIIValue)) {
                 decodedText += (char) (baseASCIIValue);
+                baseCounter++;
                 continue;
             }
             if(characterValidator.isSpecialCharacter(keyASCIIValue)) {
                 decodedText += (char) (keyASCIIValue);
+                keyCounter++;
                 continue;
             }
             if(characterValidator.isInvalidCharacter(baseASCIIValue) || characterValidator.isInvalidCharacter(keyASCIIValue) ||
                     characterValidator.isNumber(keyASCIIValue) || characterValidator.isNumber(baseASCIIValue)) continue;
 
-            if(Character.isUpperCase(baseASCIIValue) && Character.isUpperCase(keyASCIIValue)) {
-                //make both key and base value capital
-                sumASCIIValues = characterValidator.CalculateVigenereDecodeUppercaseValue(baseASCIIValue, keyASCIIValue);
-                if(characterValidator.isCaesarEncodeSpecialCase(sumASCIIValues, 'A')) { // decoding for Vigenere is encoding for Caesar
-                    decodedText += (char) (sumASCIIValues + 26);
-                }
-                else decodedText += (char) (sumASCIIValues);
-            }
+            isBaseCapital = Character.isUpperCase(baseASCIIValue);
+            isKeyCapital = Character.isUpperCase(keyASCIIValue);
 
-            else if(Character.isLowerCase(baseASCIIValue) && Character.isLowerCase(keyASCIIValue)) {
-                //make both key and base value lower
+            if(isBaseCapital && isKeyCapital) {
+                // make both key and base value capital
+                sumASCIIValues = characterValidator.CalculateVigenereDecodeUppercaseValue(baseASCIIValue, keyASCIIValue);
+
+                decodedText += getUppercaseDecodeVigenereResult(sumASCIIValues);
+            } else if(!isBaseCapital && !isKeyCapital) {
+                // make both key and base value lower
                 sumASCIIValues = characterValidator.CalculateVigenereDecodeLowercaseValue(baseASCIIValue, keyASCIIValue);
-                if(characterValidator.isCaesarEncodeSpecialCase(sumASCIIValues, 'a')) {
-                    decodedText += (char) (sumASCIIValues + 26);
-                }
-                else decodedText += (char) (sumASCIIValues);
-            }
-            else {
+
+                decodedText += getLowercaseDecodeVigenereResult(sumASCIIValues);
+            } else {
                 if(characterValidator.isCapitalLetter(baseASCIIValue)) baseASCIIValue = characterValidator.convertToLowercase(baseASCIIValue);
                 if(characterValidator.isCapitalLetter(keyASCIIValue)) keyASCIIValue = characterValidator.convertToLowercase(keyASCIIValue);
                 sumASCIIValues = characterValidator.CalculateVigenereDecodeLowercaseValue(baseASCIIValue, keyASCIIValue); // lowercase for default
-                decodedText += (char) (sumASCIIValues);
+
+                decodedText += getLowercaseDecodeVigenereResult(sumASCIIValues);
             }
+
+            baseCounter++;
+            keyCounter++;
         }
 
         isDecodeEvoked = true;

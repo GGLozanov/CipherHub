@@ -6,7 +6,7 @@ public class CaesarCipher extends Cipher {
 
     public CaesarCipher(int key) {this.key = key;}
 
-    public String CaesarDecoder(String base) {
+    public String CaesarDecode(String base) {
         decodedText = "";
         for(int i = 0; i < base.length(); i++) {
 
@@ -30,7 +30,7 @@ public class CaesarCipher extends Cipher {
         return decodedText;
     }
 
-    public String CaesarEncoder(String base) {
+    public String CaesarEncode(String base) {
         encodedText = "";
         for(int i = 0; i < base.length(); i++) {
 

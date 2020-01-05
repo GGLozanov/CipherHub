@@ -20,11 +20,20 @@ public class ExampleUnitTest {
 
     @Test
     public void caesar_isCorrect() { // first UnitTest!
-        assertEquals(new CaesarCipher(3).CaesarEncoder("abc"), "xyz");
+        assertEquals(new CaesarCipher(3).CaesarEncode("abc"), "xyz");
     }
 
+    @Test
     public void vigenere_isCorrect() {
-        assertEquals(new VigenereCipher().VigenereEncode("Hi, Rachel!", "Hello"), "Om, Clqoiw!");
+        VigenereCipher vigenereCipher = new VigenereCipher();
+        vigenereCipher.setCurrentKeyTemplate("Hello");
+        vigenereCipher.updateEncodingKeyByBase("Hi, Rachel!");
+        assertEquals("Om, clqoiw!", vigenereCipher.VigenereEncode(vigenereCipher.getKeyString(), "Hi, Rachel!"));
+    }
+
+    @Test
+    public void vigenere_isLongCorrect() {
+        assertEquals(new VigenereCipher().VigenereEncode("Help", "LongLongLongLongLongLongLongLongLongLongLong"), "SsyvSsyvSsyvSsyvSsyvSsyvSsyvSsyvSsyvSsyvSsyv");
     }
 }
 

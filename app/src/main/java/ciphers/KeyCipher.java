@@ -32,14 +32,8 @@ public abstract class KeyCipher extends Cipher {
 
         if(s.equals("")) return;
 
-        char editTextCharacter = s.charAt(keyEncodeIndexCounter);
-
-        if(!characterValidator.isSpecialCharacter((int) editTextCharacter) && !characterValidator.isInvalidCharacter((int) editTextCharacter)) keyString += keyTemplate.charAt(keyEncodeIndexCounter);
+        keyString += keyTemplate.charAt(keyEncodeIndexCounter++);
             // separate invalid check and special char check due to different ending outputs
-        else {
-            keyEncodeIndexCounter--;
-            keyString += editTextCharacter;
-        }
 
         // need to add ability to shorten key if Editable is shortened (!) -> implemented
 
@@ -54,18 +48,12 @@ public abstract class KeyCipher extends Cipher {
 
         if(s.equals("")) return;
 
-        char editTextCharacter = s.charAt(keyDecodeIndexCounter);
+        keyString += keyTemplate.charAt(keyDecodeIndexCounter++);
 
-        if(!characterValidator.isSpecialCharacter((int) editTextCharacter) && !characterValidator.isInvalidCharacter((int) editTextCharacter)) keyString += keyTemplate.charAt(keyDecodeIndexCounter);
-        else {
-            keyDecodeIndexCounter--;
-            keyString += editTextCharacter;
-        }
-
-        //need to add ability to shorten key if Editable is shortened (!) -> implemented
+        // need to add ability to shorten key if Editable is shortened (!) -> implemented
 
         if(keyExceedsMessage(s)) {
-            trimKeyString(s); //crashes if there is no substring or key is smaller than editable
+            trimKeyString(s); // crashes if there is no substring or key is smaller than editable
             resetDecodeIndexCounter();
         }
     }
@@ -88,18 +76,13 @@ public abstract class KeyCipher extends Cipher {
     }
 
     public void updateEncodingKey(String s) {
-        Log.d("Template", keyTemplate);
-        Log.d("Encode Index", Integer.toString(keyEncodeIndexCounter));
         if(keyEncodeIndexCounter == keyTemplate.length()) resetEncodeIndexCounter();
         enlargeEncodeKey(s);
-        Log.d("KeyString", keyString);
-        keyEncodeIndexCounter++;
     }
 
     public void updateDecodingKey(String s) {
         if(keyDecodeIndexCounter == keyTemplate.length()) resetDecodeIndexCounter();
         enlargeDecodeKey(s); // goes out of bounds when changed
-        keyDecodeIndexCounter++;
     }
 
     public void trimKeyString(String s) { // method to trim a string from the beginning to either the length of the input or the key
@@ -107,6 +90,6 @@ public abstract class KeyCipher extends Cipher {
     }
 
     public boolean keyExceedsMessage(String s) {
-        return getKeyString().length() > s.length();
+        return keyString.length() > s.length();
     }
 }

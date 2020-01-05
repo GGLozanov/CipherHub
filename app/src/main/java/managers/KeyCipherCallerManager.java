@@ -44,7 +44,7 @@ public class KeyCipherCallerManager extends CipherCallerManager {
 
             vigenereCipher.setCurrentKeyTemplate(keyTemplate);
             vigenereCipher.resetEncodeIndexCounter();
-        } else if(inputString.length() > currentkeyTemplate.length()) {
+        } else if(inputString.length() > currentkeyTemplate.length() && !vigenereCipher.getIsInputFirst()) {
             vigenereCipher.updateEncodingKeyByBase(inputString);
         } else vigenereCipher.updateEncodingKey(inputString);
     }
@@ -57,7 +57,7 @@ public class KeyCipherCallerManager extends CipherCallerManager {
 
             vigenereCipher.setCurrentKeyTemplate(keyTemplate);
             vigenereCipher.resetDecodeIndexCounter();
-        } else if(outputString.length() > currentkeyTemplate.length()) { // second case where we have text first and key second inputted
+        } else if(outputString.length() > currentkeyTemplate.length() && !vigenereCipher.getIsInputFirst()) { // second case where we have text first and key second inputted
             vigenereCipher.updateDecodingKeyByBase(outputString);
         } else vigenereCipher.updateDecodingKey(outputString);
     }
@@ -87,6 +87,8 @@ public class KeyCipherCallerManager extends CipherCallerManager {
                 if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) {
                     vigenereCipher.setKeyString(keyTemplate);
                     vigenereCipher.setCurrentKeyTemplate(keyTemplate);
+                    vigenereCipher.setSourceMethod(false);
+                    vigenereCipher.setIsInputFirst(true);
                     return;
                 }
 
@@ -106,7 +108,8 @@ public class KeyCipherCallerManager extends CipherCallerManager {
 
                 vigenereCipher.setCurrentKeyTemplate(keyTemplate);
                 vigenereCipher.setEncodeEvoked(false); // might change
-
+                vigenereCipher.setSourceMethod(false);
+                vigenereCipher.setIsInputFirst(true);
             }
         };
 
@@ -129,6 +132,8 @@ public class KeyCipherCallerManager extends CipherCallerManager {
                 if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) {
                     vigenereCipher.setKeyString(keyTemplate);
                     vigenereCipher.setCurrentKeyTemplate(keyTemplate);
+                    vigenereCipher.setSourceMethod(true);
+                    vigenereCipher.setIsInputFirst(true);
                     return;
                 }
 
@@ -140,13 +145,15 @@ public class KeyCipherCallerManager extends CipherCallerManager {
 
                     updateVariables();
                     vigenereCipher.setEncodeEvoked(true);
-                    Log.d("KEY", keyString);
                     decodedInput.setText(vigenereCipher.VigenereDecode(keyString, outputString));
 
                 }
 
                 vigenereCipher.setCurrentKeyTemplate(keyTemplate);
                 vigenereCipher.setDecodeEvoked(false);
+                vigenereCipher.setIsInputFirst(true);
+                vigenereCipher.setSourceMethod(true);
+
             }
         };
 
@@ -171,8 +178,10 @@ public class KeyCipherCallerManager extends CipherCallerManager {
                 Editable inputTextEditable = decodedInput.getText();
                 Editable vigenereTextEditable = encodedOutput.getText();
 
-                if(keyTemplate.length() <= decodedInput.length()) InputToVigenereListener.afterTextChanged(inputTextEditable);
-                else if(keyTemplate.length() <= encodedOutput.length()) VigenereToInputListener.afterTextChanged(vigenereTextEditable);
+                vigenereCipher.setIsInputFirst(false);
+
+                if(!vigenereCipher.getSourceMethod()) InputToVigenereListener.afterTextChanged(inputTextEditable);
+                else VigenereToInputListener.afterTextChanged(vigenereTextEditable);
             }
         };
 

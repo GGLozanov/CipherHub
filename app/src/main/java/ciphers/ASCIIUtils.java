@@ -105,9 +105,7 @@ public class ASCIIUtils {
     public static String EnlargeString(String base, String limitString) {
         for(int i = 0; i < limitString.length(); i++) {
             base += limitString.charAt(i);
-            Log.d("Character", Character.toString(limitString.charAt(i)));
         }
-        Log.d("Key in func", base);
         return base;
     }
 
