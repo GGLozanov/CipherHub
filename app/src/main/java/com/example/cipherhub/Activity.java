@@ -21,6 +21,7 @@ import java.util.List;
 
 import adapters.LayoutAdapter;
 import ui.ui_core.CipherFragment;
+import ui.ui_core.FragmentPageAdapter;
 import ui.ui_core.KeyCipherFragment;
 import ui.ui_core.QuadrupButtonFragment;
 import ui.ui_core.SectionFragment;
@@ -83,19 +84,23 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
 
                 // Caesar Cipher
 
-                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomCaesarFragment()}, new String[]{"Caesar Screen", "Caesar Cipher", "Custom Caesar"});
+                addFragments(new Fragment[]{new SectionFragment(), new CipherDemonstrationFragment(), new CipherFragment(), new CustomCaesarFragment()},
+                        new String[]{"Caesar Screen", "Caesar Demonstration", "Caesar Cipher", "Custom Caesar"});
 
                 // Vigenere Cipher
 
-                addFragments(new Fragment[]{new SectionFragment(), new KeyCipherFragment(), new AdditionalVigenereFragment()}, new String[]{"Vigenere Screen", "Vigenere Cipher", "Custom Vigenere"});
+                addFragments(new Fragment[]{new SectionFragment(), new KeyCipherDemonstrationFragment(), new KeyCipherFragment(), new AdditionalVigenereFragment()},
+                        new String[]{"Vigenere Screen", "Vigenere Demonstration", "Vigenere Cipher", "Custom Vigenere"});
 
                 // Atbash Cipher
 
-                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomAtbashFragment()}, new String[]{"Atbash Screen", "Atbash Cipher", "Custom Atbash"});
+                addFragments(new Fragment[]{new SectionFragment(), new CipherDemonstrationFragment(), new CipherFragment(), new CustomAtbashFragment()},
+                        new String[]{"Atbash Screen", "Atbash Demonstration", "Atbash Cipher", "Custom Atbash"});
 
                 // Polybius Cipher
 
-                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomPolybiusFragment()}, new String[]{"Polybius Screen", "Polybius Cipher", "Custom Polybius"});
+                addFragments(new Fragment[]{new SectionFragment(), new CipherDemonstrationFragment(), new CipherFragment(), new CustomPolybiusFragment()},
+                        new String[]{"Polybius Screen", "Polybius Demonstration", "Polybius Cipher", "Custom Polybius"});
 
                 break;
         }
@@ -170,6 +175,7 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
                     ((AdditionalVigenereFragment) fragment).setLightTheme();
                 } else if(fragment instanceof CipherDemonstrationFragment && ((CipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
                     ((CipherDemonstrationFragment) fragment).setLightTheme();
+
                 } else if(fragment instanceof CipherVisualisationFragment && ((CipherVisualisationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
                     ((CipherVisualisationFragment) fragment).setLightTheme();
                 } else if(fragment instanceof KeyCipherDemonstrationFragment && ((KeyCipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {

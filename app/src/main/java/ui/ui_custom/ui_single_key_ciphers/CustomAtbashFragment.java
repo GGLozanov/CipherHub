@@ -13,7 +13,7 @@ import com.example.cipherhub.SetVisibilityModes;
 
 import managers.CipherCallerManager;
 
-public class CustomAtbashFragment extends CustomCipherFragment implements CustomCipherDialogFragment.OnInputSelected, SetVisibilityModes {
+public class CustomAtbashFragment extends CustomCipherFragment implements CustomCipherDialogFragment.OnInputSelected {
 
     @Override
     public void sendInput(String input) {

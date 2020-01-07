@@ -68,10 +68,12 @@ public class QuadrupButtonFragment extends VisibilityFragment implements SetVisi
         buttonThree = view.findViewById(R.id.buttonThree);
         buttonFour = view.findViewById(R.id.buttonFour);
 
-        buttonOne.setText(getArguments().getString(FragmentPageAdapter.getButtonOneKey()));
-        buttonTwo.setText(getArguments().getString(FragmentPageAdapter.getButtonTwoKey()));
-        buttonThree.setText(getArguments().getString(FragmentPageAdapter.getButtonThreeKey()));
-        buttonFour.setText(getArguments().getString(FragmentPageAdapter.getButtonFourKey()));
+        Bundle bundle = getArguments();
+
+        buttonOne.setText(bundle.getString(FragmentPageAdapter.getButtonOneKey()));
+        buttonTwo.setText(bundle.getString(FragmentPageAdapter.getButtonTwoKey()));
+        buttonThree.setText(bundle.getString(FragmentPageAdapter.getButtonThreeKey()));
+        buttonFour.setText(bundle.getString(FragmentPageAdapter.getButtonFourKey()));
     }
 
     // Warning: Won't work below Java 8 (lambdas)

@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
-import com.example.cipherhub.SetVisibilityModes;
 
 /**
  * A simple {@link Fragment} subclass.

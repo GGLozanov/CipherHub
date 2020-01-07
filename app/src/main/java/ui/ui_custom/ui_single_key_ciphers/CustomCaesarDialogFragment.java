@@ -43,7 +43,6 @@ public class CustomCaesarDialogFragment extends CustomCipherDialogFragment {
                 if(!caesarShiftAmount.equals("") && Integer.parseInt(caesarShiftAmount) <= 26) { //if the string isn't empty, we send the data to the caesar fragment
                     onInputSelected.sendInput(caesarShiftAmount); //send the input through the implementation of the method in CustomCipherFragment
                     getDialog().dismiss(); //dismiss the dialog at the end
-
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(), caesarShiftAmount.equals("") ? "Invalid input! Key must not be empty!" : "Invalid input! Key must not exceed 26!", Toast.LENGTH_SHORT).show();
                     // create a Toast (short little feedback message) to throw when the arguments are null or exceed the limit;

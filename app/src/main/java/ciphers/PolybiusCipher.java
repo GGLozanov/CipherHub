@@ -40,11 +40,9 @@ public class PolybiusCipher extends Cipher {
 
     public String PolybiusDecode(String base, String inputText) {
         decodedText = "";
-        //evaluate exception in activity file -> if(base.length() % 2 != 0) -> done
 
         for(int i = 0, counter = 0; i + 1 < base.length(); i += 2, counter++) {
             currentCharacter = base.charAt(i);
-            //fix seg fault when trying to decrement i for ignoring space -> done
 
             if(characterValidator.isSpecialCharacter(currentCharacter)) {
                 decodedText += (char) currentCharacter;

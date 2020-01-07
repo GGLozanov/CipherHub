@@ -3,18 +3,20 @@ package ui.ui_visual;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
-import ui.ui_core.VisibilityFragment;
+import adapters.LayoutAdapter;
+import ui.ui_core.FragmentPageAdapter;
 
 
 /**
@@ -22,18 +24,28 @@ import ui.ui_core.VisibilityFragment;
  */
 public class CipherDemonstrationFragment extends DemonstrationFragment implements SetVisibilityModes {
 
-    private TextView inputDescription;
+    @Override
+    public void setLightTheme() {
+        editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
 
+        LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.cipherDemonstrationLayout));
+        layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(getActivity(), R.color.backgroundLightColor));
+        setImages(getArguments().getString(FragmentPageAdapter.getCipherImageKey()), false);
+
+        editor.apply();
+    }
 
     @Override
     public void setDarkTheme() {
+        editor.putBoolean(Activity.getModeKey(), true); // put key "Mode" and 'true' for indicating Dark mode
 
+        LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.cipherDemonstrationLayout));
+        layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(getActivity(), R.color.backgroundDarkColor)); // add method to change images
+        setImages(getArguments().getString(FragmentPageAdapter.getCipherImageKey()), true); // test drawables, again
+
+        editor.apply();
     }
 
-    @Override
-    public void setLightTheme() {
-
-    }
 
     public CipherDemonstrationFragment() {
         // Required empty public constructor
@@ -44,11 +56,10 @@ public class CipherDemonstrationFragment extends DemonstrationFragment implement
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_cipher_demonstration, container, false);
+         view = super.onCreateView(inflater, container, savedInstanceState);
 
-        if(Activity.getMode()) setLightTheme();
-        else setDarkTheme();
-
+        if(Activity.getMode()) setDarkTheme();
+        else setLightTheme();
 
         return view;
     }

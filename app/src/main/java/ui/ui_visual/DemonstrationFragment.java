@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.fragment.app.FragmentStatePagerAdapter;
-
+import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
 
 import ui.ui_core.FragmentPageAdapter;
@@ -20,6 +19,11 @@ public class DemonstrationFragment extends VisibilityFragment {
     protected TextView outputDescription;
     protected ImageView inputImage;
     protected ImageView outputImage;
+
+    public TextView getInputDescription() {return inputDescription;}
+    public TextView getOutputDescription() {return outputDescription;}
+    public ImageView getInputImage() {return inputImage;}
+    public ImageView getOutputImage() {return outputImage;}
 
     public DemonstrationFragment() {
 
@@ -36,18 +40,31 @@ public class DemonstrationFragment extends VisibilityFragment {
 
         inputDescription.setText(bundle.getString(FragmentPageAdapter.getInputDescriptionKey()));
         outputDescription.setText(bundle.getString(FragmentPageAdapter.getOutputDescriptionKey()));
-        setImages(bundle.getString(FragmentPageAdapter.getCipherImageKey()));
+        setImages(bundle.getString(FragmentPageAdapter.getCipherImageKey()), Activity.getMode());
     }
 
-    public void setImages(String value) {
-        switch(value) {
+    public void setIOImageResources(int[] resources) {
+        inputImage.setImageResource(resources[0]);
+        outputImage.setImageResource(resources[1]);
+    }
+
+    public void setImages(String key, boolean mode) { // default is false
+        switch(key) { // fix code later; looks unkempt
             case "CaesarDemonstrationImages":
+                if(mode) setIOImageResources(new int[]{R.drawable.caesar_demonstration_input_dark, R.drawable.caesar_demonstration_output_dark});
+                else setIOImageResources(new int[]{R.drawable.caesar_demonstration_input_light, R.drawable.caesar_demonstration_output_light});
                 break;
             case "VigenereDemonstrationImages":
+                if(mode) setIOImageResources(new int[]{R.drawable.button_dark_background, R.drawable.dialog_dark_background}); // test drawables
+                else setIOImageResources(new int[]{R.drawable.dialog_light_button_background, R.drawable.dialog_light_button_background});
                 break;
             case "AtbashDemonstrationImages":
+                if(mode) setIOImageResources(new int[]{R.drawable.atbash_demonstration_input_dark, R.drawable.atbash_demonstration_output_dark});
+                else setIOImageResources(new int[]{R.drawable.atbash_demonstration_input_light, R.drawable.atbash_demonstration_output_light});
                 break;
             case "PolybiusDemonstrationImages":
+                if(mode) setIOImageResources(new int[]{R.drawable.button_dark_background, R.drawable.dialog_dark_background}); // test drawables
+                else setIOImageResources(new int[]{R.drawable.dialog_light_button_background, R.drawable.dialog_light_button_background});
                 break;
         }
     }

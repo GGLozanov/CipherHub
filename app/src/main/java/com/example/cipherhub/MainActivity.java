@@ -23,8 +23,6 @@ public class MainActivity extends Activity implements SetUpViewPager { //main cl
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
 
         for(Fragment fragment : fragmentCollection.get(0).keySet()) {
-            Log.d("Value in ", fragmentCollection.get(0).get(fragment));
-
             adapter.addFragment(fragment, fragmentCollection.get(0).get(fragment)); // get key by fragment and place it in adapter
         }
 

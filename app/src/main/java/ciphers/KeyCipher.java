@@ -33,9 +33,6 @@ public abstract class KeyCipher extends Cipher {
         if(s.equals("")) return;
 
         keyString += keyTemplate.charAt(keyEncodeIndexCounter++);
-            // separate invalid check and special char check due to different ending outputs
-
-        // need to add ability to shorten key if Editable is shortened (!) -> implemented
 
         if(keyExceedsMessage(s)) {
             trimKeyString(s);
@@ -53,7 +50,7 @@ public abstract class KeyCipher extends Cipher {
         // need to add ability to shorten key if Editable is shortened (!) -> implemented
 
         if(keyExceedsMessage(s)) {
-            trimKeyString(s); // crashes if there is no substring or key is smaller than editable
+            trimKeyString(s);
             resetDecodeIndexCounter();
         }
     }

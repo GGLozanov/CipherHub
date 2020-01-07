@@ -106,15 +106,12 @@ public class VigenereCipher extends KeyCipher {
 
     public String VigenereDecode(String key, String base) {
         // Vigenere doesn't actually decode, only encodes further
-        // should implement decoding
-        // One letter is omitted for some reason
-        // Implement constant function for Caesar cipher that can work for Vigenere as well in ASCIIUtils
 
         decodedText = "";
         int sumASCIIValues;
 
         // Vigenere decode formula: (base + 'A') - key
-        // use Character class and delete redundant methods from ASCIIUtils
+        // use Character class and delete redundant methods from ASCIIUtils -> to-do
 
         boolean isBaseCapital, isKeyCapital;
 

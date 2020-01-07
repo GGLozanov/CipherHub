@@ -44,8 +44,6 @@ public class CipherFragment extends VisibilityFragment implements SetVisibilityM
 
     @Override
     public void setDarkTheme() {
-        // view = getLayoutInflater().inflate(R.layout.fragment_cipher, container, false);
-
         editor.putBoolean(Activity.getModeKey(), true);
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.cipherLayout));

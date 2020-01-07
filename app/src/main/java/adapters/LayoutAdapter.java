@@ -76,4 +76,5 @@ public class LayoutAdapter {
     public void setDialogLayoutBackroundResource(int resourceID) {
         dialogLayout.setBackgroundResource(resourceID);
     }
+
 }

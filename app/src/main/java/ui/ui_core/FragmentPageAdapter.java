@@ -18,26 +18,26 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> fragments = new ArrayList<>(); //list for both quadrup, cipher and section fragments (all fragments classes that extent Fragment)
     private List<String> fragmentTitles = new ArrayList<>(); //list for fragment titles by which to search in switch()
 
-    static final String titleKey = "Title";
-    static final String descriptionKey = "Description";
+    private static final String titleKey = "Title"; // sectionFragment cipher title
+    private static final String descriptionKey = "Description"; // sectionFragment cipher description
 
-    static final String cipherKey = "Cipher";
+    private static final String cipherKey = "Cipher"; // Which Cipher layout to generate
 
-    static final String resetKey = "Reset";
+    private static final String resetKey = "Reset"; // Reset button
 
-    static final String buttonOneKey = "ButtonOne";
-    static final String buttonTwoKey = "ButtonTwo";
-    static final String buttonThreeKey = "ButtonThree";
-    static final String buttonFourKey = "ButtonFour";
+    private static final String buttonOneKey = "ButtonOne"; // quadrup fragment for different pages
+    private static final String buttonTwoKey = "ButtonTwo";
+    private static final String buttonThreeKey = "ButtonThree";
+    private static final String buttonFourKey = "ButtonFour";
 
-    static final String inputDescriptionKey = "InputDescription";
-    static final String outputDescriptionKey = "OutputDescription";
+    private static final String inputDescriptionKey = "InputDescription"; // which input description to use for which key/no-key cipher
+    private static final String outputDescriptionKey = "OutputDescription"; // which output description to use for which key/no-key cipher
 
-    static final String cipherkeyDescriptionKey = "KeyDescription";
+    private static final String cipherkeyDescriptionKey = "KeyDescription"; // which key description to use for which key cipher
 
-    static final String cipherImageKey = "ImageKey"; // String key to designate which pair of images to use
+    private static final String cipherImageKey = "ImageKey"; // String key to designate which pair of images to use
 
-    static final String visualisationKey = "Visualisation";
+    private static final String visualisationKey = "Visualisation"; // which Cipher visualisation to choose
 
     public static String getTitleKey() {return titleKey;}
     public static String getDescriptionKey() {return descriptionKey;}
@@ -82,27 +82,27 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
         Resources appResources = context.getResources(); //variable for accessing the Resources of the app and to avoid multiple calls to the same method
 
         switch(fragmentTitles.get(position)) {
-            case "Main Screen": //main activity
+            case "Main Screen": // Main Activity
                 bundle.putString(titleKey, appResources.getString(R.string.app_title));
                 bundle.putString(descriptionKey, appResources.getString(R.string.app_description));
                 break;
-            case "Caesar Screen": //caesar
+            case "Caesar Screen": // Caesar
                 bundle.putString(titleKey, appResources.getString(R.string.caesar_title));
                 bundle.putString(descriptionKey, appResources.getString(R.string.caesar_description));
                 break;
-            case "Vigenere Screen": //vigenere
+            case "Vigenere Screen": // Vigenere
                 bundle.putString(titleKey, appResources.getString(R.string.vigenere_title));
                 bundle.putString(descriptionKey, appResources.getString(R.string.vigenere_description));
                 break;
-            case "Atbash Screen": //atbash
+            case "Atbash Screen": // Atbash
                 bundle.putString(titleKey, appResources.getString(R.string.atbash_title));
                 bundle.putString(descriptionKey, appResources.getString(R.string.atbash_description));
                 break;
-            case "Polybius Screen": //polybius
+            case "Polybius Screen": // Polybius
                 bundle.putString(titleKey, appResources.getString(R.string.polybius_title));
                 bundle.putString(descriptionKey, appResources.getString(R.string.polybius_description));
                 break;
-            case "Page 1": //page 1 holds the 4 OG ciphers
+            case "Page 1": // Page 1 holds the 4 OG ciphers
                 bundle.putString(buttonOneKey, appResources.getString(R.string.caesar));
                 bundle.putString(buttonTwoKey, appResources.getString(R.string.vigenere));
                 bundle.putString(buttonThreeKey, appResources.getString(R.string.atbash));
