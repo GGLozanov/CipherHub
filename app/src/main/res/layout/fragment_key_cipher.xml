@@ -9,7 +9,7 @@
     android:background="@color/backgroundDarkColor">
 
     <EditText
-        android:id="@+id/EncodedOutputString"
+        android:id="@+id/encodedOutput"
         style="@style/EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/KeyString" />
 
     <EditText
-        android:id="@+id/DecodedInputString"
+        android:id="@+id/decodedInput"
         style="@style/EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,8 +62,8 @@
         android:ems="10"
         android:hint="@string/key_vigenere"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/EncodedOutputString"
+        app:layout_constraintBottom_toTopOf="@+id/encodedOutput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DecodedInputString" />
+        app:layout_constraintTop_toBottomOf="@+id/decodedInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>

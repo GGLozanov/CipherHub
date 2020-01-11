@@ -8,37 +8,48 @@
     tools:context="ui.ui_visual.CipherDemonstrationFragment"
     android:background="@color/backgroundDarkColor">
 
-    <ImageView
-        android:id="@+id/outputImage"
+    <EditText
+        android:id="@+id/outputDemonstration"
+        style="@style/EditText"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginLeft="101dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="102dp"
-        android:layout_marginRight="102dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginRight="81dp"
         android:layout_marginBottom="100dp"
+        android:width="250dp"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="@string/encoded_output"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/outputDescription"
-        tools:src="@tools:sample/avatars[0]" />
+        app:layout_constraintVertical_bias="0.173" />
 
-    <ImageView
-        android:id="@+id/inputImage"
+    <EditText
+        android:id="@+id/inputDemonstration"
+        style="@style/EditText"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginLeft="101dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="102dp"
-        android:layout_marginRight="102dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginRight="81dp"
         android:layout_marginBottom="60dp"
+        android:width="250dp"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="@string/decoded_input"
         app:layout_constraintBottom_toTopOf="@+id/outputDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputDescription"
-        tools:src="@tools:sample/avatars[0]" />
+        app:layout_constraintTop_toBottomOf="@+id/inputDescription" />
 
     <TextView
         android:id="@+id/inputDescription"
@@ -54,7 +65,7 @@
         android:gravity="center"
         android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/inputImage"
+        app:layout_constraintBottom_toTopOf="@+id/inputDemonstration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -66,15 +77,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="173dp"
         android:layout_marginLeft="173dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="172dp"
         android:layout_marginRight="172dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
         android:gravity="center"
         android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/outputImage"
+        app:layout_constraintBottom_toTopOf="@+id/outputDemonstration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputImage" />
+        app:layout_constraintTop_toBottomOf="@+id/inputDemonstration" />
 </androidx.constraintlayout.widget.ConstraintLayout>

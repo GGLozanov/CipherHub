@@ -44,7 +44,7 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
     public void initParameters(View view) {
         title = view.findViewById(R.id.customCipherTitle);
         description = view.findViewById(R.id.customCipherDescription);
-        keyInput = view.findViewById(R.id.additionalKeyString);
+        keyInput = view.findViewById(R.id.additionalKey);
         keyEnableSwitch = view.findViewById(R.id.keyEnableSwitch);
 
         keyInput.setVisibility(View.INVISIBLE);
@@ -62,17 +62,17 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
     public static VigenereCipher getKeyParserCipher() {return keyParserCipher;}
 
     private void clearKeyConstraints(ConstraintSet constraintSet) {
-        constraintSet.clear(R.id.additionalKeyString, ConstraintSet.TOP); // clear() method removes a constraint with argument id of widget and anchor (which constraint)
-        constraintSet.clear(R.id.additionalKeyString, ConstraintSet.BOTTOM);
-        constraintSet.clear(R.id.additionalKeyString, ConstraintSet.END);
-        constraintSet.clear(R.id.additionalKeyString, ConstraintSet.START); // constraints are written in xml file (use that as a guide)
+        constraintSet.clear(R.id.additionalKey, ConstraintSet.TOP); // clear() method removes a constraint with argument id of widget and anchor (which constraint)
+        constraintSet.clear(R.id.additionalKey, ConstraintSet.BOTTOM);
+        constraintSet.clear(R.id.additionalKey, ConstraintSet.END);
+        constraintSet.clear(R.id.additionalKey, ConstraintSet.START); // constraints are written in xml file (use that as a guide)
     }
 
     private void setKeyConstraints(ConstraintSet constraintSet) {
-        constraintSet.connect(R.id.additionalKeyString, ConstraintSet.TOP, R.id.keyEnableSwitch, ConstraintSet.BOTTOM); // from -> to widgets
-        constraintSet.connect(R.id.additionalKeyString, ConstraintSet.BOTTOM, R.id.customCipherDescription, ConstraintSet.TOP);
-        constraintSet.connect(R.id.additionalKeyString, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END); // PARENT_ID references parent view element
-        constraintSet.connect(R.id.additionalKeyString, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
+        constraintSet.connect(R.id.additionalKey, ConstraintSet.TOP, R.id.keyEnableSwitch, ConstraintSet.BOTTOM); // from -> to widgets
+        constraintSet.connect(R.id.additionalKey, ConstraintSet.BOTTOM, R.id.customCipherDescription, ConstraintSet.TOP);
+        constraintSet.connect(R.id.additionalKey, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END); // PARENT_ID references parent view element
+        constraintSet.connect(R.id.additionalKey, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
     }
 
     private void hideInput(ConstraintLayout constraintLayout, ConstraintSet constraintSet) {
@@ -90,7 +90,7 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
     private void showInput(ConstraintLayout constraintLayout, ConstraintSet constraintSet) {
         setKeyConstraints(constraintSet);
         constraintSet.clear(R.id.keyEnableSwitch, ConstraintSet.BOTTOM);
-        constraintSet.connect(R.id.keyEnableSwitch, ConstraintSet.BOTTOM, R.id.additionalKeyString, ConstraintSet.TOP);
+        constraintSet.connect(R.id.keyEnableSwitch, ConstraintSet.BOTTOM, R.id.additionalKey, ConstraintSet.TOP);
         constraintSet.applyTo(constraintLayout);
         keyInput.setVisibility(View.VISIBLE);
     }

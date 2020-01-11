@@ -15,25 +15,34 @@
     <string name="caesar_description">The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which each letter in the plaintext is "shifted" a certain number of places down the alphabet. For example, with a shift of 1, A would be replaced by B, B would become C, and so on.</string>
     <string name="caesar_input_description">We input the plaintext "abcd" in the input field and we pass it to the Caesar cipher.</string>
     <string name="caesar_output_description">The result is clear - "xyza" ("a" shifts 3 backwards to "x"; "b" shifts 3 backwards to "y", and so on.)</string>
+    <string name="caesar_input_example">abcd</string>
+    <string name="caesar_output_example">xyza</string>
     <string name="caesar_visualisation_description">Visualisation of the Caesar cipher</string>
 
     <string name="vigenere_title">Vigenere Cipher</string>
     <string name="vigenere_description">The Vigenère cipher (French pronunciation: ​[viʒnɛːʁ]) is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It employs a form of polyalphabetic substitution.</string>
     <string name="vigenere_input_description">We input the plaintext "Hi, Rachel!" in the input field and we pass it to the Vigenere cipher.</string>
     <string name="vigenere_key_description">We also give it a key: "Hello" in this case. This key is used in the Vigenere square.</string>
-    <string name="vigenere_output_description">And we finally get "Om, Clqoiw!", which doesn\'t look like much, but acts as a good form of encoding ("H" corresponds to "H" = "O"; "i" corresponds to "e" = "m")</string>
+    <string name="vigenere_output_description">And we finally get "Om, Clqoiw!" ("H" corresponds to "H" = "O"; "i" corresponds to "e" = "m")</string>
+    <string name="vigenere_input_example">Hi, Rachel!</string>
+    <string name="vigenere_key_example">Hello</string>
+    <string name="vigenere_output_example">Om, Clqoiw!</string>
     <string name="vigenere_visualisation_description">Visualisation of the Vigenère cipher</string>
 
     <string name="atbash_title">Atbash Cipher</string>
     <string name="atbash_description">Atbash (Hebrew: אתבש‎; also transliterated Atbaš) is a monoalphabetic substitution cipher originally used to encrypt the Hebrew alphabet. It can be modified for use with any known writing system with a standard collating order. The idea of the cipher is to use a base (the alphabet by default) and reverse it to generate the key ("A" -> "Z", "B" -> "Y", so on).</string>
     <string name="atbash_input_description">We input the plaintext "Hello, Mark!" in the input field and we pass it to the Atbash cipher.</string>
     <string name="atbash_output_description">It takes the plaintext and reverses the entire key (alphabet), giving us the correlating output: "Svool, Nzip!" ("H" corresponds to "S"; "e" to "v" and so on).</string>
+    <string name="atbash_input_example">Hello, Mark!</string>
+    <string name="atbash_output_example">Svool, Nzip!</string>
     <string name="atbash_visualisation_description">Visualisation of the Atbash cipher</string>
 
     <string name="polybius_title">Polybius Cipher</string>
     <string name="polybius_description">In cryptography, the Polybius square, also known as the Polybius checkerboard, is a device invented by the Ancient Greeks Cleoxenus and Democleitus, and perfected by the Ancient Greek historian and scholar Polybius, for fractionating plaintext characters so that they can be represented by a smaller set of symbols. This implementation uses a 6x6 square (numbers included for the nerds!)</string>
     <string name="polybius_input_description">We input the plaintext "Gravity" in the input field and we pass it to the Polybius cipher.</string>
     <string name="polybius_output_description">It takes the text and substitutes each character with its position in the 6x6 Polybius square ("a" is 11, "3" is 36), returning "21361144234251" as a result!</string>
+    <string name="polybius_input_example">Gravity</string>
+    <string name="polybius_output_example">21361144234251</string>
     <string name="polybius_visualisation_description">Visualisation of the Polybius cipher</string>
 
     <string name="caesar">Caesar</string>

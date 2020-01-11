@@ -30,14 +30,16 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
     private static final String buttonThreeKey = "ButtonThree";
     private static final String buttonFourKey = "ButtonFour";
 
-    private static final String inputDescriptionKey = "InputDescription"; // which input description to use for which key/no-key cipher
-    private static final String outputDescriptionKey = "OutputDescription"; // which output description to use for which key/no-key cipher
+    private static final String inputDescriptionKey = "DemonstrationInputDescription"; // which input description to use for which key/no-key cipher
+    private static final String outputDescriptionKey = "DemonstrationOutputDescription"; // which output description to use for which key/no-key cipher
 
     private static final String cipherkeyDescriptionKey = "KeyDescription"; // which key description to use for which key cipher
 
-    private static final String cipherImageKey = "ImageKey"; // String key to designate which pair of images to use
+    private static final String cipherDemonstrationKey = "Demonstration"; // which EditText pairs to use for ciphers when demonstrating
+
 
     private static final String visualisationKey = "Visualisation"; // which Cipher visualisation to choose
+    private static final String visualisationImageKey = "VisualisationImage"; // which image to use for the visualisation cipher
 
     public static String getTitleKey() {return titleKey;}
     public static String getDescriptionKey() {return descriptionKey;}
@@ -55,9 +57,11 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
 
     public static String getCipherkeyDescriptionKey() {return cipherkeyDescriptionKey;}
 
-    public static String getCipherImageKey() {return cipherImageKey;}
+    public static String getCipherDemonstrationKey() {return cipherDemonstrationKey;}
+
 
     public static String getVisualisationKey() {return visualisationKey;}
+    public static String getVisualisationImageKey() {return visualisationImageKey;}
 
     private Context context;
 
@@ -141,39 +145,39 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
             case "Caesar Demonstration":
                 bundle.putString(inputDescriptionKey, appResources.getString(R.string.caesar_input_description));
                 bundle.putString(outputDescriptionKey, appResources.getString(R.string.caesar_output_description));
-                bundle.putString(cipherImageKey, "CaesarDemonstrationImages");
+                bundle.putString(cipherDemonstrationKey, "CaesarDemonstration");
                 break;
             case "Vigenere Demonstration":
                 bundle.putString(inputDescriptionKey, appResources.getString(R.string.vigenere_input_description));
                 bundle.putString(cipherkeyDescriptionKey, appResources.getString(R.string.vigenere_key_description));
                 bundle.putString(outputDescriptionKey, appResources.getString(R.string.vigenere_output_description));
-                bundle.putString(cipherImageKey, "VigenereDemonstrationImages");
+                bundle.putString(cipherDemonstrationKey, "VigenereDemonstration");
                 break;
             case "Atbash Demonstration":
                 bundle.putString(inputDescriptionKey, appResources.getString(R.string.atbash_input_description));
                 bundle.putString(outputDescriptionKey, appResources.getString(R.string.atbash_output_description));
-                bundle.putString(cipherImageKey, "AtbashDemonstrationImages");
+                bundle.putString(cipherDemonstrationKey, "AtbashDemonstration");
                 break;
             case "Polybius Demonstration":
                 bundle.putString(inputDescriptionKey, appResources.getString(R.string.polybius_input_description));
                 bundle.putString(outputDescriptionKey, appResources.getString(R.string.polybius_output_description));
-                bundle.putString(cipherImageKey, "PolybiusDemonstrationImages");
+                bundle.putString(cipherDemonstrationKey, "PolybiusDemonstration");
                 break;
             case "Caesar Visualisation":
                 bundle.putString(visualisationKey, appResources.getString(R.string.caesar_visualisation_description));
-                bundle.putString(cipherImageKey, "CaesarVisualisationImage");
+                bundle.putString(visualisationImageKey, "CaesarVisualisationImage");
                 break;
             case "Vigenere Visualisation":
                 bundle.putString(visualisationKey, appResources.getString(R.string.vigenere_visualisation_description));
-                bundle.putString(cipherImageKey, "VigenereVisualisationImage");
+                bundle.putString(visualisationImageKey, "VigenereVisualisationImage");
                 break;
             case "Atbash Visualisation":
                 bundle.putString(visualisationKey, appResources.getString(R.string.atbash_visualisation_description));
-                bundle.putString(cipherImageKey, "AtbashVisualisationImage");
+                bundle.putString(visualisationImageKey, "AtbashVisualisationImage");
                 break;
             case "Polybius Visualisation":
                 bundle.putString(visualisationKey, appResources.getString(R.string.polybius_visualisation_description));
-                bundle.putString(cipherImageKey, "PolybiusVisualisationImage");
+                bundle.putString(visualisationImageKey, "PolybiusVisualisationImage");
                 break;
             default:
                 break;

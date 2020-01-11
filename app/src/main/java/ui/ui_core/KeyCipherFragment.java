@@ -60,8 +60,8 @@ public class KeyCipherFragment extends VisibilityFragment implements SetVisibili
         view = inflater.inflate(R.layout.fragment_key_cipher, container, false);
 
         keyCipherCallerManager.setKeyText(view.findViewById(R.id.KeyString));
-        keyCipherCallerManager.setDecodedInput(view.findViewById(R.id.DecodedInputString));
-        keyCipherCallerManager.setEncodedOutput(view.findViewById(R.id.EncodedOutputString));
+        keyCipherCallerManager.setDecodedInput(view.findViewById(R.id.decodedInput));
+        keyCipherCallerManager.setEncodedOutput(view.findViewById(R.id.encodedOutput));
 
         keyCipherCallerManager.VigenereCipher(); // switch() for future key ciphers
 

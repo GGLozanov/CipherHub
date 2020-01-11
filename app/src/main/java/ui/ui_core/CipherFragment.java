@@ -60,8 +60,8 @@ public class CipherFragment extends VisibilityFragment implements SetVisibilityM
         view = inflater.inflate(R.layout.fragment_cipher, container, false);
         cipherKey = getArguments().getString(FragmentPageAdapter.getCipherKey());
 
-        cipherManager.setDecodedInput(view.findViewById(R.id.DecodedInputString)); //findViewById is a method from the View type class
-        cipherManager.setEncodedOutput(view.findViewById(R.id.EncodedOutputString));
+        cipherManager.setDecodedInput(view.findViewById(R.id.decodedInput)); //findViewById is a method from the View type class
+        cipherManager.setEncodedOutput(view.findViewById(R.id.encodedOutput));
 
         callCipher(cipherKey);
 

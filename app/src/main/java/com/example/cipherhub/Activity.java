@@ -175,7 +175,6 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
                     ((AdditionalVigenereFragment) fragment).setLightTheme();
                 } else if(fragment instanceof CipherDemonstrationFragment && ((CipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
                     ((CipherDemonstrationFragment) fragment).setLightTheme();
-
                 } else if(fragment instanceof CipherVisualisationFragment && ((CipherVisualisationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
                     ((CipherVisualisationFragment) fragment).setLightTheme();
                 } else if(fragment instanceof KeyCipherDemonstrationFragment && ((KeyCipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {

@@ -17,7 +17,6 @@ public class MainActivity extends Activity implements SetUpViewPager { //main cl
 
     // sharedPreferences for different user modes (novice cipher student, adept, master, etc.)
 
-
     @Override
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);

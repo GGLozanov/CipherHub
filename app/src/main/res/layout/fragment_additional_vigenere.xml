@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/additionalKeyString" />
+        app:layout_constraintTop_toBottomOf="@+id/additionalKey" />
 
     <TextView
         android:id="@+id/customCipherTitle"
@@ -65,13 +65,13 @@
         android:layout_marginRight="165dp"
         android:layout_marginBottom="15dp"
         android:text="@string/toggle_additional_key_text"
-        app:layout_constraintBottom_toTopOf="@+id/additionalKeyString"
+        app:layout_constraintBottom_toTopOf="@+id/additionalKey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customCipherTitle" />
 
     <EditText
-        android:id="@+id/additionalKeyString"
+        android:id="@+id/additionalKey"
         style="@style/EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

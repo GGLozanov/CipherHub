@@ -1,9 +1,11 @@
 package ui.ui_visual;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,13 +19,13 @@ public class DemonstrationFragment extends VisibilityFragment {
 
     protected TextView inputDescription;
     protected TextView outputDescription;
-    protected ImageView inputImage;
-    protected ImageView outputImage;
+    protected EditText inputDemonstration;
+    protected EditText outputDemonstration;
 
     public TextView getInputDescription() {return inputDescription;}
     public TextView getOutputDescription() {return outputDescription;}
-    public ImageView getInputImage() {return inputImage;}
-    public ImageView getOutputImage() {return outputImage;}
+    public EditText getInputEditText() {return inputDemonstration;}
+    public EditText getOutputEditText() {return outputDemonstration;}
 
     public DemonstrationFragment() {
 
@@ -35,36 +37,37 @@ public class DemonstrationFragment extends VisibilityFragment {
         inputDescription = view.findViewById(R.id.inputDescription);
         outputDescription = view.findViewById(R.id.outputDescription);
 
-        inputImage = view.findViewById(R.id.inputImage);
-        outputImage = view.findViewById(R.id.outputImage);
+        inputDemonstration = view.findViewById(R.id.inputDemonstration);
+        outputDemonstration = view.findViewById(R.id.outputDemonstration);
 
+        setDescriptions(bundle);
+        setDemonstrations(bundle.getString(FragmentPageAdapter.getCipherDemonstrationKey()));
+    }
+
+    public void setDescriptions(Bundle bundle) {
         inputDescription.setText(bundle.getString(FragmentPageAdapter.getInputDescriptionKey()));
         outputDescription.setText(bundle.getString(FragmentPageAdapter.getOutputDescriptionKey()));
-        setImages(bundle.getString(FragmentPageAdapter.getCipherImageKey()), Activity.getMode());
     }
 
-    public void setIOImageResources(int[] resources) {
-        inputImage.setImageResource(resources[0]);
-        outputImage.setImageResource(resources[1]);
+    protected void setDemonstrationText(String inputText, String outputText) {
+        inputDemonstration.setText(inputText);
+        outputDemonstration.setText(outputText);
     }
 
-    public void setImages(String key, boolean mode) { // default is false
-        switch(key) { // fix code later; looks unkempt
-            case "CaesarDemonstrationImages":
-                if(mode) setIOImageResources(new int[]{R.drawable.caesar_demonstration_input_dark, R.drawable.caesar_demonstration_output_dark});
-                else setIOImageResources(new int[]{R.drawable.caesar_demonstration_input_light, R.drawable.caesar_demonstration_output_light});
+    public void setDemonstrations(String key) { // default is false
+        Resources resources = getResources();
+        switch(key) {
+            case "CaesarDemonstration":
+                setDemonstrationText(resources.getString(R.string.caesar_input_example), resources.getString(R.string.caesar_output_example));
                 break;
-            case "VigenereDemonstrationImages":
-                if(mode) setIOImageResources(new int[]{R.drawable.button_dark_background, R.drawable.dialog_dark_background}); // test drawables
-                else setIOImageResources(new int[]{R.drawable.dialog_light_button_background, R.drawable.dialog_light_button_background});
+            case "VigenereDemonstration":
+                setDemonstrationText(resources.getString(R.string.vigenere_input_example), resources.getString(R.string.vigenere_output_example));
                 break;
-            case "AtbashDemonstrationImages":
-                if(mode) setIOImageResources(new int[]{R.drawable.atbash_demonstration_input_dark, R.drawable.atbash_demonstration_output_dark});
-                else setIOImageResources(new int[]{R.drawable.atbash_demonstration_input_light, R.drawable.atbash_demonstration_output_light});
+            case "AtbashDemonstration":
+                setDemonstrationText(resources.getString(R.string.atbash_input_example), resources.getString(R.string.atbash_output_example));
                 break;
-            case "PolybiusDemonstrationImages":
-                if(mode) setIOImageResources(new int[]{R.drawable.button_dark_background, R.drawable.dialog_dark_background}); // test drawables
-                else setIOImageResources(new int[]{R.drawable.dialog_light_button_background, R.drawable.dialog_light_button_background});
+            case "PolybiusDemonstration":
+                setDemonstrationText(resources.getString(R.string.polybius_input_example), resources.getString(R.string.polybius_output_example));
                 break;
         }
     }

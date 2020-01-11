@@ -30,7 +30,6 @@ public class CipherDemonstrationFragment extends DemonstrationFragment implement
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.cipherDemonstrationLayout));
         layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(getActivity(), R.color.backgroundLightColor));
-        setImages(getArguments().getString(FragmentPageAdapter.getCipherImageKey()), false);
 
         editor.apply();
     }
@@ -41,7 +40,6 @@ public class CipherDemonstrationFragment extends DemonstrationFragment implement
 
         LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.cipherDemonstrationLayout));
         layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(getActivity(), R.color.backgroundDarkColor)); // add method to change images
-        setImages(getArguments().getString(FragmentPageAdapter.getCipherImageKey()), true); // test drawables, again
 
         editor.apply();
     }
