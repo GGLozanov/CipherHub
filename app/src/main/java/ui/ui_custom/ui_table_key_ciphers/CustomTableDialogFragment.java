@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -21,6 +22,8 @@ import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
 import adapters.LayoutAdapter;
+import ui.ui_core.VisibilityDialogFragment;
+import ui.ui_core.VisibilityFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,13 +31,12 @@ import adapters.LayoutAdapter;
 
 // Personal Protip: Classes extending only DialogFragment should have their own call to inflater.inflate() and not rely on the default DialogFragment layout!
 
-public class CustomTableDialogFragment extends DialogFragment implements SetVisibilityModes { // base class for dialogs which have a table
+public class CustomTableDialogFragment extends VisibilityDialogFragment implements SetVisibilityModes, VisibilityDialogFragment.Setup { // base class for dialogs which have a table
 
     protected String titleText;
     protected String refOneText;
     protected String refTwoText;
     protected String refThreeText;
-
 
     protected TextView title;
     protected TextView refOne;
@@ -43,9 +45,8 @@ public class CustomTableDialogFragment extends DialogFragment implements SetVisi
     protected TextView cancel;
     protected TextView submit;
 
-    View view = getView();
-
-    private SharedPreferences.Editor editor = Activity.getEditor();
+    protected TextView[] infos;
+    protected TextView[] refs;
 
     public interface OnInputSelected {
         void sendInput(Character[][] input);
@@ -60,13 +61,19 @@ public class CustomTableDialogFragment extends DialogFragment implements SetVisi
         refThreeText = refThree;
     }
 
-    private void setParameters(View view) { //maybe make this method in an interface to be implemented by all dialog fragment classes?
+    @Override
+    public void setParameters() { //maybe make this method in an interface to be implemented by all dialog fragment classes?
         title = view.findViewById(R.id.CustomTableCipherHeading);
         refOne = view.findViewById(R.id.ReferralOne);
         refTwo = view.findViewById(R.id.ReferralTwo);
         refThree = view.findViewById(R.id.ReferralThree);
         submit = view.findViewById(R.id.CustomCipherOk);
         cancel = view.findViewById(R.id.CustomCipherCancel);
+
+        infos = new TextView[]{title};
+        refs = new TextView[]{refOne, refTwo, refThree};
+
+        setContext(getActivity());
 
         title.setText(titleText);
         refOne.setText(refOneText);
@@ -82,50 +89,28 @@ public class CustomTableDialogFragment extends DialogFragment implements SetVisi
     }
 
     private void setListeners() { //start other dialog; instanceof to differentiate?
-        refOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initDialog(new CustomPolybiusTableFragment(1), 4, "Referral One");
-            }
-        });
+        refOne.setOnClickListener((View v) -> initDialog(new CustomPolybiusTableFragment(1), 4, "Referral One"));
 
-        refTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initDialog(new CustomPolybiusTableFragment(2), 5, "Referral Two");
-            }
-        });
+        refTwo.setOnClickListener((View v) -> initDialog(new CustomPolybiusTableFragment(2), 5, "Referral Two"));
 
-        refThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initDialog(new CustomPolybiusTableFragment(3), 6, "Referral Three");
-            }
-        });
+        refThree.setOnClickListener((View v) -> initDialog(new CustomPolybiusTableFragment(3), 6, "Referral Three"));
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        submit.setOnClickListener((View v) -> {
                 onInputSelected.sendInput(CustomPolybiusTableFragment.Square); // trigger sendInput to Polybius and instantiate the Cipher w/given key
                 getDialog().dismiss();
-            }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDialog().dismiss();
-            }
-        });
+        cancel.setOnClickListener((View v) -> getDialog().dismiss());
     }
 
     @Override
     public void setLightTheme() {
         editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
 
-        LayoutAdapter layoutAdapter = new LayoutAdapter((LinearLayout) view.findViewById(R.id.tableDialogLayout));
+        layoutAdapter = new LayoutAdapter((LinearLayout) view.findViewById(R.id.tableDialogLayout));
         layoutAdapter.setDialogLayoutBackroundResource(R.drawable.dialog_light_background); // set background resource to light drawable
-        layoutAdapter.setTextViewsLightModeResource(new TextView[]{view.findViewById(R.id.ReferralOne), view.findViewById(R.id.ReferralTwo), view.findViewById(R.id.ReferralThree)});
+        layoutAdapter.setTextViewsLightModeResource(refs, context);
+        LayoutAdapter.setTextColors(infos, ContextCompat.getColor(context, R.color.lightTextColor));
 
         // TextViews, not Buttons
 
@@ -136,10 +121,10 @@ public class CustomTableDialogFragment extends DialogFragment implements SetVisi
     public void setDarkTheme() {
         editor.putBoolean(Activity.getModeKey(), true);
 
-        LayoutAdapter layoutAdapter = new LayoutAdapter((LinearLayout) view.findViewById(R.id.tableDialogLayout));
+        layoutAdapter = new LayoutAdapter((LinearLayout) view.findViewById(R.id.tableDialogLayout));
         layoutAdapter.setDialogLayoutBackroundResource(R.drawable.dialog_dark_background); // set background resource to dark drawable
-        layoutAdapter.setTextViewsDarkModeResource(new TextView[]{view.findViewById(R.id.ReferralOne), view.findViewById(R.id.ReferralTwo), view.findViewById(R.id.ReferralThree)});
-
+        layoutAdapter.setTextViewsDarkModeResource(refs, context);
+        LayoutAdapter.setTextColors(infos, ContextCompat.getColor(context, R.color.darkTextColor));
 
         editor.apply();
     }
@@ -152,7 +137,7 @@ public class CustomTableDialogFragment extends DialogFragment implements SetVisi
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT)); // set the window to transparent
 
-        setParameters(view);
+        setParameters();
         setListeners();
 
         if(Activity.getMode()) setDarkTheme();

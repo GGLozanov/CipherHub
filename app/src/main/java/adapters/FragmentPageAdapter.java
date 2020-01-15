@@ -1,4 +1,4 @@
-package ui.ui_core;
+package adapters;
 
 import android.content.Context;
 import android.content.res.Resources;

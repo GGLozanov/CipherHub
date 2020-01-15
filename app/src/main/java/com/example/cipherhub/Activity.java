@@ -14,14 +14,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import adapters.FragmentPageAdapter;
 import adapters.LayoutAdapter;
 import ui.ui_core.CipherFragment;
-import ui.ui_core.FragmentPageAdapter;
 import ui.ui_core.KeyCipherFragment;
 import ui.ui_core.QuadrupButtonFragment;
 import ui.ui_core.SectionFragment;
@@ -35,6 +36,9 @@ import ui.ui_visual.CipherVisualisationFragment;
 import ui.ui_visual.KeyCipherDemonstrationFragment;
 
 public abstract class Activity extends AppCompatActivity { // abstract superclass for all activities
+
+    ViewPager viewPager;
+    FragmentPageAdapter fragmentPageAdapter;
 
     List<LinkedHashMap<Fragment, String>> fragmentCollection = new ArrayList<>(); // linked HashMap keeps track of insertion order3
 
@@ -53,7 +57,7 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
     private void initFragmentMap() {
         // create separate variable for insertion in hashmap due to the dangers of double-brace initialisation (memory leaks!)
 
-        switch(sharedPreferences.getString(themeKey, "Default")) {
+        switch(sharedPreferences.getString(themeKey, "Novice")) {
             case "Minimalist":
                 // Main Activity
 
@@ -77,7 +81,7 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
 
                 break;
 
-            default: // for default layout
+            case "Novice":
                 // Main Activity
 
                 addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment()}, new String[]{"Main Screen", "Page 1"});
@@ -101,6 +105,33 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherDemonstrationFragment(), new CipherFragment(), new CustomPolybiusFragment()},
                         new String[]{"Polybius Screen", "Polybius Demonstration", "Polybius Cipher", "Custom Polybius"});
+
+                break;
+
+            default: // for default layout
+                // Main Activity
+
+                addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment()}, new String[]{"Main Screen", "Page 1"});
+
+                // Caesar Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomCaesarFragment()},
+                        new String[]{"Caesar Screen", "Caesar Demonstration", "Caesar Cipher", "Custom Caesar"});
+
+                // Vigenere Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new KeyCipherFragment(), new AdditionalVigenereFragment()},
+                        new String[]{"Vigenere Screen", "Vigenere Cipher", "Custom Vigenere"});
+
+                // Atbash Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomAtbashFragment()},
+                        new String[]{"Atbash Screen", "Atbash Cipher", "Custom Atbash"});
+
+                // Polybius Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomPolybiusFragment()},
+                        new String[]{"Polybius Screen", "Polybius Cipher", "Custom Polybius"});
 
                 break;
         }

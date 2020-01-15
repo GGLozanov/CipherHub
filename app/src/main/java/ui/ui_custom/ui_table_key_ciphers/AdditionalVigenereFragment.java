@@ -27,27 +27,20 @@ import ciphers.VigenereCipher;
 import managers.KeyCipherCallerManager;
 import ui.ui_core.VisibilityFragment;
 
-public class AdditionalVigenereFragment extends VisibilityFragment implements SetVisibilityModes {
+public class AdditionalVigenereFragment extends VisibilityFragment implements SetVisibilityModes, VisibilityFragment.Setup {
 
     TextView title, description;
     private static EditText keyInput;
     Switch keyEnableSwitch;
     static VigenereCipher keyParserCipher;
 
+    private TextView[] infos;
+
     private SharedPreferences.Editor editor = Activity.getEditor(); // superclass Fragment soon^TM
 
     public AdditionalVigenereFragment() {
         keyParserCipher = new VigenereCipher();
         // required public empty constructor
-    }
-
-    public void initParameters(View view) {
-        title = view.findViewById(R.id.customCipherTitle);
-        description = view.findViewById(R.id.customCipherDescription);
-        keyInput = view.findViewById(R.id.additionalKey);
-        keyEnableSwitch = view.findViewById(R.id.keyEnableSwitch);
-
-        keyInput.setVisibility(View.INVISIBLE);
     }
 
     public static String getExtraKey() {
@@ -107,16 +100,13 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
 
         hideInput(constraintLayout, constraintSet);
 
-        keyEnableSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        keyEnableSwitch.setOnCheckedChangeListener((CompoundButton buttonView, boolean isChecked) -> {
                 if(isChecked) {
                     showInput(constraintLayout, constraintSet);
                 } else {
                     hideInput(constraintLayout, constraintSet);
                     keyInput.setText("");
                 }
-            }
         });
     }
 
@@ -124,8 +114,9 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
     public void setLightTheme() {
         editor.putBoolean(Activity.getModeKey(), false); // put key "Mode" and 'false' for indicating Light mode
 
-        LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.AdditionalVigenereLayout));
-        layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(getActivity(), R.color.backgroundLightColor));
+        layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.AdditionalVigenereLayout));
+        layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(context, R.color.backgroundLightColor));
+        LayoutAdapter.setTextColors(infos, ContextCompat.getColor(context, R.color.lightTextColor));
 
         editor.apply();
     }
@@ -134,8 +125,9 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
     public void setDarkTheme() {
         editor.putBoolean(Activity.getModeKey(), true);
 
-        LayoutAdapter layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.AdditionalVigenereLayout));
-        layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(getActivity(), R.color.backgroundDarkColor));
+        layoutAdapter = new LayoutAdapter((ConstraintLayout) view.findViewById(R.id.AdditionalVigenereLayout));
+        layoutAdapter.setFrameLayoutBackgroundColor(ContextCompat.getColor(context, R.color.backgroundDarkColor));
+        LayoutAdapter.setTextColors(infos, ContextCompat.getColor(context, R.color.darkTextColor));
 
         editor.apply();
     }
@@ -169,6 +161,21 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
         keyInput.addTextChangedListener(textChangedListener);
     }
 
+    @Override
+    public void setParameters() {
+        title = view.findViewById(R.id.customCipherTitle);
+        description = view.findViewById(R.id.customCipherDescription);
+        keyInput = view.findViewById(R.id.additionalKey);
+        keyEnableSwitch = view.findViewById(R.id.keyEnableSwitch);
+
+        infos = new TextView[]{title, description, keyInput, keyEnableSwitch};
+
+        setContext(getActivity());
+
+        keyInput.setVisibility(View.INVISIBLE);
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -176,7 +183,7 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
 
         ConstraintLayout constraintLayout = view.findViewById(R.id.AdditionalVigenereLayout);
 
-        initParameters(view);
+        setParameters();
         setKeySwitchListener(constraintLayout);
         setInputListener();
 

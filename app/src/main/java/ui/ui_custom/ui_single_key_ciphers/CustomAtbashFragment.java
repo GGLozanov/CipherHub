@@ -25,9 +25,9 @@ public class CustomAtbashFragment extends CustomCipherFragment implements Custom
 
     }
 
-    static private String atbashKey = "abcdefghijklmnopqrstuvwxyz";
+    private static String atbashKey = "abcdefghijklmnopqrstuvwxyz";
 
-    static public String getAtbashKey() {return atbashKey;}
+    public static String getAtbashKey() {return atbashKey;}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,23 +35,18 @@ public class CustomAtbashFragment extends CustomCipherFragment implements Custom
 
         final Resources resources = getResources();
 
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CustomCipherDialogFragment customCipherDialogFragment = new CustomAtbashDialogFragment(resources.getString(R.string.custom_atbash_dialog_message),
-                        resources.getString(R.string.custom_dialog_hint), resources.getString(R.string.custom_dialog_positive_button_message),
-                        resources.getString(R.string.custom_dialog_negative_button_message));
-                customCipherDialogFragment.setTargetFragment(CustomAtbashFragment.this, 2);
-                customCipherDialogFragment.show(getFragmentManager(), "Custom Atbash Dialog");
-            }
-        });
+        dialogButton.setOnClickListener((View v) -> {
+            CustomCipherDialogFragment customCipherDialogFragment = new CustomAtbashDialogFragment(
+                    resources.getString(R.string.custom_atbash_dialog_message),
+                resources.getString(R.string.custom_dialog_hint), resources.getString(R.string.custom_dialog_positive_button_message),
+                resources.getString(R.string.custom_dialog_negative_button_message));
 
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendInput("abcdefghijklmnopqrstuvwxyz");
-                Toast.makeText(getActivity().getApplicationContext(), "Atbash cipher successfully reset!", Toast.LENGTH_LONG).show();
-            }
+            customCipherDialogFragment.setTargetFragment(CustomAtbashFragment.this, 2);
+            customCipherDialogFragment.show(getFragmentManager(), "Custom Atbash Dialog");});
+
+        resetButton.setOnClickListener((View v) -> {
+            sendInput("abcdefghijklmnopqrstuvwxyz");
+            Toast.makeText(getActivity().getApplicationContext(), "Atbash cipher successfully reset!", Toast.LENGTH_LONG).show();
         });
 
         return view;

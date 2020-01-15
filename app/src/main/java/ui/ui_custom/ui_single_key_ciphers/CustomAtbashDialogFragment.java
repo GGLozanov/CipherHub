@@ -20,9 +20,7 @@ public class CustomAtbashDialogFragment extends CustomCipherDialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        submit.setOnClickListener((View v) -> {
                 String atbashKey = input.getText().toString();
                 if(!atbashKey.equals("")) {
                     onInputSelected.sendInput(atbashKey);
@@ -30,15 +28,9 @@ public class CustomAtbashDialogFragment extends CustomCipherDialogFragment {
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(), "Invalid input! Key must not be empty!", Toast.LENGTH_SHORT).show();
                 }
-            }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDialog().dismiss();
-            }
-        });
+        cancel.setOnClickListener((View v) -> getDialog().dismiss()); // lambda func statement
 
         return view;
     }

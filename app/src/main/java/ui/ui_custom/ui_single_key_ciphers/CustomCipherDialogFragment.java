@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -15,16 +16,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
+import com.example.cipherhub.SetVisibilityModes;
+
+import adapters.LayoutAdapter;
+import ui.ui_core.VisibilityDialogFragment;
+import ui.ui_core.VisibilityFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 
-public class CustomCipherDialogFragment extends DialogFragment {
+public class CustomCipherDialogFragment extends VisibilityDialogFragment implements SetVisibilityModes, VisibilityDialogFragment.Setup {
 
     public interface OnInputSelected {
         void sendInput(String input);
@@ -38,6 +45,29 @@ public class CustomCipherDialogFragment extends DialogFragment {
     protected TextView title;
     protected TextView submit, cancel;
 
+    private TextView[] IOs;
+
+    @Override
+    public void setLightTheme() {
+        editor.putBoolean(Activity.getModeKey(), true);
+
+        layoutAdapter = new LayoutAdapter((LinearLayout) view.findViewById(R.id.customCipherDialogLayout));
+        layoutAdapter.setDialogLayoutBackroundResource(R.drawable.dialog_light_background);
+        LayoutAdapter.setTextColors(IOs, ContextCompat.getColor(context, R.color.lightTextColor));
+
+        editor.apply();
+    }
+
+    @Override
+    public void setDarkTheme() {
+        editor.putBoolean(Activity.getModeKey(), true);
+
+        layoutAdapter = new LayoutAdapter((LinearLayout) view.findViewById(R.id.customCipherDialogLayout));
+        layoutAdapter.setDialogLayoutBackroundResource(R.drawable.dialog_dark_background);
+        LayoutAdapter.setTextColors(IOs, ContextCompat.getColor(context, R.color.darkTextColor));
+
+        editor.apply();
+    }
 
     public CustomCipherDialogFragment(String title, String editText, String positiveBtnText, String negativeBtnText) {
         titleText = title;
@@ -46,11 +76,16 @@ public class CustomCipherDialogFragment extends DialogFragment {
         this.negativeBtnText = negativeBtnText;
     }
 
-    protected void setParameters(View view) {
+    @Override
+    public void setParameters() {
         title = view.findViewById(R.id.CustomCipherHeading);
         submit = view.findViewById(R.id.CustomCipherOk);
         cancel = view.findViewById(R.id.CustomCipherCancel);
         input = view.findViewById(R.id.CustomCipherInput);
+
+        IOs = new TextView[]{input, title};
+
+        setContext(getActivity());
 
         title.setText(titleText);
         input.setHint(editText);
@@ -62,16 +97,15 @@ public class CustomCipherDialogFragment extends DialogFragment {
 
     @Override @NonNull
     public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_custom_cipher_dialog, container, false);
+        view = inflater.inflate(R.layout.fragment_custom_cipher_dialog, container, false);
         //center EditText input by using setGravity method. Gravity of a text is its alignment.
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT)); // set the window to transparent as to not see the rest of the corner
-        view.findViewById(R.id.customCipherDialogLayout).setBackgroundResource(
-                Activity.getMode() ?
-                        R.drawable.dialog_dark_background :
-                        R.drawable.dialog_light_background); // set the background resource to the layout by checking sharedprefs beforehand
 
-        setParameters(view);
+        setParameters();
+
+        if(Activity.getMode()) setDarkTheme();
+        else setLightTheme();
 
         return view;
     }

@@ -9,7 +9,8 @@
     <color name="darkButtonColor">#864747</color>
     <color name="backgroundDarkColor">#3f3f3f</color>
 
-    <color name="textColor">#cccccc</color>
+    <color name="darkTextColor">#cccccc</color>
+    <color name="lightTextColor">#444444</color>
     <color name="okButtonColor">#0892d0</color>
     <color name="cancelButtonColor">#d1a054</color>
 

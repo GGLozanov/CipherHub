@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/keyCipherLayout"
+    android:id="@+id/cipherLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ui.ui_core.KeyCipherFragment"
@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/KeyString" />
+        app:layout_constraintTop_toBottomOf="@+id/keyInput" />
 
     <EditText
         android:id="@+id/decodedInput"
@@ -43,13 +43,13 @@
         android:ems="10"
         android:hint="@string/decoded_input"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/KeyString"
+        app:layout_constraintBottom_toTopOf="@+id/keyInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText style="@style/EditText"
-        android:id="@+id/KeyString"
+        android:id="@+id/keyInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"

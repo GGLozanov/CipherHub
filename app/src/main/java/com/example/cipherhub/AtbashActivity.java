@@ -6,18 +6,19 @@ import androidx.viewpager.widget.ViewPager;
 
 import androidx.fragment.app.Fragment;
 
-import ui.ui_core.FragmentPageAdapter;
+import java.util.HashMap;
+
+import adapters.FragmentPageAdapter;
 import ui.ui_core.SetUpViewPager;
 
 public class AtbashActivity extends Activity implements SetUpViewPager {
 
-    ViewPager viewPager;
-    FragmentPageAdapter fragmentPageAdapter;
-
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        for(Fragment fragment : fragmentCollection.get(3).keySet()) {
-            adapter.addFragment(fragment, fragmentCollection.get(3).get(fragment));
+
+        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(3);
+        for(Fragment fragment : fragmentMap.keySet()) {
+            adapter.addFragment(fragment, fragmentMap.get(fragment));
         }
         viewPager.setAdapter(adapter);
     }

@@ -19,7 +19,6 @@ public class CustomCaesarDialogFragment extends CustomCipherDialogFragment {
 
     private String caesarShiftAmount;
 
-
     public CustomCaesarDialogFragment(String title, String editText, String positiveBtnText, String negativeBtnText) {
         super(title, editText, positiveBtnText, negativeBtnText);
     }
@@ -36,28 +35,21 @@ public class CustomCaesarDialogFragment extends CustomCipherDialogFragment {
 
         configInput();
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        submit.setOnClickListener((View v) -> {
                 caesarShiftAmount = input.getText().toString();
-                if(!caesarShiftAmount.equals("") && Integer.parseInt(caesarShiftAmount) <= 26) { //if the string isn't empty, we send the data to the caesar fragment
+                boolean isNotEmpty = !caesarShiftAmount.equals("");
+                if(isNotEmpty && Integer.parseInt(caesarShiftAmount) <= 26) { //if the string isn't empty, we send the data to the caesar fragment
                     onInputSelected.sendInput(caesarShiftAmount); //send the input through the implementation of the method in CustomCipherFragment
                     getDialog().dismiss(); //dismiss the dialog at the end
                 } else {
-                    Toast.makeText(getActivity().getApplicationContext(), caesarShiftAmount.equals("") ? "Invalid input! Key must not be empty!" : "Invalid input! Key must not exceed 26!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), !isNotEmpty ? "Invalid input! Key must not be empty!" : "Invalid input! Key must not exceed 26!", Toast.LENGTH_SHORT).show();
                     // create a Toast (short little feedback message) to throw when the arguments are null or exceed the limit;
                     // Toast.LENGTH_SHORT is a static integer property (macro) for the duration of the Toast obj (2 seconds).
                     // we use chaining and we show() it at the end.
                 }
-            }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDialog().dismiss(); //dismiss our current dialog
-            }
-        });
+        cancel.setOnClickListener((View v) -> getDialog().dismiss()); // dismiss our current dialog
 
         return view;
     }

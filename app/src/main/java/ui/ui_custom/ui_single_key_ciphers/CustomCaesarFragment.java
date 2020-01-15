@@ -12,7 +12,7 @@ import com.example.cipherhub.SetVisibilityModes;
 
 import managers.CipherCallerManager;
 
-public class CustomCaesarFragment extends CustomCipherFragment implements CustomCipherDialogFragment.OnInputSelected, SetVisibilityModes {
+public class CustomCaesarFragment extends CustomCipherFragment implements CustomCipherDialogFragment.OnInputSelected {
 
     public CustomCaesarFragment() {
 
@@ -36,24 +36,16 @@ public class CustomCaesarFragment extends CustomCipherFragment implements Custom
 
         final Resources resources = getResources();
 
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        dialogButton.setOnClickListener((View v) -> {
                 CustomCaesarDialogFragment customCaesarDialogFragment = new CustomCaesarDialogFragment(resources.getString(R.string.custom_caesar_dialog_message),
                         resources.getString(R.string.custom_dialog_hint), resources.getString(R.string.custom_dialog_positive_button_message),
                         resources.getString(R.string.custom_dialog_negative_button_message));
                 customCaesarDialogFragment.setTargetFragment(CustomCaesarFragment.this, 1); //request code for accessing the target fragment outside
-                customCaesarDialogFragment.show(getFragmentManager(), "Custom Caesar Dialog");
-            }
-        });
+                customCaesarDialogFragment.show(getFragmentManager(), "Custom Caesar Dialog");});
 
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        resetButton.setOnClickListener((View v) -> {
                 sendInput("3"); //send the input with the constant default value
-                Toast.makeText(getActivity().getApplicationContext(), "Caesar Cipher successfully reset!", Toast.LENGTH_LONG).show();
-            }
-        });
+                Toast.makeText(getActivity().getApplicationContext(), "Caesar Cipher successfully reset!", Toast.LENGTH_LONG).show(); });
 
         return view;
     }
