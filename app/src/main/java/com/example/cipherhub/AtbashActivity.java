@@ -26,8 +26,8 @@ public class AtbashActivity extends Activity implements SetUpViewPager {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_atbash);
 
+        setContentView(R.layout.activity_atbash);
         configureToolbar();
 
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);

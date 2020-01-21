@@ -24,10 +24,9 @@ public class PolybiusActivity extends Activity implements SetUpViewPager {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_polybius);
 
+        setContentView(R.layout.activity_polybius);
         configureToolbar();
 
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);

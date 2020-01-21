@@ -1,6 +1,5 @@
 package ciphers;
 
-import android.util.Log;
 import android.widget.EditText;
 
 public abstract class KeyCipher extends Cipher {
@@ -10,20 +9,21 @@ public abstract class KeyCipher extends Cipher {
     public void setKeyText(EditText keyText) {this.keyText = keyText;}
     public EditText getKeyText() {return keyText;}
 
-    String keyString;
+    String key;
     String keyTemplate;
     String currentkeyTemplate;
 
     int keyEncodeIndexCounter;
     int keyDecodeIndexCounter;
 
-    public void setKeyString(String key) {keyString = key;}
+    public void setKey(String key) {
+        this.key = key;}
     public void setTemplate(String template) {keyTemplate = template;}
     public void setCurrentKeyTemplate(String currTemplate) {currentkeyTemplate = currTemplate;}
 
     public String getKeyTemplate() {return keyTemplate;}
     public String getCurrentKeyTemplate() {return currentkeyTemplate;}
-    public String getKeyString() {return keyString;}
+    public String getKey() {return key;}
 
     public void resetEncodeIndexCounter() {keyEncodeIndexCounter = 0;}
     public void resetDecodeIndexCounter() {keyDecodeIndexCounter = 0;}
@@ -32,7 +32,7 @@ public abstract class KeyCipher extends Cipher {
 
         if(s.equals("")) return;
 
-        keyString += keyTemplate.charAt(keyEncodeIndexCounter++);
+        key += keyTemplate.charAt(keyEncodeIndexCounter++);
 
         if(keyExceedsMessage(s)) {
             trimKeyString(s);
@@ -45,7 +45,7 @@ public abstract class KeyCipher extends Cipher {
 
         if(s.equals("")) return;
 
-        keyString += keyTemplate.charAt(keyDecodeIndexCounter++);
+        key += keyTemplate.charAt(keyDecodeIndexCounter++);
 
         // need to add ability to shorten key if Editable is shortened (!) -> implemented
 
@@ -83,10 +83,10 @@ public abstract class KeyCipher extends Cipher {
     }
 
     public void trimKeyString(String s) { // method to trim a string from the beginning to either the length of the input or the key
-        keyString = keyString.substring(0, Math.min(keyString.length(), s.length()));
+        key = key.substring(0, Math.min(key.length(), s.length()));
     }
 
     public boolean keyExceedsMessage(String s) {
-        return keyString.length() > s.length();
+        return key.length() > s.length();
     }
 }

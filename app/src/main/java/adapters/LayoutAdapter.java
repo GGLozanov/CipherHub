@@ -58,7 +58,6 @@ public class LayoutAdapter {
     }
 
     public void setButtonsLightMode(Button[] buttons) {
-        // LayoutAdapter.setTextColors(buttons, 0x00000); // set colour to black
         for(Button button : buttons) { // for each button in buttons
             button.setBackgroundResource(R.drawable.button_light_background);
         }
@@ -66,7 +65,6 @@ public class LayoutAdapter {
 
     public void setButtonsLightMode(Button[] buttons, @NonNull Context context) {
         LayoutAdapter.setTextColors(buttons, ContextCompat.getColor(context, R.color.lightTextColor));
-        // LayoutAdapter.setTextColors(buttons, 0x00000); // set colour to black
         for(Button button : buttons) { // for each button in buttons
             button.setBackgroundResource(R.drawable.button_light_background);
         }

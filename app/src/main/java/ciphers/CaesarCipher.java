@@ -10,18 +10,15 @@ public class CaesarCipher extends Cipher {
         decodedText = "";
         for(int i = 0; i < base.length(); i++) {
 
-            int currentCharValue = (int) base.charAt(i);
+            char baseCharacter = base.charAt(i);
 
-            if(characterValidator.isSpecialCharacter(currentCharValue)) {
-                decodedText += (char)currentCharValue;
+            if(isSpecialCase(baseCharacter)) {
                 continue;
             }
 
-            if(characterValidator.isInvalidCharacter((currentCharValue))) continue;
+            int asciiValue = (int) baseCharacter + key;
 
-            int asciiValue = currentCharValue + key;
-
-            if(characterValidator.isCaesarDecodeSpecialCase(currentCharValue, currentCharValue > 'Z' ? ('z' - key) : ('Z' - key))) asciiValue -= 26;
+            if(characterValidator.isCaesarDecodeSpecialCase(baseCharacter, baseCharacter > 'Z' ? ('z' - key) : ('Z' - key))) asciiValue -= 26;
 
             decodedText += (char)asciiValue;
         }
@@ -34,18 +31,15 @@ public class CaesarCipher extends Cipher {
         encodedText = "";
         for(int i = 0; i < base.length(); i++) {
 
-            int currentCharValue = (int) base.charAt(i);
+            char baseCharacter = base.charAt(i);
 
-            if(characterValidator.isSpecialCharacter(currentCharValue)) {
-                encodedText += (char)currentCharValue;
+            if(isSpecialCase(baseCharacter)) {
                 continue;
             }
 
-            if(characterValidator.isInvalidCharacter((currentCharValue))) continue;
+            int asciiValue = (int) baseCharacter - key;
 
-            int asciiValue = currentCharValue - key;
-
-            if(characterValidator.isCaesarEncodeSpecialCase(currentCharValue, characterValidator.isLowercaseLetter(currentCharValue) ? (key + 'a') : (key + 'A'))) asciiValue += 26;
+            if(characterValidator.isCaesarEncodeSpecialCase(baseCharacter, characterValidator.isLowercaseLetter(baseCharacter) ? (key + 'a') : (key + 'A'))) asciiValue += 26;
 
             encodedText += (char)asciiValue;
         }

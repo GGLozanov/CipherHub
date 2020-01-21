@@ -2,11 +2,9 @@ package managers;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.EditText;
 
 import ciphers.VigenereCipher;
-import managers.CipherCallerManager;
 import ui.ui_custom.ui_table_key_ciphers.AdditionalVigenereFragment;
 
 public class KeyCipherCallerManager extends CipherCallerManager {
@@ -29,7 +27,7 @@ public class KeyCipherCallerManager extends CipherCallerManager {
     private void updateVariables() {
         keyTemplate = vigenereCipher.getKeyTemplate();
         currentkeyTemplate = vigenereCipher.getCurrentKeyTemplate();
-        keyString = vigenereCipher.getKeyString();
+        keyString = vigenereCipher.getKey();
         isEncodeEvoked = vigenereCipher.getEncodeState();
         isDecodeEvoked = vigenereCipher.getDecodeState();
 
@@ -39,7 +37,7 @@ public class KeyCipherCallerManager extends CipherCallerManager {
     public void handleVigenereEncodingKey(String keyString, String keyTemplate, String currentkeyTemplate, String inputString) {
         if(vigenereCipher.isKeyChanged(keyTemplate, currentkeyTemplate) && inputString.length() < currentkeyTemplate.length()) { // replace key if key is changed
 
-            vigenereCipher.setKeyString(keyString.replaceAll(currentkeyTemplate, keyTemplate)); // crashes if key is entirely changed
+            vigenereCipher.setKey(keyString.replaceAll(currentkeyTemplate, keyTemplate)); // crashes if key is entirely changed
             if(vigenereCipher.keyExceedsMessage(inputString)) vigenereCipher.trimKeyString(inputString); // trims the key if the new one is too long
 
             vigenereCipher.setCurrentKeyTemplate(keyTemplate);
@@ -52,7 +50,7 @@ public class KeyCipherCallerManager extends CipherCallerManager {
     public void handleVigenereDecodingKey(String keyString, String keyTemplate, String currentkeyTemplate, String outputString) {
         if(vigenereCipher.isKeyChanged(keyTemplate, currentkeyTemplate) && outputString.length() < currentkeyTemplate.length()) { // reset everything if key has changed
 
-            vigenereCipher.setKeyString(keyString.replaceAll(currentkeyTemplate, keyTemplate)); // crashes if key is changed entirely
+            vigenereCipher.setKey(keyString.replaceAll(currentkeyTemplate, keyTemplate)); // crashes if key is changed entirely
             if(vigenereCipher.keyExceedsMessage(outputString)) vigenereCipher.trimKeyString(outputString);
 
             vigenereCipher.setCurrentKeyTemplate(keyTemplate);
@@ -85,7 +83,7 @@ public class KeyCipherCallerManager extends CipherCallerManager {
                 // Vigenere encode here for both keys to produce third key (do vigenere on both elongated keys)
 
                 if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) {
-                    vigenereCipher.setKeyString(keyTemplate);
+                    vigenereCipher.setKey(keyTemplate);
                     vigenereCipher.setCurrentKeyTemplate(keyTemplate);
                     vigenereCipher.setSourceMethod(false);
                     vigenereCipher.setIsInputFirst(true);
@@ -130,7 +128,7 @@ public class KeyCipherCallerManager extends CipherCallerManager {
                 updateVariables();
 
                 if(keyTemplate.length() > s.length() || keyTemplate.isEmpty()) {
-                    vigenereCipher.setKeyString(keyTemplate);
+                    vigenereCipher.setKey(keyTemplate);
                     vigenereCipher.setCurrentKeyTemplate(keyTemplate);
                     vigenereCipher.setSourceMethod(true);
                     vigenereCipher.setIsInputFirst(true);
@@ -171,9 +169,9 @@ public class KeyCipherCallerManager extends CipherCallerManager {
             @Override
             public void afterTextChanged(Editable s) {
                 vigenereCipher.setTemplate(s.toString());
-                vigenereCipher.setKeyString(s.toString());
+                vigenereCipher.setKey(s.toString());
                 keyTemplate = vigenereCipher.getKeyTemplate();
-                keyString = vigenereCipher.getKeyString();
+                keyString = vigenereCipher.getKey();
 
                 Editable inputTextEditable = decodedInput.getText();
                 Editable vigenereTextEditable = encodedOutput.getText();

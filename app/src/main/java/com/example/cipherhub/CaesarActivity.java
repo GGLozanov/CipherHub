@@ -13,7 +13,6 @@ import ui.ui_core.SetUpViewPager;
 public class CaesarActivity extends Activity implements SetUpViewPager {
 
     // include viewpager for activities -> done
-
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
 
@@ -26,10 +25,9 @@ public class CaesarActivity extends Activity implements SetUpViewPager {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_caesar);
 
+        setContentView(R.layout.activity_caesar);
         configureToolbar();
 
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);

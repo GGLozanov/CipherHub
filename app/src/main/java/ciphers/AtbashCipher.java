@@ -5,11 +5,11 @@ public class AtbashCipher extends KeyCipher {
     private String reverseLowerKeyString = "";
     private String reverseUpperKeyString = "";
 
-    //keyString and keyTemplate are both keys, just one is lowercase and the other is uppercase
+    // key and keyTemplate are both keys, just one is lowercase and the other is uppercase
 
     private void reverseLowerKeyString() {
-        for(int counter = keyString.length() - 1; counter >= 0; counter--) { //equal to gives one more iteration (includes 'a')
-            reverseLowerKeyString += keyString.charAt(counter);
+        for(int counter = key.length() - 1; counter >= 0; counter--) { // equal to gives one more iteration (includes 'a')
+            reverseLowerKeyString += key.charAt(counter);
         }
     }
 
@@ -19,10 +19,10 @@ public class AtbashCipher extends KeyCipher {
         }
     }
 
-    //default key for now is alphabet; will add support for more in the future -> added
+    // default key for now is alphabet; will add support for more in the future -> added
     public AtbashCipher(String key) {
-        keyString = key;
-        keyTemplate = keyString.toUpperCase(); //keyTemplate acts as holder for uppercase key in this case
+        this.key = key;
+        keyTemplate = this.key.toUpperCase(); // keyTemplate acts as holder for uppercase key in this case
         reverseUpperKeyString();
         reverseLowerKeyString();
     }
@@ -31,20 +31,20 @@ public class AtbashCipher extends KeyCipher {
         encodedText = "";
 
         for(int i = 0; i < base.length(); i++) {
-            char currentCharacter = base.charAt(i);
+            char baseCharacter = base.charAt(i);
 
-            if(characterValidator.isInvalidCharacter(currentCharacter)) continue;
-            if(characterValidator.isSpecialCharacter(currentCharacter) || (keyString.indexOf(currentCharacter) == -1
-                    && keyTemplate.indexOf(currentCharacter) == -1)) {
-                encodedText += currentCharacter;
+            if(isSpecialCase(baseCharacter)) {
+                if(key.indexOf(baseCharacter) == -1 && keyTemplate.indexOf(baseCharacter) == -1) {
+                    encodedText += baseCharacter;
+                }
                 continue;
             }
 
-            if(characterValidator.isLowercaseLetter(currentCharacter)) {
-                encodedText += reverseLowerKeyString.charAt(keyString.indexOf(currentCharacter));
+            if(characterValidator.isLowercaseLetter(baseCharacter)) {
+                encodedText += reverseLowerKeyString.charAt(key.indexOf(baseCharacter));
             }
-            else if (characterValidator.isCapitalLetter(currentCharacter)) {
-                encodedText += reverseUpperKeyString.charAt(keyTemplate.indexOf(currentCharacter));
+            else if (characterValidator.isCapitalLetter(baseCharacter)) {
+                encodedText += reverseUpperKeyString.charAt(keyTemplate.indexOf(baseCharacter));
             }
         }
 
@@ -56,20 +56,20 @@ public class AtbashCipher extends KeyCipher {
         decodedText = "";
 
         for(int i = 0; i < base.length(); i++) {
-            char currentCharacter = base.charAt(i);
+            char baseCharacter = base.charAt(i);
 
-            if(characterValidator.isInvalidCharacter(currentCharacter)) continue;
-            if(characterValidator.isSpecialCharacter(currentCharacter)|| (reverseLowerKeyString.indexOf(currentCharacter) == -1
-                    && reverseUpperKeyString.indexOf(currentCharacter) == -1)) {
-                decodedText += currentCharacter;
+            if(isSpecialCase(baseCharacter)) {
+                if(reverseLowerKeyString.indexOf(baseCharacter) == -1 && reverseUpperKeyString.indexOf(baseCharacter) == -1) {
+                    decodedText += baseCharacter;
+                }
                 continue;
             }
 
-            if(characterValidator.isLowercaseLetter(currentCharacter)) {
-                decodedText += keyString.charAt(reverseLowerKeyString.indexOf(currentCharacter));
+            if(characterValidator.isLowercaseLetter(baseCharacter)) {
+                decodedText += key.charAt(reverseLowerKeyString.indexOf(baseCharacter));
             }
             else if (characterValidator.isCapitalLetter(base.charAt(i))) {
-                decodedText += keyTemplate.charAt(reverseUpperKeyString.indexOf(currentCharacter));
+                decodedText += keyTemplate.charAt(reverseUpperKeyString.indexOf(baseCharacter));
             }
         }
 

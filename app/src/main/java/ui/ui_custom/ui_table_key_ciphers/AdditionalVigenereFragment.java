@@ -45,7 +45,7 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
 
     public static String getExtraKey() {
         if(keyInput == null) return "";
-        return keyParserCipher.getKeyString();
+        return keyParserCipher.getKey();
     }
 
     public static EditText getKeyInput() {
@@ -154,7 +154,7 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
 
                 keyParserCipher.updateEncodingKeyByBase(KeyCipherCallerManager.getVigenereCipher().getKeyTemplate()); // enlarge additional key by the original key (use it as margin)
 
-                KeyCipherCallerManager.getKeyText().setText(keyParserCipher.VigenereEncode(keyParserCipher.getKeyString(), KeyCipherCallerManager.getVigenereCipher().getKeyTemplate()));
+                KeyCipherCallerManager.getKeyText().setText(keyParserCipher.VigenereEncode(keyParserCipher.getKey(), KeyCipherCallerManager.getVigenereCipher().getKeyTemplate()));
             }
         };
 

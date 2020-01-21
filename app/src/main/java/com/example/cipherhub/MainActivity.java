@@ -32,7 +32,6 @@ public class MainActivity extends Activity implements SetUpViewPager { //main cl
         super.onCreate(savedInstanceState); // call parent (Activity) implementation of onCreate() and pass in the last saved instance (constant)
 
         setContentView(R.layout.activity_main); // set the screen's layout to the xml file in layout (can interact with it)
-
         configureToolbar();
 
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);

@@ -32,6 +32,37 @@ public abstract class Cipher { //superclass for all ciphers
     public ASCIIUtils getCharacterValidator() {
         return characterValidator;
     }
+
+    protected boolean isSpecialCase(char character) {
+        if(characterValidator.isSpecialCharacter(character)) {
+            // sharedprefs whether to ignore or include characters not in key
+            encodedText += character;
+            return true;
+        }
+
+        if(characterValidator.isInvalidCharacter(character)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected boolean isSpecialCase(String key) {
+        for(int i = 0; i < key.length(); i++) {
+            char character = key.charAt(i);
+            if(characterValidator.isSpecialCharacter(character)) {
+                // sharedprefs whether to ignore or include characters not in key
+                encodedText += character;
+                return true;
+            }
+
+            if(characterValidator.isInvalidCharacter(character)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
 // Polybius for Cyrillic...?

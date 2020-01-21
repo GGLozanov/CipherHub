@@ -1,7 +1,5 @@
 package ciphers;
 
-import android.util.Log;
-
 public class VigenereCipher extends KeyCipher {
 
     private boolean sourceMethod = true; // default source method (either decode or encode for key cipher) -> true is encode, false is decode
@@ -17,7 +15,7 @@ public class VigenereCipher extends KeyCipher {
     public void setSourceMethod(boolean sourceMethod) {this.sourceMethod = sourceMethod;}
 
     public VigenereCipher() {
-        keyString = "";
+        key = "";
         keyTemplate =  "";
         currentkeyTemplate = "";
         keyEncodeIndexCounter = 0;

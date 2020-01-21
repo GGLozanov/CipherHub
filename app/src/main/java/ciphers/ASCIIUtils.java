@@ -2,12 +2,16 @@ package ciphers;
 
 import android.util.Log;
 
+import java.time.temporal.ValueRange;
+
+import exceptions.InvalidRangeException;
+
 public class ASCIIUtils {
 
     boolean isSpecialCharacter(int currentCharValue) { //attempt to encapsulate method as one from CaesarActivity or use it from global import class containing it -> done
         return currentCharValue == '.' || currentCharValue == '!' || currentCharValue == '?' ||
                 currentCharValue == ',' || currentCharValue == ':' || currentCharValue == ';' ||
-                currentCharValue == '-' || currentCharValue == ' ';
+                currentCharValue == '-' || currentCharValue == ' ' || currentCharValue == '\'' || currentCharValue == '’';
     }
 
     boolean isCapitalLetter(int currentCharValue) {
