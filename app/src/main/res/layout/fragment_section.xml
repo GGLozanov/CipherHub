@@ -2,21 +2,31 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
+    android:id="@+id/sectionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.SectionFragment">
+    tools:context="ui.ui_core.SectionFragment"
+    android:background="@color/backgroundDarkColor">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sectionTitle"
-        android:layout_width="348dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="87dp"
-        android:layout_marginLeft="87dp"
-        android:layout_marginTop="46dp"
+        style="@style/Text"
+        android:layout_width="385dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="88dp"
         android:layout_marginRight="88dp"
-        android:layout_marginBottom="63dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="@string/app_name"
         android:textSize="60sp"
@@ -24,19 +34,21 @@
         app:layout_constraintBottom_toTopOf="@+id/sectionDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/sectionDescription"
-        android:layout_width="339dp"
-        android:layout_height="338dp"
+        style="@style/Text"
+        android:layout_width="341dp"
+        android:layout_height="405dp"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="77dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
-        android:layout_marginBottom="199dp"
+        android:layout_marginBottom="50dp"
         android:text="@string/app_description"
+        android:textSize="20sp"
         app:fontFamily="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

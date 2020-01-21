@@ -2,25 +2,25 @@ package com.example.cipherhub;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import ui.CipherFragment;
-import ui.SectionFragment;
-import ui.FragmentPageAdapter;
-import ui.SetUpPagerInterface;
+import java.util.HashMap;
 
-public class CaesarActivity extends AppCompatActivity implements SetUpPagerInterface {
+import adapters.FragmentPageAdapter;
+import ui.ui_core.SetUpViewPager;
 
-    //include viewpager for activities -> done
+public class CaesarActivity extends Activity implements SetUpViewPager {
 
-    ViewPager viewPager;
-    FragmentPageAdapter fragmentPageAdapter;
+    // include viewpager for activities -> done
 
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        adapter.addFragment(new SectionFragment(), "Caesar Screen");
-        adapter.addFragment(new CipherFragment(), "Caesar Cipher");
+
+        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(1);
+        for(Fragment fragment : fragmentMap.keySet()) { // returns a set of the keys
+            adapter.addFragment(fragment, fragmentMap.get(fragment));
+        }
         viewPager.setAdapter(adapter);
     }
 
@@ -30,12 +30,13 @@ public class CaesarActivity extends AppCompatActivity implements SetUpPagerInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caesar);
 
+        configureToolbar();
+
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);
 
         viewPager.setCurrentItem(0);
-
     }
 }

@@ -1,5 +1,7 @@
 package ciphers;
 
+import android.util.Log;
+
 public class ASCIIUtils {
 
     boolean isSpecialCharacter(int currentCharValue) { //attempt to encapsulate method as one from CaesarActivity or use it from global import class containing it -> done
@@ -98,6 +100,13 @@ public class ASCIIUtils {
             if(isSpecialCharacter(base.charAt(i))) count++;
         }
         return count;
+    }
+
+    public static String EnlargeString(String base, String limitString) {
+        for(int i = 0; i < limitString.length(); i++) {
+            base += limitString.charAt(i);
+        }
+        return base;
     }
 
 }

@@ -2,32 +2,38 @@ package com.example.cipherhub; //main designated package
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
 
-import ui.QuadrupButtonFragment;
-import ui.SectionFragment;
-import ui.FragmentPageAdapter;
-import ui.SetUpPagerInterface;
+import java.util.HashMap;
+
+import adapters.FragmentPageAdapter;
+import ui.ui_core.SetUpViewPager;
 //import android.Animation.animation;
 
-public class MainActivity extends AppCompatActivity implements SetUpPagerInterface { //main class that inherits from AppCompatActivity (superclass for Activity)
+public class MainActivity extends Activity implements SetUpViewPager { //main class that inherits from AppCompatActivity (superclass for Activity)
+    // sharedPreferences for different user modes (novice cipher student, adept, master, etc.)
 
-    ViewPager viewPager;
-    FragmentPageAdapter fragmentPageAdapter;
-
+    @Override
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        adapter.addFragment(new SectionFragment(), "Main Screen"); //add quadruple button fragment later on (once for main activity)
-        adapter.addFragment(new QuadrupButtonFragment(), "Page 1");
+
+        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(0);
+        for(Fragment fragment : fragmentMap.keySet()) {
+            adapter.addFragment(fragment, fragmentMap.get(fragment)); // get key by fragment and place it in adapter
+        }
+
         viewPager.setAdapter(adapter);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) { //overriding the OnCreate() default method for Activity to what we want
-        super.onCreate(savedInstanceState); //call parent constructor of AppCompatActivity and pass in the last saved instance (constant)
+    protected void onCreate(Bundle savedInstanceState) { // overriding the OnCreate() default method for Activity to what we want.
+        // Not much point in doing this in a polymorphic manner because this method is always overridden for any activity either way
+        super.onCreate(savedInstanceState); // call parent (Activity) implementation of onCreate() and pass in the last saved instance (constant)
 
-        setContentView(R.layout.activity_main); //set the screen's layout to the xml file in layout (can interact with it)
+        setContentView(R.layout.activity_main); // set the screen's layout to the xml file in layout (can interact with it)
+
+        configureToolbar();
 
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);

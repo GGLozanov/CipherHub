@@ -1,7 +1,7 @@
-package ui;
+package ui.ui_core;
 
 import androidx.viewpager.widget.ViewPager;
 
-public interface SetUpPagerInterface {
+public interface SetUpViewPager {
     void setUpViewPager(ViewPager viewPager);
 }

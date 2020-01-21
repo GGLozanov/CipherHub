@@ -1,39 +1,34 @@
 package com.example.cipherhub;
 
 import android.os.Bundle;
-import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import ciphers.AtbashCipher;
-import ui.CipherFragment;
-import ui.SectionFragment;
-import ui.FragmentPageAdapter;
-import ui.SetUpPagerInterface;
+import androidx.fragment.app.Fragment;
 
-public class AtbashActivity extends AppCompatActivity implements SetUpPagerInterface {
+import java.util.HashMap;
 
-    EditText inputText;
-    EditText atbashText;
+import adapters.FragmentPageAdapter;
+import ui.ui_core.SetUpViewPager;
 
-    AtbashCipher atbashCipher;
-
-    ViewPager viewPager;
-    FragmentPageAdapter fragmentPageAdapter;
+public class AtbashActivity extends Activity implements SetUpViewPager {
 
     public void setUpViewPager(ViewPager viewPager) {
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        adapter.addFragment(new SectionFragment(), "Atbash Screen");
-        adapter.addFragment(new CipherFragment(), "Atbash Cipher");
+
+        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(3);
+        for(Fragment fragment : fragmentMap.keySet()) {
+            adapter.addFragment(fragment, fragmentMap.get(fragment));
+        }
         viewPager.setAdapter(adapter);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atbash);
+
+        configureToolbar();
 
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
@@ -41,6 +36,5 @@ public class AtbashActivity extends AppCompatActivity implements SetUpPagerInter
         setUpViewPager(viewPager);
 
         viewPager.setCurrentItem(0);
-
     }
 }

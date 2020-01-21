@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF0000</color>
+    <color name="colorDarkPrimary">#2A2A2A</color>
     <color name="colorPrimaryDark">#8B0000</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="colorLightPrimary">#87adde</color>
+
+    <color name="darkButtonColor">#864747</color>
+    <color name="backgroundDarkColor">#3f3f3f</color>
+
+    <color name="darkTextColor">#cccccc</color>
+    <color name="lightTextColor">#444444</color>
+    <color name="okButtonColor">#0892d0</color>
+    <color name="cancelButtonColor">#d1a054</color>
+
+    <color name="dialogLightBackgroundColor">#6b584f</color>
+    <color name="backgroundLightColor">#d9ac73</color>
+    <color name="lightButtonColor">#d9ac73</color>
+
+
 </resources>

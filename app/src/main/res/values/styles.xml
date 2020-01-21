@@ -1,11 +1,64 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Base application Dark theme. -->
+    <style name="DarkAppTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:itemBackground">@color/colorDarkPrimary</item>
+        <item name="colorPrimary">@color/colorDarkPrimary</item>
+        <item name="colorPrimaryDark">@color/colorDarkPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Base application Light theme. -->
+    <style name="LightAppTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:itemBackground">@color/backgroundLightColor</item>
+        <item name="colorPrimary">@color/colorLightPrimary</item>
+        <item name="colorPrimaryDark">@color/colorLightPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ColouredButton" parent="android:style/Widget.Button">
+        <item name="android:background">@drawable/button_dark_background</item>
+        <item name="android:textColor">@color/darkTextColor</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text" parent="android:TextAppearance">
+        <item name="android:textColor">@color/darkTextColor</item>
+    </style>
+
+    <style name="EditText" parent="android:style/Widget.EditText">
+        <item name="android:textColorHint">@color/darkTextColor</item>
+        <item name="android:textColor">@color/darkTextColor</item>
+    </style>
+
+    <style name="DialogEditText" parent="android:style/Widget.EditText">
+        <item name="android:textColorHint">@color/darkTextColor</item>
+        <item name="android:textColor">@color/darkTextColor</item>
+        <item name="android:layout_width">55dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:maxLength">1</item>
+    </style>
+
+    <style name="DialogText" parent="android:style/Widget.TextView">
+        <item name="android:layout_width">107dp</item>
+        <item name="android:layout_height">39dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DialogReferralText" parent="android:style/Widget.TextView">
+        <item name="android:background">@drawable/dialog_dark_button_background</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/darkTextColor</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginRight">20dp</item>
     </style>
 
 </resources>

@@ -1,19 +1,16 @@
 package ciphers;
 
-import android.text.Editable;
+public class CaesarCipher extends Cipher {
 
-public class CaesarCipher extends Ciphers {
-
-    private int key;
+    private Integer key;
 
     public CaesarCipher(int key) {this.key = key;}
 
-    public String CaesarDecoder(Editable base){
+    public String CaesarDecode(String base) {
         decodedText = "";
-        String defaultInput = base.toString();
-        for(int i = 0; i < defaultInput.length(); i++) {
+        for(int i = 0; i < base.length(); i++) {
 
-            int currentCharValue = (int) defaultInput.charAt(i);
+            int currentCharValue = (int) base.charAt(i);
 
             if(characterValidator.isSpecialCharacter(currentCharValue)) {
                 decodedText += (char)currentCharValue;
@@ -26,8 +23,6 @@ public class CaesarCipher extends Ciphers {
 
             if(characterValidator.isCaesarDecodeSpecialCase(currentCharValue, currentCharValue > 'Z' ? ('z' - key) : ('Z' - key))) asciiValue -= 26;
 
-            //if(((asciiValue != ' ' && (asciiValue < 'A')) || (asciiValue > 'z'))continue;
-
             decodedText += (char)asciiValue;
         }
 
@@ -35,12 +30,11 @@ public class CaesarCipher extends Ciphers {
         return decodedText;
     }
 
-    public String CaesarEncoder(Editable base){
+    public String CaesarEncode(String base) {
         encodedText = "";
-        String defaultInput = base.toString();
-        for(int i = 0; i < defaultInput.length(); i++) {
+        for(int i = 0; i < base.length(); i++) {
 
-            int currentCharValue = (int) defaultInput.charAt(i);
+            int currentCharValue = (int) base.charAt(i);
 
             if(characterValidator.isSpecialCharacter(currentCharValue)) {
                 encodedText += (char)currentCharValue;

@@ -2,13 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout4"
+    android:id="@+id/cipherLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.KeyCipherFragment" >
+    tools:context="ui.ui_core.KeyCipherFragment"
+    android:background="@color/backgroundDarkColor">
 
     <EditText
-        android:id="@+id/EncodedOutputString"
+        android:id="@+id/encodedOutput"
+        style="@style/EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -19,15 +21,16 @@
         android:layout_marginBottom="218dp"
         android:width="250dp"
         android:ems="10"
-        android:hint="@string/coded_output_caesar"
+        android:hint="@string/encoded_output"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/KeyString" />
+        app:layout_constraintTop_toBottomOf="@+id/keyInput" />
 
     <EditText
-        android:id="@+id/DecodedInputString"
+        android:id="@+id/decodedInput"
+        style="@style/EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -38,15 +41,15 @@
         android:layout_marginBottom="50dp"
         android:width="250dp"
         android:ems="10"
-        android:hint="@string/decoded_input_caesar"
+        android:hint="@string/decoded_input"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/KeyString"
+        app:layout_constraintBottom_toTopOf="@+id/keyInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/KeyString"
+    <EditText style="@style/EditText"
+        android:id="@+id/keyInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -59,8 +62,8 @@
         android:ems="10"
         android:hint="@string/key_vigenere"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/EncodedOutputString"
+        app:layout_constraintBottom_toTopOf="@+id/encodedOutput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DecodedInputString" />
+        app:layout_constraintTop_toBottomOf="@+id/decodedInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>

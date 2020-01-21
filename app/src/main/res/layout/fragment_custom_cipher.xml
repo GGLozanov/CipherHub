@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customCipherLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ui.ui_custom.ui_single_key_ciphers.CustomCipherFragment"
+    android:background="@color/backgroundDarkColor">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/DialogButton"
+        style="@style/ColouredButton"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginLeft="135dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginRight="136dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/change_activity_polybius"
+        android:textColorHighlight="#00AF2929"
+        app:layout_constraintBottom_toTopOf="@+id/ResetButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CustomCipherTitle" />
+
+    <Button
+        android:id="@+id/ResetButton"
+        style="@style/ColouredButton"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginLeft="135dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginRight="136dp"
+        android:layout_marginBottom="25dp"
+        android:text="@string/change_activity_polybius"
+        android:textColorHighlight="#00AF2929"
+        app:layout_constraintBottom_toTopOf="@+id/CustomCipherDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DialogButton" />
+
+    <TextView
+        android:id="@+id/CustomCipherDescription"
+        style="@style/Text"
+        android:layout_width="340dp"
+        android:layout_height="289dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="35dp"
+        android:text="@string/app_description"
+        android:textSize="20sp"
+        app:fontFamily="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ResetButton" />
+
+    <TextView
+        android:id="@+id/CustomCipherTitle"
+        style="@style/Text"
+        android:layout_width="379dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="60sp"
+        app:fontFamily="cursive"
+        app:layout_constraintBottom_toTopOf="@+id/DialogButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

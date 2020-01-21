@@ -1,4 +1,4 @@
-package ui;
+package managers;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,22 +7,36 @@ import android.widget.EditText;
 import ciphers.AtbashCipher;
 import ciphers.CaesarCipher;
 import ciphers.PolybiusCipher;
+import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
+import ui.ui_custom.ui_table_key_ciphers.CustomPolybiusFragment;
 
 public class CipherCallerManager {
 
     EditText decodedInput;
     EditText encodedOutput;
 
-    CaesarCipher caesarCipher;
-    PolybiusCipher polybiusCipher;
-    AtbashCipher atbashCipher;
+    static CaesarCipher caesarCipher;
+    static PolybiusCipher polybiusCipher;
+    static AtbashCipher atbashCipher;
 
     public void setDecodedInput(EditText decodedInput) {this.decodedInput = decodedInput;}
     public void setEncodedOutput(EditText encodedOutput) {this.encodedOutput = encodedOutput;}
 
+    public static void instantiateCaesarCipher() {
+        caesarCipher = new CaesarCipher(Integer.parseInt(CustomCaesarFragment.getCaesarKey()));
+    } // static method for reinstantiating the caesarcipher after input has been received CustomCipherFragment (or class is instantiated by fragment)
+
+    public static void instantiateAtbashCipher() {
+        atbashCipher = new AtbashCipher(CustomAtbashFragment.getAtbashKey());
+    }
+    public static void instantiatePolybiusCipher() {
+        polybiusCipher = new PolybiusCipher(CustomPolybiusFragment.getPolybiusKey());
+    }
 
     public void CaesarCipher() {
-        caesarCipher = new CaesarCipher(3);
+
+        instantiateCaesarCipher();
 
         TextWatcher normaltoCaesarListener = new TextWatcher() {
             @Override
@@ -38,7 +52,7 @@ public class CipherCallerManager {
             public void afterTextChanged(Editable s) {
                 if(!caesarCipher.getEncodeState()) {
                     caesarCipher.setDecodeEvoked(true);
-                    encodedOutput.setText(caesarCipher.CaesarEncoder(s));
+                    encodedOutput.setText(caesarCipher.CaesarEncode(s.toString()));
                 }
                 caesarCipher.setEncodeEvoked(false);
             }
@@ -52,15 +66,13 @@ public class CipherCallerManager {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //normalInput.setText(s);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 if(!caesarCipher.getDecodeState()) {
                     caesarCipher.setEncodeEvoked(true);
-                    decodedInput.setText(caesarCipher.CaesarDecoder(s));
-                    //isDecodeEvoked = false;
+                    decodedInput.setText(caesarCipher.CaesarDecode(s.toString()));
                 }
                 caesarCipher.setDecodeEvoked(false);
             }
@@ -77,7 +89,8 @@ public class CipherCallerManager {
     }
 
     public void AtbashCipher() {
-        atbashCipher = new AtbashCipher("abcdefghijklmnopqrstuvwxyz");
+
+        instantiateAtbashCipher();
 
         TextWatcher InputtoAtbash = new TextWatcher() {
             @Override
@@ -132,7 +145,7 @@ public class CipherCallerManager {
     }
 
     public void PolybiusCipher() {
-        polybiusCipher = new PolybiusCipher();
+        instantiatePolybiusCipher();
 
         final TextWatcher InputToPolybius = new TextWatcher() {
             @Override

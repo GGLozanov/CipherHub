@@ -1,33 +1,24 @@
 package com.example.cipherhub;
 
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import ciphers.PolybiusCipher;
-import ui.CipherFragment;
-import ui.SectionFragment;
-import ui.FragmentPageAdapter;
-import ui.SetUpPagerInterface;
+import java.util.HashMap;
 
-public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInterface {
+import adapters.FragmentPageAdapter;
+import ui.ui_core.SetUpViewPager;
 
-    EditText inputText;
-    EditText polybiusText;
-    TextView lengthView;
+public class PolybiusActivity extends Activity implements SetUpViewPager {
 
-    PolybiusCipher polybiusCipher;
-
-    ViewPager viewPager;
-    FragmentPageAdapter fragmentPageAdapter;
-
-    public void setUpViewPager(ViewPager viewPager) {
+    public void setUpViewPager(ViewPager viewPager) { // UI template theme here
         FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
-        adapter.addFragment(new SectionFragment(), "Polybius Screen");
-        adapter.addFragment(new CipherFragment(), "Polybius Cipher");
+
+        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(4);
+        for(Fragment fragment : fragmentMap.keySet()) {
+            adapter.addFragment(fragment, fragmentMap.get(fragment));
+        }
         viewPager.setAdapter(adapter);
     }
 
@@ -37,13 +28,14 @@ public class PolybiusActivity extends AppCompatActivity implements SetUpPagerInt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polybius);
 
+        configureToolbar();
+
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);
 
         viewPager.setCurrentItem(0);
-
     }
 
 }

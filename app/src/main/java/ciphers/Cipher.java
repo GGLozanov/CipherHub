@@ -4,12 +4,12 @@ import android.text.Editable;
 import android.util.Log;
 import android.widget.EditText;
 
-public class Ciphers {
+public abstract class Cipher { //superclass for all ciphers
 
     ASCIIUtils characterValidator = new ASCIIUtils();
 
-    EditText inputText;
-    EditText outputText;
+    private EditText inputText;
+    private EditText outputText;
 
     String encodedText = "";
     String decodedText = "";
@@ -29,12 +29,9 @@ public class Ciphers {
     public void setEncodeEvoked(boolean encodeEvoke) {isEncodeEvoked = encodeEvoke;}
     public void setDecodeEvoked(boolean decodeEvoke) {isDecodeEvoked = decodeEvoke;}
 
-    public boolean updateEncodeEvoked(boolean encodeEvoke) {return isEncodeEvoked = encodeEvoke;}
-    public boolean updateDecodeEvoked(boolean decodeEvoke) {return isDecodeEvoked = decodeEvoke;}
-
     public ASCIIUtils getCharacterValidator() {
         return characterValidator;
     }
 }
 
-//Polybius for Cyrillic ?
+// Polybius for Cyrillic...?
