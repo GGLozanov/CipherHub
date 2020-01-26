@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.cipherhub.A1Z26Activity;
 import com.example.cipherhub.AtbashActivity;
 import com.example.cipherhub.CaesarActivity;
 import com.example.cipherhub.PolybiusActivity;
@@ -43,4 +44,9 @@ public class ActivityCallerManager {
         fragment.startActivity(PolybiusIntent);
     }
 
+    public void OpenA1Z26Activity() {
+        Intent A1Z26Intent = new Intent(fragment.getActivity(), A1Z26Activity.class);
+
+        fragment.startActivity(A1Z26Intent);
+    }
 }

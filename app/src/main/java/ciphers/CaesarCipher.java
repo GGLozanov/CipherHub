@@ -8,6 +8,7 @@ public class CaesarCipher extends Cipher {
 
     public String CaesarDecode(String base) {
         decodedText = "";
+
         for(int i = 0; i < base.length(); i++) {
 
             char baseCharacter = base.charAt(i);
@@ -29,6 +30,7 @@ public class CaesarCipher extends Cipher {
 
     public String CaesarEncode(String base) {
         encodedText = "";
+
         for(int i = 0; i < base.length(); i++) {
 
             char baseCharacter = base.charAt(i);

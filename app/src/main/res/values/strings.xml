@@ -45,10 +45,19 @@
     <string name="polybius_output_example">21361144234251</string>
     <string name="polybius_visualisation_description">Visualisation of the Polybius cipher</string>
 
+    <string name="a1z26_title">A1Z26 Cipher</string>
+    <string name="a1z26_description">A1Z26 is very simple direct substitution cypher, where each alphabet letter is replaced by its number in the alphabet.</string>
+    <string name="a1z26_input_description">We input the plaintext "You're cute!" in the input field and we pass it to the A1Z26 cipher.</string>
+    <string name="a1z26_output_description">The cipher converts the characters with the given delimiter (by default "-") and returns</string>
+
+    <string name="page_one">Page 1</string>
+    <string name="page_two">Page 2</string>
+
     <string name="caesar">Caesar</string>
     <string name="vigenere">Vigenere</string>
     <string name="atbash">Atbash</string>
     <string name="polybius">Polybius</string>
+    <string name="a1z26">A1Z26</string>
 
     <string name="custom_dialog_hint">Enter Custom Key</string>
     <string name="custom_dialog_positive_button_message">Submit</string>

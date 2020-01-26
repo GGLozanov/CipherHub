@@ -16,14 +16,14 @@ public class MainActivity extends Activity implements SetUpViewPager { //main cl
 
     @Override
     public void setUpViewPager(ViewPager viewPager) {
-        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
 
         HashMap<Fragment, String> fragmentMap = fragmentCollection.get(0);
         for(Fragment fragment : fragmentMap.keySet()) {
-            adapter.addFragment(fragment, fragmentMap.get(fragment)); // get key by fragment and place it in adapter
+            fragmentPageAdapter.addFragment(fragment, fragmentMap.get(fragment)); // get key by fragment and place it in adapter
         }
 
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(fragmentPageAdapter);
     }
 
     @Override
@@ -34,7 +34,6 @@ public class MainActivity extends Activity implements SetUpViewPager { //main cl
         setContentView(R.layout.activity_main); // set the screen's layout to the xml file in layout (can interact with it)
         configureToolbar();
 
-        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);

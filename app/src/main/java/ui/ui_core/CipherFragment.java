@@ -64,7 +64,6 @@ public class CipherFragment extends VisibilityFragment implements SetVisibilityM
 
     @Override
     public void setParameters() {
-        Log.d("Called default cipher", "True");
         cipherKey = getArguments().getString(FragmentPageAdapter.getCipherKey());
 
         decodedInput = view.findViewById(R.id.decodedInput);
@@ -109,6 +108,10 @@ public class CipherFragment extends VisibilityFragment implements SetVisibilityM
 
             case "Polybius":
                 cipherManager.PolybiusCipher();
+                break;
+
+            case "A1Z26":
+                cipherManager.A1Z26Cipher();
                 break;
 
             default: break;

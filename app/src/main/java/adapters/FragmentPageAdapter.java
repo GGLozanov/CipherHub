@@ -30,6 +30,8 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
     private static final String buttonThreeKey = "ButtonThree";
     private static final String buttonFourKey = "ButtonFour";
 
+    private static final String pageKey = "Page";
+
     private static final String inputDescriptionKey = "DemonstrationInputDescription"; // which input description to use for which key/no-key cipher
     private static final String outputDescriptionKey = "DemonstrationOutputDescription"; // which output description to use for which key/no-key cipher
 
@@ -51,6 +53,8 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
     public static String getButtonTwoKey() {return buttonTwoKey;}
     public static String getButtonThreeKey() {return buttonThreeKey;}
     public static String getButtonFourKey() {return buttonFourKey;}
+
+    public static String getPageKey() {return pageKey;}
 
     public static String getInputDescriptionKey() {return inputDescriptionKey;}
     public static String getOutputDescriptionKey() {return outputDescriptionKey;}
@@ -106,11 +110,23 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
                 bundle.putString(titleKey, appResources.getString(R.string.polybius_title));
                 bundle.putString(descriptionKey, appResources.getString(R.string.polybius_description));
                 break;
+            case "A1Z26 Screen": // A1Z26
+                bundle.putString(titleKey, appResources.getString(R.string.a1z26_title));
+                bundle.putString(descriptionKey, appResources.getString(R.string.a1z26_description));
+                break;
             case "Page 1": // Page 1 holds the 4 OG ciphers
+                bundle.putString(pageKey, appResources.getString(R.string.page_one));
                 bundle.putString(buttonOneKey, appResources.getString(R.string.caesar));
                 bundle.putString(buttonTwoKey, appResources.getString(R.string.vigenere));
                 bundle.putString(buttonThreeKey, appResources.getString(R.string.atbash));
                 bundle.putString(buttonFourKey, appResources.getString(R.string.polybius));
+                break;
+            case "Page 2":
+                bundle.putString(pageKey, appResources.getString(R.string.page_two));
+                bundle.putString(buttonOneKey, appResources.getString(R.string.a1z26));
+                bundle.putString(buttonTwoKey, ""); // add more ciphers
+                bundle.putString(buttonThreeKey, "");
+                bundle.putString(buttonFourKey, "");
                 break;
             case "Caesar Cipher":
                 bundle.putString(cipherKey, appResources.getString(R.string.caesar));
@@ -123,6 +139,9 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
                 break;
             case "Polybius Cipher":
                 bundle.putString(cipherKey, appResources.getString(R.string.polybius));
+                break;
+            case "A1Z26 Cipher":
+                bundle.putString(cipherKey, appResources.getString(R.string.a1z26));
                 break;
             case "Custom Caesar":
                 bundle.putString(titleKey, context.getResources().getString(R.string.custom_caesar_title));
@@ -141,6 +160,8 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
                 bundle.putString(descriptionKey, appResources.getString(R.string.custom_polybius_description));
                 bundle.putString(buttonOneKey, appResources.getString(R.string.custom_button));
                 bundle.putString(resetKey, appResources.getString(R.string.custom_reset_button));
+                break;
+            case "Custom A1Z26":
                 break;
             case "Caesar Demonstration":
                 bundle.putString(inputDescriptionKey, appResources.getString(R.string.caesar_input_description));
@@ -163,6 +184,8 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
                 bundle.putString(outputDescriptionKey, appResources.getString(R.string.polybius_output_description));
                 bundle.putString(cipherDemonstrationKey, "PolybiusDemonstration");
                 break;
+            case "A1Z26 Demonstration":
+                break;
             case "Caesar Visualisation":
                 bundle.putString(visualisationKey, appResources.getString(R.string.caesar_visualisation_description));
                 bundle.putString(visualisationImageKey, "CaesarVisualisationImage");
@@ -178,6 +201,8 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
             case "Polybius Visualisation":
                 bundle.putString(visualisationKey, appResources.getString(R.string.polybius_visualisation_description));
                 bundle.putString(visualisationImageKey, "PolybiusVisualisationImage");
+                break;
+            case "A1Z26 Visualisation":
                 break;
             default:
                 break;

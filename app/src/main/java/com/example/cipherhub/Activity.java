@@ -61,30 +61,41 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
             case "Minimalist":
                 // Main Activity
 
-                addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment()}, new String[]{"Main Screen", "Page 1"});
+                addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment(), new QuadrupButtonFragment()},
+                        new String[]{"Main Screen", "Page 1", "Page 2"});
 
                 // Caesar Cipher
 
-                addFragments(new Fragment[]{new CipherFragment(), new CustomCaesarFragment()}, new String[]{"Caesar Cipher", "Custom Caesar"});
+                addFragments(new Fragment[]{new CipherFragment(), new CustomCaesarFragment()},
+                        new String[]{"Caesar Cipher", "Custom Caesar"});
 
                 // Vigenere Cipher
 
-                addFragments(new Fragment[]{new KeyCipherFragment(), new AdditionalVigenereFragment()}, new String[]{"Vigenere Cipher", "Custom Vigenere"});
+                addFragments(new Fragment[]{new KeyCipherFragment(), new AdditionalVigenereFragment()},
+                        new String[]{"Vigenere Cipher", "Custom Vigenere"});
 
                 // Atbash Cipher
 
-                addFragments(new Fragment[]{new CipherFragment(), new CustomAtbashFragment()}, new String[]{"Atbash Cipher", "Custom Atbash"});
+                addFragments(new Fragment[]{new CipherFragment(), new CustomAtbashFragment()},
+                        new String[]{"Atbash Cipher", "Custom Atbash"});
 
                 // Polybius Cipher
 
-                addFragments(new Fragment[]{new CipherFragment(), new CustomPolybiusFragment()}, new String[]{"Polybius Cipher", "Custom Polybius"});
+                addFragments(new Fragment[]{new CipherFragment(), new CustomPolybiusFragment()},
+                        new String[]{"Polybius Cipher", "Custom Polybius"});
+
+                // A1Z26 Cipher
+
+                addFragments(new Fragment[]{new CipherFragment()},
+                        new String[]{"A1Z26 Cipher"});
 
                 break;
 
             case "Novice":
                 // Main Activity
 
-                addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment()}, new String[]{"Main Screen", "Page 1"});
+                addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment(), new QuadrupButtonFragment()},
+                        new String[]{"Main Screen", "Page 1", "Page 2"});
 
                 // Caesar Cipher
 
@@ -106,17 +117,23 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
                 addFragments(new Fragment[]{new SectionFragment(), new CipherDemonstrationFragment(), new CipherFragment(), new CustomPolybiusFragment()},
                         new String[]{"Polybius Screen", "Polybius Demonstration", "Polybius Cipher", "Custom Polybius"});
 
+                // A1Z26 Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment()},
+                        new String[]{"A1Z26 Screen", "A1Z26 Cipher"});
+
                 break;
 
             default: // for default layout
                 // Main Activity
 
-                addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment()}, new String[]{"Main Screen", "Page 1"});
+                addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment(), new QuadrupButtonFragment()},
+                        new String[]{"Main Screen", "Page 1", "Page 2"});
 
                 // Caesar Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomCaesarFragment()},
-                        new String[]{"Caesar Screen", "Caesar Demonstration", "Caesar Cipher", "Custom Caesar"});
+                        new String[]{"Caesar Screen", "Caesar Cipher", "Custom Caesar"});
 
                 // Vigenere Cipher
 
@@ -132,6 +149,11 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomPolybiusFragment()},
                         new String[]{"Polybius Screen", "Polybius Cipher", "Custom Polybius"});
+
+                // A1Z26 Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment()},
+                        new String[]{"A1Z26 Screen", "A1Z26 Cipher"});
 
                 break;
         }

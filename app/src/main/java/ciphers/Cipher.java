@@ -34,34 +34,27 @@ public abstract class Cipher { //superclass for all ciphers
     }
 
     protected boolean isSpecialCase(char character) {
-        if(characterValidator.isSpecialCharacter(character)) {
+        if(characterValidator.isSpecialCharacter(character) && !characterValidator.isNumber(character)) {
             // sharedprefs whether to ignore or include characters not in key
             encodedText += character;
             return true;
         }
 
-        if(characterValidator.isInvalidCharacter(character)) {
-            return true;
-        }
+//        if(characterValidator.isInvalidCharacter(character)) {
+//            return false;
+//        }
 
         return false;
     }
 
-    protected boolean isSpecialCase(String key) {
+    protected char isSpecialCase(String key) {
+        char character;
         for(int i = 0; i < key.length(); i++) {
-            char character = key.charAt(i);
-            if(characterValidator.isSpecialCharacter(character)) {
-                // sharedprefs whether to ignore or include characters not in key
-                encodedText += character;
-                return true;
-            }
-
-            if(characterValidator.isInvalidCharacter(character)) {
-                return true;
-            }
+            character = key.charAt(i);
+            if(isSpecialCase(character)) return character;
         }
 
-        return false;
+        return '\0';
     }
 }
 

@@ -2,23 +2,26 @@ package com.example.cipherhub;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
-import java.util.HashMap;
 
 import adapters.FragmentPageAdapter;
 import ui.ui_core.SetUpViewPager;
+import androidx.fragment.app.Fragment;
 
-public class PolybiusActivity extends Activity implements SetUpViewPager {
+import java.util.HashMap;
 
-    public void setUpViewPager(ViewPager viewPager) { // UI template theme here
+public class A1Z26Activity extends Activity implements SetUpViewPager {
+
+    @Override
+    public void setUpViewPager(ViewPager viewPager) {
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
 
-        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(4);
+        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(5);
+
         for(Fragment fragment : fragmentMap.keySet()) {
             fragmentPageAdapter.addFragment(fragment, fragmentMap.get(fragment));
         }
+
         viewPager.setAdapter(fragmentPageAdapter);
     }
 
@@ -26,7 +29,7 @@ public class PolybiusActivity extends Activity implements SetUpViewPager {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_polybius);
+        setContentView(R.layout.activity_a1z26);
         configureToolbar();
 
         viewPager = findViewById(R.id.container);

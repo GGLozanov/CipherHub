@@ -14,13 +14,13 @@ import ui.ui_core.SetUpViewPager;
 public class AtbashActivity extends Activity implements SetUpViewPager {
 
     public void setUpViewPager(ViewPager viewPager) {
-        FragmentPageAdapter adapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
 
         HashMap<Fragment, String> fragmentMap = fragmentCollection.get(3);
         for(Fragment fragment : fragmentMap.keySet()) {
-            adapter.addFragment(fragment, fragmentMap.get(fragment));
+            fragmentPageAdapter.addFragment(fragment, fragmentMap.get(fragment));
         }
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(fragmentPageAdapter);
     }
 
     @Override
@@ -30,7 +30,6 @@ public class AtbashActivity extends Activity implements SetUpViewPager {
         setContentView(R.layout.activity_atbash);
         configureToolbar();
 
-        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
         viewPager = findViewById(R.id.container);
 
         setUpViewPager(viewPager);

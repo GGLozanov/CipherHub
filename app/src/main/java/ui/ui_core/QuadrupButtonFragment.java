@@ -1,6 +1,7 @@
 package ui.ui_core;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -97,16 +98,45 @@ public class QuadrupButtonFragment extends VisibilityFragment implements SetVisi
         }
     }
 
+
+    public interface IntentAction {
+        void OpenActivity();
+    }
+
+    private IntentAction[] determinePage() {
+        IntentAction[] intentActions = {};
+
+        switch(getArguments().getString(FragmentPageAdapter.getPageKey())) {
+            case "Page 1":
+                 intentActions = new IntentAction[] {
+                    new IntentAction() {public void OpenActivity() {activityCallerManager.OpenCaesarActivity();} },
+                    new IntentAction() {public void OpenActivity() {activityCallerManager.OpenVigenereActivity();} },
+                    new IntentAction() {public void OpenActivity() {activityCallerManager.OpenAtbashActivity();} },
+                    new IntentAction() {public void OpenActivity() {activityCallerManager.OpenPolybiusActivity();} }
+                 };
+                 break;
+            case "Page 2":
+                intentActions = new IntentAction[] {
+                        new IntentAction() {public void OpenActivity() {activityCallerManager.OpenA1Z26Activity();} },
+                        new IntentAction() {public void OpenActivity() {activityCallerManager.OpenVigenereActivity();} },
+                        new IntentAction() {public void OpenActivity() {activityCallerManager.OpenAtbashActivity();} },
+                        new IntentAction() {public void OpenActivity() {activityCallerManager.OpenPolybiusActivity();} }
+                };
+                break;
+        }
+        return intentActions;
+    }
+
     // Warning: Won't work below Java 8 (lambdas)
 
-    private void setListeners() {
-        buttonOne.setOnClickListener((View v) -> activityCallerManager.OpenCaesarActivity());
+    private void setListeners(IntentAction[] intentActions) {
+        buttonOne.setOnClickListener((View v) -> intentActions[0].OpenActivity());
 
-        buttonTwo.setOnClickListener((View v) -> activityCallerManager.OpenVigenereActivity());
+        buttonTwo.setOnClickListener((View v) -> intentActions[1].OpenActivity());
 
-        buttonThree.setOnClickListener((View v) -> activityCallerManager.OpenAtbashActivity());
+        buttonThree.setOnClickListener((View v) -> intentActions[2].OpenActivity());
 
-        buttonFour.setOnClickListener((View v) -> activityCallerManager.OpenPolybiusActivity()); // lambda onClick() function designated with '->' and argument list before that (no C++ [] for scope resolution anymore!)
+        buttonFour.setOnClickListener((View v) -> intentActions[3].OpenActivity()); // lambda onClick() function designated with '->' and argument list before that (no C++ [] for scope resolution anymore!)
     }
 
     @Override
@@ -116,7 +146,7 @@ public class QuadrupButtonFragment extends VisibilityFragment implements SetVisi
         view = inflater.inflate(R.layout.fragment_quadrup_button, container, false);
 
         setParameters();
-        setListeners();
+        setListeners(determinePage());
 
         if(Activity.getMode()) setDarkTheme();
         else setLightTheme();
