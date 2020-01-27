@@ -2,6 +2,7 @@ package ui.ui_custom.ui_single_key_ciphers;
 
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -37,6 +38,8 @@ public class CustomCipherFragment extends VisibilityFragment implements SetVisib
 
     protected Button[] buttons;
     protected TextView[] infos;
+
+    protected Resources resources;
 
     private SharedPreferences.Editor editor = Activity.getEditor();
 
@@ -97,6 +100,7 @@ public class CustomCipherFragment extends VisibilityFragment implements SetVisib
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_custom_cipher, container, false);
+        resources = getResources();
 
         setParameters();
 

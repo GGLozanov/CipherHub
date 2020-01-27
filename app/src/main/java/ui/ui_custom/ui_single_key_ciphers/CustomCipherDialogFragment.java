@@ -35,6 +35,8 @@ public class CustomCipherDialogFragment extends VisibilityDialogFragment impleme
 
     public interface OnInputSelected {
         void sendInput(String input);
+
+        void sendInput(String input, String delim);
     }
 
     OnInputSelected onInputSelected;
@@ -67,6 +69,10 @@ public class CustomCipherDialogFragment extends VisibilityDialogFragment impleme
         LayoutAdapter.setTextColors(IOs, ContextCompat.getColor(context, R.color.darkTextColor));
 
         editor.apply();
+    }
+
+    public CustomCipherDialogFragment() {
+
     }
 
     public CustomCipherDialogFragment(String title, String editText, String positiveBtnText, String negativeBtnText) {
@@ -112,10 +118,10 @@ public class CustomCipherDialogFragment extends VisibilityDialogFragment impleme
 
 
     @Override
-    public void onAttach(Context context) {  //method to be executed when a fragment is connected to an activity (attached). First in the lifecycle.
+    public void onAttach(Context context) {  // method to be executed when a fragment is connected to an activity (attached). First in the lifecycle.
         super.onAttach(context);
         try {
-            onInputSelected = (OnInputSelected) getTargetFragment(); //getTargetFragment() returns the current fragment set by the dialog
+            onInputSelected = (OnInputSelected) getTargetFragment(); // getTargetFragment() returns the current fragment set by the dialog
         } catch(ClassCastException e) {
             Log.e("Tag", "Failed to cast class" + e.getMessage());
         }

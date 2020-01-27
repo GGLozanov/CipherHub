@@ -26,6 +26,7 @@ import ui.ui_core.CipherFragment;
 import ui.ui_core.KeyCipherFragment;
 import ui.ui_core.QuadrupButtonFragment;
 import ui.ui_core.SectionFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomA1Z26Fragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomCipherFragment;
@@ -33,6 +34,7 @@ import ui.ui_custom.ui_table_key_ciphers.AdditionalVigenereFragment;
 import ui.ui_custom.ui_table_key_ciphers.CustomPolybiusFragment;
 import ui.ui_visual.CipherDemonstrationFragment;
 import ui.ui_visual.CipherVisualisationFragment;
+import ui.ui_visual.DemonstrationFragment;
 import ui.ui_visual.KeyCipherDemonstrationFragment;
 
 public abstract class Activity extends AppCompatActivity { // abstract superclass for all activities
@@ -86,8 +88,8 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
 
                 // A1Z26 Cipher
 
-                addFragments(new Fragment[]{new CipherFragment()},
-                        new String[]{"A1Z26 Cipher"});
+                addFragments(new Fragment[]{new CipherFragment(), new CustomA1Z26Fragment()},
+                        new String[]{"A1Z26 Cipher", "Custom A1Z26"});
 
                 break;
 
@@ -119,8 +121,8 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
 
                 // A1Z26 Cipher
 
-                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment()},
-                        new String[]{"A1Z26 Screen", "A1Z26 Cipher"});
+                addFragments(new Fragment[]{new SectionFragment(), new DemonstrationFragment(), new CipherFragment(), new CustomA1Z26Fragment()},
+                        new String[]{"A1Z26 Screen", "A1Z26 Demonstration", "A1Z26 Cipher", "Custom A1Z26"});
 
                 break;
 
@@ -152,8 +154,8 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
 
                 // A1Z26 Cipher
 
-                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment()},
-                        new String[]{"A1Z26 Screen", "A1Z26 Cipher"});
+                addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomA1Z26Fragment()},
+                        new String[]{"A1Z26 Screen", "A1Z26 Cipher", "Custom A1Z26"});
 
                 break;
         }

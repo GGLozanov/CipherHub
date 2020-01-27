@@ -103,6 +103,9 @@ public class DemonstrationFragment extends VisibilityFragment implements SetVisi
             case "PolybiusDemonstration":
                 setDemonstrationText(resources.getString(R.string.polybius_input_example), resources.getString(R.string.polybius_output_example));
                 break;
+            case "A1Z26Demonstration":
+                setDemonstrationText(resources.getString(R.string.a1z26_input_example), resources.getString(R.string.a1z26_output_example));
+                break;
         }
     }
 

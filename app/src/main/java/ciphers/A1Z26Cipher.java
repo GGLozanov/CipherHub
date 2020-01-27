@@ -24,15 +24,12 @@ public class A1Z26Cipher extends KeyCipher {
             System.out.println(baseCharacter);
             if (isSpecialCase(baseCharacter)) {
                 encodedText = encodedText.substring(0, encodedText.length() - 1);
-                System.out.println("CONTINUE");
                 continue;
             }
 
-            System.out.println("APPEND");
             encodedText += Integer.toString(++keyPosition); // position in the alphabet (+1 character)
             if (i != len - 1) {
                 if (!isSpecialCase(base.charAt(i + 1))) {
-                    System.out.println("DELIM");
                     encodedText += delim; // custom delim
                 }
             }

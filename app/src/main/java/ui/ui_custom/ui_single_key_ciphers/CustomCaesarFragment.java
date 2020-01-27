@@ -29,12 +29,16 @@ public class CustomCaesarFragment extends CustomCipherFragment implements Custom
     }
 
     @Override
+    public void sendInput(String input, String delim) {
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = super.onCreateView(inflater, container, savedInstanceState); //instantiate parent view to use here
+        view = super.onCreateView(inflater, container, savedInstanceState); //instantiate parent view to use here
 
-        final Resources resources = getResources();
 
         dialogButton.setOnClickListener((View v) -> {
                 CustomCaesarDialogFragment customCaesarDialogFragment = new CustomCaesarDialogFragment(resources.getString(R.string.custom_caesar_dialog_message),

@@ -21,6 +21,11 @@ public class CustomAtbashFragment extends CustomCipherFragment implements Custom
         CipherCallerManager.instantiateAtbashCipher();
     }
 
+    @Override
+    public void sendInput(String input, String delim) {
+
+    }
+
     public CustomAtbashFragment() {
 
     }
@@ -32,8 +37,6 @@ public class CustomAtbashFragment extends CustomCipherFragment implements Custom
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
-
-        final Resources resources = getResources();
 
         dialogButton.setOnClickListener((View v) -> {
             CustomCipherDialogFragment customCipherDialogFragment = new CustomAtbashDialogFragment(

@@ -8,6 +8,7 @@ import ciphers.A1Z26Cipher;
 import ciphers.AtbashCipher;
 import ciphers.CaesarCipher;
 import ciphers.PolybiusCipher;
+import ui.ui_custom.ui_single_key_ciphers.CustomA1Z26Fragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
 import ui.ui_custom.ui_table_key_ciphers.CustomPolybiusFragment;
@@ -37,7 +38,8 @@ public class CipherCallerManager {
     }
 
     public static void instantiateA1Z26Cipher() {
-        a1Z26Cipher = new A1Z26Cipher("abcdefghijklmnopqrstuvwxyz", "-");
+        System.out.println("Key: " + CustomA1Z26Fragment.getA1Z26Key());
+        a1Z26Cipher = new A1Z26Cipher(CustomA1Z26Fragment.getA1Z26Key(), CustomA1Z26Fragment.getDelim());
     }
 
     public void CaesarCipher() {

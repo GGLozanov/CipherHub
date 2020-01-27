@@ -48,7 +48,9 @@
     <string name="a1z26_title">A1Z26 Cipher</string>
     <string name="a1z26_description">A1Z26 is very simple direct substitution cypher, where each alphabet letter is replaced by its number in the alphabet.</string>
     <string name="a1z26_input_description">We input the plaintext "You're cute!" in the input field and we pass it to the A1Z26 cipher.</string>
-    <string name="a1z26_output_description">The cipher converts the characters with the given delimiter (by default "-") and returns</string>
+    <string name="a1z26_output_description">The cipher converts the characters with the given delimiter (by default "-") and returns "25—15—21'18—5 3—21—20—5!"</string>
+    <string name="a1z26_input_example">You\'re Cute!</string>
+    <string name="a1z26_output_example">25—15—21\'18—5 3—21—20—5!</string>
 
     <string name="page_one">Page 1</string>
     <string name="page_two">Page 2</string>
@@ -85,6 +87,10 @@
     <string name="custom_polybius_ref_message_one">First</string>
     <string name="custom_polybius_ref_message_two">Second</string>
     <string name="custom_polybius_ref_message_three">Third</string>
+
+    <string name="custom_a1z26_title">Custom A1Z26</string>
+    <string name="custom_a1z26_description">Creating your own custom A1Z26 cipher by inputting your very own key and separator (deliminator) for the encoded A1Z26 output!</string>
+    <string name="custom_a1z26_dialog_message">Enter the alphabetic key for the cipher</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -162,6 +162,10 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
                 bundle.putString(resetKey, appResources.getString(R.string.custom_reset_button));
                 break;
             case "Custom A1Z26":
+                bundle.putString(titleKey, appResources.getString(R.string.custom_a1z26_title));
+                bundle.putString(descriptionKey, appResources.getString(R.string.custom_a1z26_description));
+                bundle.putString(buttonOneKey, appResources.getString(R.string.custom_button));
+                bundle.putString(resetKey, appResources.getString(R.string.custom_reset_button));
                 break;
             case "Caesar Demonstration":
                 bundle.putString(inputDescriptionKey, appResources.getString(R.string.caesar_input_description));
@@ -185,6 +189,9 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter {
                 bundle.putString(cipherDemonstrationKey, "PolybiusDemonstration");
                 break;
             case "A1Z26 Demonstration":
+                bundle.putString(inputDescriptionKey, appResources.getString(R.string.a1z26_input_description));
+                bundle.putString(outputDescriptionKey, appResources.getString(R.string.a1z26_output_description));
+                bundle.putString(cipherDemonstrationKey, "A1Z26Demonstration");
                 break;
             case "Caesar Visualisation":
                 bundle.putString(visualisationKey, appResources.getString(R.string.caesar_visualisation_description));
