@@ -51,7 +51,7 @@ public class CustomCipherDialogFragment extends VisibilityDialogFragment impleme
 
     @Override
     public void setLightTheme() {
-        editor.putBoolean(Activity.getModeKey(), true);
+        editor.putBoolean(Activity.getModeKey(), false);
 
         layoutAdapter = new LayoutAdapter((LinearLayout) view.findViewById(R.id.customCipherDialogLayout));
         layoutAdapter.setDialogLayoutBackroundResource(R.drawable.dialog_light_background);

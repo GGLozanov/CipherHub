@@ -115,6 +115,9 @@ public class DemonstrationFragment extends VisibilityFragment implements SetVisi
         view = inflater.inflate(R.layout.fragment_cipher_demonstration, container, false);
         setParameters();
 
+        if(Activity.getMode()) setDarkTheme();
+        else setLightTheme();
+
         return view;
     }
 }

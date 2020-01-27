@@ -35,9 +35,6 @@ public class CipherDemonstrationFragment extends DemonstrationFragment {
         // Inflate the layout for this fragment
         view = super.onCreateView(inflater, container, savedInstanceState);
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
-
         return view;
     }
 
