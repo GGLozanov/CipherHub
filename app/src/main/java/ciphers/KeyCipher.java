@@ -17,7 +17,9 @@ public abstract class KeyCipher extends Cipher {
     int keyDecodeIndexCounter;
 
     public void setKey(String key) {
-        this.key = key;}
+        this.key = key;
+    }
+
     public void setTemplate(String template) {keyTemplate = template;}
     public void setCurrentKeyTemplate(String currTemplate) {currentkeyTemplate = currTemplate;}
 

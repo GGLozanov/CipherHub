@@ -14,6 +14,7 @@ public class CaesarCipher extends Cipher {
             char baseCharacter = base.charAt(i);
 
             if(isSpecialCase(baseCharacter)) {
+                decodedText += baseCharacter;
                 continue;
             }
 
