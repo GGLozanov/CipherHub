@@ -29,7 +29,7 @@ public class A1Z26Activity extends Activity implements SetUpViewPager {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_a1z26);
+        setContentView(R.layout.activity);
         configureToolbar();
 
         viewPager = findViewById(R.id.container);

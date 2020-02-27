@@ -52,7 +52,7 @@ public class CustomTableDialogFragment extends VisibilityDialogFragment implemen
         void sendInput(Character[][] input);
     }
 
-    OnInputSelected onInputSelected;
+    private OnInputSelected onInputSelected;
 
     public CustomTableDialogFragment(String title, String refOne, String refTwo, String refThree) { //init specific dialog layout elements
         titleText = title;

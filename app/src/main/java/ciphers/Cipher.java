@@ -4,12 +4,12 @@ import android.text.Editable;
 import android.util.Log;
 import android.widget.EditText;
 
-public abstract class Cipher { //superclass for all ciphers
+public abstract class Cipher { // superclass for all ciphers
 
     ASCIIUtils characterValidator = new ASCIIUtils();
 
-    private EditText inputText;
-    private EditText outputText;
+    protected EditText inputText;
+    protected EditText outputText;
 
     String encodedText = "";
     String decodedText = "";
@@ -40,9 +40,9 @@ public abstract class Cipher { //superclass for all ciphers
             return true;
         }
 
-//        if(characterValidator.isInvalidCharacter(character)) {
-//            return false;
-//        }
+        if(characterValidator.isInvalidCharacter(character)) {
+            return false;
+        }
 
         return false;
     }

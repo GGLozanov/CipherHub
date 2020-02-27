@@ -17,10 +17,12 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import adapters.FragmentPageAdapter;
+import adapters.Handler;
 import adapters.LayoutAdapter;
 import ui.ui_core.CipherFragment;
 import ui.ui_core.KeyCipherFragment;
@@ -30,6 +32,7 @@ import ui.ui_custom.ui_single_key_ciphers.CustomA1Z26Fragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomAtbashFragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomCaesarFragment;
 import ui.ui_custom.ui_single_key_ciphers.CustomCipherFragment;
+import ui.ui_custom.ui_single_key_ciphers.CustomPlayfairFragment;
 import ui.ui_custom.ui_table_key_ciphers.AdditionalVigenereFragment;
 import ui.ui_custom.ui_table_key_ciphers.CustomPolybiusFragment;
 import ui.ui_visual.CipherDemonstrationFragment;
@@ -43,6 +46,7 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
     FragmentPageAdapter fragmentPageAdapter;
 
     List<LinkedHashMap<Fragment, String>> fragmentCollection = new ArrayList<>(); // linked HashMap keeps track of insertion order3
+    HashMap<Fragment, String> fragmentMap; // map of fragments for current activity
 
     private void addFragments(Fragment[] fragments, String[] keys) {
         if(fragments.length != keys.length) return;
@@ -58,38 +62,44 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
 
     private void initFragmentMap() {
         // create separate variable for insertion in hashmap due to the dangers of double-brace initialisation (memory leaks!)
+        // TO-DO: Use enums here as well!!!
 
         switch(sharedPreferences.getString(themeKey, "Novice")) {
             case "Minimalist":
                 // Main Activity
 
                 addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment(), new QuadrupButtonFragment()},
-                        new String[]{"Main Screen", "Page 1", "Page 2"});
+                        new String[]{Handler.getMainScreen(), Handler.getPage1(), Handler.getPage2()});
 
                 // Caesar Cipher
 
                 addFragments(new Fragment[]{new CipherFragment(), new CustomCaesarFragment()},
-                        new String[]{"Caesar Cipher", "Custom Caesar"});
+                        new String[]{Handler.getCaesar(), Handler.getCustomCaesar()});
 
                 // Vigenere Cipher
 
                 addFragments(new Fragment[]{new KeyCipherFragment(), new AdditionalVigenereFragment()},
-                        new String[]{"Vigenere Cipher", "Custom Vigenere"});
+                        new String[]{Handler.getVigenere(), Handler.getCustomVigenere()});
 
                 // Atbash Cipher
 
                 addFragments(new Fragment[]{new CipherFragment(), new CustomAtbashFragment()},
-                        new String[]{"Atbash Cipher", "Custom Atbash"});
+                        new String[]{Handler.getAtbash(), Handler.getCustomAtbash()});
 
                 // Polybius Cipher
 
                 addFragments(new Fragment[]{new CipherFragment(), new CustomPolybiusFragment()},
-                        new String[]{"Polybius Cipher", "Custom Polybius"});
+                        new String[]{Handler.getPolybius(), Handler.getCustomPolybius()});
 
                 // A1Z26 Cipher
 
                 addFragments(new Fragment[]{new CipherFragment(), new CustomA1Z26Fragment()},
-                        new String[]{"A1Z26 Cipher", "Custom A1Z26"});
+                        new String[]{Handler.getA1Z26(), Handler.getCustomA1Z26()});
+
+                // Playfair Cipher
+
+                addFragments(new Fragment[]{new KeyCipherFragment(), new CustomPlayfairFragment()},
+                        new String[]{Handler.getPlayfair(), Handler.getCustomPlayfair()});
 
                 break;
 
@@ -97,32 +107,37 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
                 // Main Activity
 
                 addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment(), new QuadrupButtonFragment()},
-                        new String[]{"Main Screen", "Page 1", "Page 2"});
+                        new String[]{Handler.getMainScreen(), Handler.getPage1(), Handler.getPage2()});
 
                 // Caesar Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherDemonstrationFragment(), new CipherFragment(), new CustomCaesarFragment()},
-                        new String[]{"Caesar Screen", "Caesar Demonstration", "Caesar Cipher", "Custom Caesar"});
+                        new String[]{Handler.getCaesarScreen(), Handler.getCaesarDemonstration(), Handler.getCaesar(), Handler.getCustomCaesar()});
 
                 // Vigenere Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new KeyCipherDemonstrationFragment(), new KeyCipherFragment(), new AdditionalVigenereFragment()},
-                        new String[]{"Vigenere Screen", "Vigenere Demonstration", "Vigenere Cipher", "Custom Vigenere"});
+                        new String[]{Handler.getVigenereScreen(), Handler.getVigenereDemonstration(), Handler.getVigenere(), Handler.getCustomVigenere()});
 
                 // Atbash Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherDemonstrationFragment(), new CipherFragment(), new CustomAtbashFragment()},
-                        new String[]{"Atbash Screen", "Atbash Demonstration", "Atbash Cipher", "Custom Atbash"});
+                        new String[]{Handler.getAtbashScreen(), Handler.getAtbashDemonstration(), Handler.getAtbash(), Handler.getCustomAtbash()});
 
                 // Polybius Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherDemonstrationFragment(), new CipherFragment(), new CustomPolybiusFragment()},
-                        new String[]{"Polybius Screen", "Polybius Demonstration", "Polybius Cipher", "Custom Polybius"});
+                        new String[]{Handler.getPolybiusScreen(), Handler.getPolybiusDemonstration(), Handler.getPolybius(), Handler.getCustomPolybius()});
 
                 // A1Z26 Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new DemonstrationFragment(), new CipherFragment(), new CustomA1Z26Fragment()},
-                        new String[]{"A1Z26 Screen", "A1Z26 Demonstration", "A1Z26 Cipher", "Custom A1Z26"});
+                        new String[]{Handler.getA1Z26Screen(), Handler.getA1Z26Demonstration(), Handler.getA1Z26(), Handler.getCustomA1Z26()});
+
+                // Playfair Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new KeyCipherDemonstrationFragment(), new KeyCipherFragment(), new CustomPlayfairFragment()},
+                        new String[]{Handler.getPlayfairScreen(), Handler.getPlayfairDemonstration(), Handler.getPlayfair(), Handler.getCustomPlayfair()});
 
                 break;
 
@@ -130,32 +145,37 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
                 // Main Activity
 
                 addFragments(new Fragment[]{new SectionFragment(), new QuadrupButtonFragment(), new QuadrupButtonFragment()},
-                        new String[]{"Main Screen", "Page 1", "Page 2"});
+                        new String[]{Handler.getMainScreen(), Handler.getPage1(), Handler.getPage2()});
 
                 // Caesar Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomCaesarFragment()},
-                        new String[]{"Caesar Screen", "Caesar Cipher", "Custom Caesar"});
+                        new String[]{Handler.getCaesarScreen(), Handler.getCaesar(), Handler.getCustomCaesar()});
 
                 // Vigenere Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new KeyCipherFragment(), new AdditionalVigenereFragment()},
-                        new String[]{"Vigenere Screen", "Vigenere Cipher", "Custom Vigenere"});
+                        new String[]{Handler.getVigenereScreen(), Handler.getVigenere(), Handler.getCustomVigenere()});
 
                 // Atbash Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomAtbashFragment()},
-                        new String[]{"Atbash Screen", "Atbash Cipher", "Custom Atbash"});
+                        new String[]{Handler.getAtbashScreen(), Handler.getAtbash(), Handler.getCustomAtbash()});
 
                 // Polybius Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomPolybiusFragment()},
-                        new String[]{"Polybius Screen", "Polybius Cipher", "Custom Polybius"});
+                        new String[]{Handler.getPolybiusScreen(), Handler.getPolybius(), Handler.getCustomPolybius()});
 
                 // A1Z26 Cipher
 
                 addFragments(new Fragment[]{new SectionFragment(), new CipherFragment(), new CustomA1Z26Fragment()},
-                        new String[]{"A1Z26 Screen", "A1Z26 Cipher", "Custom A1Z26"});
+                        new String[]{Handler.getA1Z26Screen(), Handler.getA1Z26(), Handler.getCustomA1Z26()});
+
+                // Playfair Cipher
+
+                addFragments(new Fragment[]{new SectionFragment(), new KeyCipherFragment(), new CustomPlayfairFragment()},
+                        new String[]{Handler.getPlayfairScreen(), Handler.getPlayfair(), Handler.getCustomPlayfair()});
 
                 break;
         }
@@ -214,56 +234,61 @@ public abstract class Activity extends AppCompatActivity { // abstract superclas
     }
 
     private void applyLightTheme() {
-        for(LinkedHashMap<Fragment, String> map : fragmentCollection) {
-            for(Fragment fragment : map.keySet()) {
-                if(fragment instanceof CipherFragment && ((CipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((CipherFragment) fragment).setLightTheme();
-                } else if(fragment instanceof KeyCipherFragment && ((KeyCipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((KeyCipherFragment) fragment).setLightTheme();
-                } else if(fragment instanceof QuadrupButtonFragment && ((QuadrupButtonFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((QuadrupButtonFragment) fragment).setLightTheme();
-                } else if(fragment instanceof SectionFragment && ((SectionFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((SectionFragment) fragment).setLightTheme();
-                } else if(fragment instanceof CustomCipherFragment && ((CustomCipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((CustomCipherFragment) fragment).setLightTheme();
-                } else if(fragment instanceof AdditionalVigenereFragment && ((AdditionalVigenereFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((AdditionalVigenereFragment) fragment).setLightTheme();
-                } else if(fragment instanceof CipherDemonstrationFragment && ((CipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((CipherDemonstrationFragment) fragment).setLightTheme();
-                } else if(fragment instanceof CipherVisualisationFragment && ((CipherVisualisationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((CipherVisualisationFragment) fragment).setLightTheme();
-                } else if(fragment instanceof KeyCipherDemonstrationFragment && ((KeyCipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((KeyCipherDemonstrationFragment) fragment).setLightTheme();
+        for (LinkedHashMap<Fragment, String> map : fragmentCollection) {
+            for (Fragment fragment : map.keySet()) {
+                if (fragment.getActivity() != null) {
+                    if (fragment instanceof CipherFragment && ((CipherFragment) fragment).getFragmentView() != null) {
+                        ((CipherFragment) fragment).setLightTheme();
+                    } else if (fragment instanceof KeyCipherFragment && ((KeyCipherFragment) fragment).getFragmentView() != null) {
+                        ((KeyCipherFragment) fragment).setLightTheme();
+                    } else if (fragment instanceof QuadrupButtonFragment && ((QuadrupButtonFragment) fragment).getFragmentView() != null) {
+                        ((QuadrupButtonFragment) fragment).setLightTheme();
+                    } else if (fragment instanceof SectionFragment && ((SectionFragment) fragment).getFragmentView() != null) {
+                        ((SectionFragment) fragment).setLightTheme();
+                    } else if (fragment instanceof CustomCipherFragment && ((CustomCipherFragment) fragment).getFragmentView() != null) {
+                        ((CustomCipherFragment) fragment).setLightTheme();
+                    } else if (fragment instanceof AdditionalVigenereFragment && ((AdditionalVigenereFragment) fragment).getFragmentView() != null) {
+                        ((AdditionalVigenereFragment) fragment).setLightTheme();
+                    } else if (fragment instanceof CipherDemonstrationFragment && ((CipherDemonstrationFragment) fragment).getFragmentView() != null) {
+                        ((CipherDemonstrationFragment) fragment).setLightTheme();
+                    } else if (fragment instanceof CipherVisualisationFragment && ((CipherVisualisationFragment) fragment).getFragmentView() != null) {
+                        ((CipherVisualisationFragment) fragment).setLightTheme();
+                    } else if (fragment instanceof KeyCipherDemonstrationFragment && ((KeyCipherDemonstrationFragment) fragment).getFragmentView() != null) {
+                        ((KeyCipherDemonstrationFragment) fragment).setLightTheme();
+                    }
                 }
             }
-        }
 
-        configureToolbar();
+            configureToolbar();
+        }
     }
 
     private void applyDarkTheme() {
         for(LinkedHashMap<Fragment, String> map : fragmentCollection) {
             for(Fragment fragment : map.keySet()) {
-                if(fragment instanceof CipherFragment && ((CipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((CipherFragment) fragment).setDarkTheme();
-                } else if(fragment instanceof KeyCipherFragment && ((KeyCipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((KeyCipherFragment) fragment).setDarkTheme();
-                } else if(fragment instanceof QuadrupButtonFragment && ((QuadrupButtonFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((QuadrupButtonFragment) fragment).setDarkTheme();
-                } else if(fragment instanceof SectionFragment && ((SectionFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((SectionFragment) fragment).setDarkTheme();
-                } else if(fragment instanceof CustomCipherFragment && ((CustomCipherFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((CustomCipherFragment) fragment).setDarkTheme();
-                } else if(fragment instanceof AdditionalVigenereFragment && ((AdditionalVigenereFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((AdditionalVigenereFragment) fragment).setDarkTheme();
-                } else if(fragment instanceof CipherDemonstrationFragment && ((CipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((CipherDemonstrationFragment) fragment).setDarkTheme();
-                } else if(fragment instanceof CipherVisualisationFragment && ((CipherVisualisationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((CipherVisualisationFragment) fragment).setDarkTheme();
-                } else if(fragment instanceof KeyCipherDemonstrationFragment && ((KeyCipherDemonstrationFragment) fragment).getFragmentView() != null && fragment.getActivity() != null) {
-                    ((KeyCipherDemonstrationFragment) fragment).setDarkTheme();
+                if(fragment.getActivity() != null) {
+                    if (fragment instanceof CipherFragment && ((CipherFragment) fragment).getFragmentView() != null) {
+                        ((CipherFragment) fragment).setDarkTheme();
+                    } else if (fragment instanceof KeyCipherFragment && ((KeyCipherFragment) fragment).getFragmentView() != null) {
+                        ((KeyCipherFragment) fragment).setDarkTheme();
+                    } else if (fragment instanceof QuadrupButtonFragment && ((QuadrupButtonFragment) fragment).getFragmentView() != null) {
+                        ((QuadrupButtonFragment) fragment).setDarkTheme();
+                    } else if (fragment instanceof SectionFragment && ((SectionFragment) fragment).getFragmentView() != null) {
+                        ((SectionFragment) fragment).setDarkTheme();
+                    } else if (fragment instanceof CustomCipherFragment && ((CustomCipherFragment) fragment).getFragmentView() != null) {
+                        ((CustomCipherFragment) fragment).setDarkTheme();
+                    } else if (fragment instanceof AdditionalVigenereFragment && ((AdditionalVigenereFragment) fragment).getFragmentView() != null) {
+                        ((AdditionalVigenereFragment) fragment).setDarkTheme();
+                    } else if (fragment instanceof CipherDemonstrationFragment && ((CipherDemonstrationFragment) fragment).getFragmentView() != null) {
+                        ((CipherDemonstrationFragment) fragment).setDarkTheme();
+                    } else if (fragment instanceof CipherVisualisationFragment && ((CipherVisualisationFragment) fragment).getFragmentView() != null) {
+                        ((CipherVisualisationFragment) fragment).setDarkTheme();
+                    } else if (fragment instanceof KeyCipherDemonstrationFragment && ((KeyCipherDemonstrationFragment) fragment).getFragmentView() != null) {
+                        ((KeyCipherDemonstrationFragment) fragment).setDarkTheme();
+                    }
                 }
             }
+
         }
 
         configureToolbar();

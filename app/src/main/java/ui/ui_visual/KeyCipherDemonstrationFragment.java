@@ -1,11 +1,9 @@
 package ui.ui_visual;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +14,9 @@ import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
+import adapters.Enumerations;
+import adapters.Handler;
 import adapters.LayoutAdapter;
-import adapters.FragmentPageAdapter;
 import ui.ui_core.VisibilityFragment;
 
 public class KeyCipherDemonstrationFragment extends DemonstrationFragment implements SetVisibilityModes, VisibilityFragment.Setup {
@@ -41,12 +40,14 @@ public class KeyCipherDemonstrationFragment extends DemonstrationFragment implem
         LayoutAdapter.setTextColors(keyInfos, ContextCompat.getColor(context, R.color.darkTextColor));
     }
 
-    public void setKeyDemonstrations(String key) { // Really, really banal code; rework later >:(
-        Resources resources = getResources();
+    public void setKeyDemonstrations(Enumerations.Demonstration key) { // Code is now better because of enums :D
+        setDemonstrations(key);
         switch(key) { // switch for easier access when more ciphers are added later on
-            case "VigenereDemonstration":
-                setDemonstrationText(resources.getString(R.string.vigenere_input_example), resources.getString(R.string.vigenere_output_example));
+            case VigenereDemonstration:
                 keyDemonstration.setText(R.string.vigenere_key_example);
+                break;
+            case PlayfairDemonstration:
+                keyDemonstration.setText(resources.getString(R.string.playfair_key_example));
                 break;
         }
     }
@@ -72,9 +73,9 @@ public class KeyCipherDemonstrationFragment extends DemonstrationFragment implem
         super.setParameters();
         setParameters();
 
-        keyDescription.setText(bundle.getString(FragmentPageAdapter.getCipherkeyDescriptionKey()));
+        keyDescription.setText(bundle.getString(Handler.getCipherkeyDescriptionKey()));
 
-        setKeyDemonstrations(bundle.getString(FragmentPageAdapter.getCipherDemonstrationKey()));
+        setKeyDemonstrations(Enumerations.Demonstration.valueOf(bundle.getString(Handler.getCipherDemonstrationKey())));
 
         if(Activity.getMode()) setDarkTheme();
         else setLightTheme();

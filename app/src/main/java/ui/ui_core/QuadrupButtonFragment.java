@@ -1,7 +1,6 @@
 package ui.ui_core;
 
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -19,7 +18,8 @@ import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
-import adapters.FragmentPageAdapter;
+import adapters.Enumerations;
+import adapters.Handler;
 import adapters.LayoutAdapter;
 import managers.ActivityCallerManager;
 
@@ -80,10 +80,10 @@ public class QuadrupButtonFragment extends VisibilityFragment implements SetVisi
 
         Bundle bundle = getArguments();
 
-        buttonOne.setText(bundle.getString(FragmentPageAdapter.getButtonOneKey()));
-        buttonTwo.setText(bundle.getString(FragmentPageAdapter.getButtonTwoKey()));
-        buttonThree.setText(bundle.getString(FragmentPageAdapter.getButtonThreeKey()));
-        buttonFour.setText(bundle.getString(FragmentPageAdapter.getButtonFourKey()));
+        buttonOne.setText(bundle.getString(Handler.getButtonOneKey()));
+        buttonTwo.setText(bundle.getString(Handler.getButtonTwoKey()));
+        buttonThree.setText(bundle.getString(Handler.getButtonThreeKey()));
+        buttonFour.setText(bundle.getString(Handler.getButtonFourKey()));
     }
 
     @Override
@@ -98,7 +98,6 @@ public class QuadrupButtonFragment extends VisibilityFragment implements SetVisi
         }
     }
 
-
     public interface IntentAction {
         void OpenActivity();
     }
@@ -106,8 +105,10 @@ public class QuadrupButtonFragment extends VisibilityFragment implements SetVisi
     private IntentAction[] determinePage() {
         IntentAction[] intentActions = {};
 
-        switch(getArguments().getString(FragmentPageAdapter.getPageKey())) {
-            case "Page 1":
+        String page = getArguments().getString(Handler.getPageKey());
+
+        switch(Enumerations.Page.valueOf(page)) { // enum switch
+            case Page1:
                  intentActions = new IntentAction[] {
                     new IntentAction() {public void OpenActivity() {activityCallerManager.OpenCaesarActivity();} },
                     new IntentAction() {public void OpenActivity() {activityCallerManager.OpenVigenereActivity();} },
@@ -115,10 +116,10 @@ public class QuadrupButtonFragment extends VisibilityFragment implements SetVisi
                     new IntentAction() {public void OpenActivity() {activityCallerManager.OpenPolybiusActivity();} }
                  };
                  break;
-            case "Page 2":
+            case Page2:
                 intentActions = new IntentAction[] {
                         new IntentAction() {public void OpenActivity() {activityCallerManager.OpenA1Z26Activity();} },
-                        new IntentAction() {public void OpenActivity() {activityCallerManager.OpenVigenereActivity();} },
+                        new IntentAction() {public void OpenActivity() {activityCallerManager.OpenPlayfairActivity();} },
                         new IntentAction() {public void OpenActivity() {activityCallerManager.OpenAtbashActivity();} },
                         new IntentAction() {public void OpenActivity() {activityCallerManager.OpenPolybiusActivity();} }
                 };

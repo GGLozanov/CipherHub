@@ -18,6 +18,7 @@ import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
 import adapters.FragmentPageAdapter;
+import adapters.Handler;
 import adapters.LayoutAdapter;
 
 public class SectionFragment extends VisibilityFragment implements SetVisibilityModes, VisibilityFragment.Setup {
@@ -58,12 +59,14 @@ public class SectionFragment extends VisibilityFragment implements SetVisibility
         title = view.findViewById(R.id.sectionTitle);
         description = view.findViewById(R.id.sectionDescription);
 
-        title.setText(getArguments().getString(FragmentPageAdapter.getTitleKey()));
+        Bundle bundle = getArguments();
+
+        title.setText(bundle.getString(Handler.getTitleKey()));
 
         // Bundle -> a map of key strings to various Parcelable values (strings, most likely)
         // getArguments() method selects the current Bundle (savedInstanceState) and returns the bundled arguments.
 
-        description.setText(getArguments().getString(FragmentPageAdapter.getDescriptionKey()));
+        description.setText(bundle.getString(Handler.getDescriptionKey()));
 
         // getActivity() method returns the context of the current activity the fragment is in
         infos = new TextView[]{title, description};
@@ -74,6 +77,7 @@ public class SectionFragment extends VisibilityFragment implements SetVisibility
     @Override
     public void onResume() {
         super.onResume();
+
         if(Activity.getMode()) setDarkTheme();
         else setLightTheme();
 

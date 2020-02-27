@@ -15,7 +15,7 @@ public class VigenereActivity extends Activity implements SetUpViewPager {
     public void setUpViewPager(ViewPager viewPager) {
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
 
-        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(2);
+        fragmentMap = fragmentCollection.get(2);
         for(Fragment fragment : fragmentMap.keySet()) {
             fragmentPageAdapter.addFragment(fragment, fragmentMap.get(fragment));
         }
@@ -26,7 +26,7 @@ public class VigenereActivity extends Activity implements SetUpViewPager {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_vigenere);
+        setContentView(R.layout.activity);
 
         configureToolbar();
 

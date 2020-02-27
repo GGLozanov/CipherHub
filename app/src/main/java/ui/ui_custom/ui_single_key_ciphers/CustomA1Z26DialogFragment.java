@@ -22,7 +22,7 @@ public class CustomA1Z26DialogFragment extends CustomCipherDialogFragment {
     @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
+        view = super.onCreateView(inflater, container, savedInstanceState);
 
         submit.setOnClickListener((View v) -> {
             String a1z26Key = input.getText().toString();

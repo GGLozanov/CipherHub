@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements SetUpViewPager { //main cl
     public void setUpViewPager(ViewPager viewPager) {
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
 
-        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(0);
+        fragmentMap = fragmentCollection.get(0);
         for(Fragment fragment : fragmentMap.keySet()) {
             fragmentPageAdapter.addFragment(fragment, fragmentMap.get(fragment)); // get key by fragment and place it in adapter
         }
@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements SetUpViewPager { //main cl
         // Not much point in doing this in a polymorphic manner because this method is always overridden for any activity either way
         super.onCreate(savedInstanceState); // call parent (Activity) implementation of onCreate() and pass in the last saved instance (constant)
 
-        setContentView(R.layout.activity_main); // set the screen's layout to the xml file in layout (can interact with it)
+        setContentView(R.layout.activity); // set the screen's layout to the xml file in layout (can interact with it)
         configureToolbar();
 
         viewPager = findViewById(R.id.container);

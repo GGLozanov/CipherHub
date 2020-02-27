@@ -19,10 +19,8 @@ import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
-import org.w3c.dom.Text;
-
+import adapters.Handler;
 import adapters.LayoutAdapter;
-import adapters.FragmentPageAdapter;
 import ui.ui_core.VisibilityFragment;
 
 
@@ -89,10 +87,10 @@ public class CustomCipherFragment extends VisibilityFragment implements SetVisib
 
         Bundle bundle = getArguments();
 
-        title.setText(bundle.getString(FragmentPageAdapter.getTitleKey()));
-        description.setText(bundle.getString(FragmentPageAdapter.getDescriptionKey()));
-        dialogButton.setText(bundle.getString(FragmentPageAdapter.getButtonOneKey()));
-        resetButton.setText(bundle.getString(FragmentPageAdapter.getResetKey()));
+        title.setText(bundle.getString(Handler.getTitleKey()));
+        description.setText(bundle.getString(Handler.getDescriptionKey()));
+        dialogButton.setText(bundle.getString(Handler.getButtonOneKey()));
+        resetButton.setText(bundle.getString(Handler.getResetKey()));
     }
 
     @Override

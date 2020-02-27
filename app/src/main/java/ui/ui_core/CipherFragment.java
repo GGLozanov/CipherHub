@@ -7,7 +7,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,8 @@ import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
-import adapters.FragmentPageAdapter;
+import adapters.Enumerations;
+import adapters.Handler;
 import adapters.LayoutAdapter;
 import managers.CipherCallerManager;
 
@@ -34,7 +34,7 @@ public class CipherFragment extends VisibilityFragment implements SetVisibilityM
 
     CipherCallerManager cipherManager = new CipherCallerManager();
 
-    String cipherKey;
+    Enumerations.Cipher cipher;
 
     public CipherFragment() {
         // Required empty public constructor
@@ -64,7 +64,7 @@ public class CipherFragment extends VisibilityFragment implements SetVisibilityM
 
     @Override
     public void setParameters() {
-        cipherKey = getArguments().getString(FragmentPageAdapter.getCipherKey());
+        cipher = Enumerations.Cipher.valueOf(getArguments().getString(Handler.getCipherKey()));
 
         decodedInput = view.findViewById(R.id.decodedInput);
         encodedOutput = view.findViewById(R.id.encodedOutput);
@@ -88,7 +88,7 @@ public class CipherFragment extends VisibilityFragment implements SetVisibilityM
 
         setParameters();
 
-        callCipher(cipherKey);
+        callCipher(cipher);
 
         if(Activity.getMode()) setDarkTheme();
         else setLightTheme();
@@ -96,21 +96,21 @@ public class CipherFragment extends VisibilityFragment implements SetVisibilityM
         return view;
     }
 
-    public void callCipher(String cipherKey) {
-        switch (cipherKey) {
-            case "Caesar":
+    public void callCipher(Enumerations.Cipher cipher) {
+        switch (cipher) {
+            case CaesarCipher:
                 cipherManager.CaesarCipher();
                 break;
 
-            case "Atbash":
+            case AtbashCipher:
                 cipherManager.AtbashCipher();
                 break;
 
-            case "Polybius":
+            case PolybiusCipher:
                 cipherManager.PolybiusCipher();
                 break;
 
-            case "A1Z26":
+            case A1Z26Cipher:
                 cipherManager.A1Z26Cipher();
                 break;
 

@@ -16,7 +16,7 @@ public class AtbashActivity extends Activity implements SetUpViewPager {
     public void setUpViewPager(ViewPager viewPager) {
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
 
-        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(3);
+        fragmentMap = fragmentCollection.get(3);
         for(Fragment fragment : fragmentMap.keySet()) {
             fragmentPageAdapter.addFragment(fragment, fragmentMap.get(fragment));
         }
@@ -27,7 +27,7 @@ public class AtbashActivity extends Activity implements SetUpViewPager {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_atbash);
+        setContentView(R.layout.activity);
         configureToolbar();
 
         viewPager = findViewById(R.id.container);

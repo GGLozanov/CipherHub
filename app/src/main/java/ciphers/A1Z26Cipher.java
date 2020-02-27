@@ -4,11 +4,15 @@ import android.os.Debug;
 import android.util.Log;
 
 public class A1Z26Cipher extends KeyCipher {
-    String delim = "-";
+    String delim;
 
     public A1Z26Cipher(String key, String delim) {
-        this.key = key;
+        super(key);
         this.delim = delim;
+    }
+
+    public A1Z26Cipher(String key) {
+        super(key);
     }
 
     public String A1Z26Encode(String base) {
@@ -69,6 +73,7 @@ public class A1Z26Cipher extends KeyCipher {
         }
 
         if(pair.matches("^[0-9]*$")) {
+            if(pair.isEmpty()) return;
             keyPosition = Integer.parseInt(pair);
             if (keyPosition > key.length()) return;
             keyCharacter = key.charAt(keyPosition - 1);

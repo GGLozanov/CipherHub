@@ -38,7 +38,6 @@ public class CipherCallerManager {
     }
 
     public static void instantiateA1Z26Cipher() {
-        System.out.println("Key: " + CustomA1Z26Fragment.getA1Z26Key());
         a1Z26Cipher = new A1Z26Cipher(CustomA1Z26Fragment.getA1Z26Key(), CustomA1Z26Fragment.getDelim());
     }
 

@@ -13,6 +13,9 @@ public abstract class KeyCipher extends Cipher {
     String keyTemplate;
     String currentkeyTemplate;
 
+    public KeyCipher() {}
+    public KeyCipher(String key) {this.key = key;}
+
     int keyEncodeIndexCounter;
     int keyDecodeIndexCounter;
 

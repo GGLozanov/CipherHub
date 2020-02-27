@@ -4,12 +4,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import ciphers.PlayfairCipher;
 import ciphers.VigenereCipher;
 import ui.ui_custom.ui_table_key_ciphers.AdditionalVigenereFragment;
 
 public class KeyCipherCallerManager extends CipherCallerManager {
 
-    static EditText keyText; /*key properties*/
+    // Vigenere key properties
+    static EditText keyText;
     String keyTemplate; // template to replicate key by
     String currentkeyTemplate; // current template by which to compare newer ones
     String keyString; // Full key (completely parsed)
@@ -18,8 +20,10 @@ public class KeyCipherCallerManager extends CipherCallerManager {
     boolean isDecodeEvoked;
 
     private static VigenereCipher vigenereCipher;
+    private static PlayfairCipher playfairCipher;
 
     public static VigenereCipher getVigenereCipher() {return vigenereCipher;}
+    public static PlayfairCipher getPlayfairCipher() {return playfairCipher;}
 
     public static EditText getKeyText() {return keyText;}
     public void setKeyText(EditText keyText) {KeyCipherCallerManager.keyText = keyText;}
@@ -193,6 +197,10 @@ public class KeyCipherCallerManager extends CipherCallerManager {
         decodedInput.addTextChangedListener(InputToVigenereListener); //adds the listener TO the object (not the other way around)
         encodedOutput.addTextChangedListener(VigenereToInputListener);
         keyText.addTextChangedListener(KeyListener);
+    }
+
+    public void PlayfairCipher() {
+
     }
 
 }

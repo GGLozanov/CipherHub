@@ -14,7 +14,8 @@ public class CustomA1Z26Fragment extends CustomCipherFragment implements CustomC
 
     @Override
     public void sendInput(String input) {
-
+        A1Z26Key = input;
+        CipherCallerManager.instantiateA1Z26Cipher();
     }
 
     @Override

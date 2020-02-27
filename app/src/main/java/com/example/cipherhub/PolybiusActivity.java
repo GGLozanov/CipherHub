@@ -15,7 +15,7 @@ public class PolybiusActivity extends Activity implements SetUpViewPager {
     public void setUpViewPager(ViewPager viewPager) { // UI template theme here
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), this);
 
-        HashMap<Fragment, String> fragmentMap = fragmentCollection.get(4);
+        fragmentMap = fragmentCollection.get(4);
         for(Fragment fragment : fragmentMap.keySet()) {
             fragmentPageAdapter.addFragment(fragment, fragmentMap.get(fragment));
         }
@@ -26,7 +26,7 @@ public class PolybiusActivity extends Activity implements SetUpViewPager {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_polybius);
+        setContentView(R.layout.activity);
         configureToolbar();
 
         viewPager = findViewById(R.id.container);

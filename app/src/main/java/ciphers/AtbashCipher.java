@@ -21,7 +21,7 @@ public class AtbashCipher extends KeyCipher {
 
     // default key for now is alphabet; will add support for more in the future -> added
     public AtbashCipher(String key) {
-        this.key = key;
+        super(key);
         keyTemplate = this.key.toUpperCase(); // keyTemplate acts as holder for uppercase key in this case
         reverseUpperKeyString();
         reverseLowerKeyString();

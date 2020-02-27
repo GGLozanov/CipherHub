@@ -2,7 +2,6 @@ package ui.ui_visual;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,8 @@ import com.example.cipherhub.Activity;
 import com.example.cipherhub.R;
 import com.example.cipherhub.SetVisibilityModes;
 
-import adapters.FragmentPageAdapter;
+import adapters.Enumerations;
+import adapters.Handler;
 import adapters.LayoutAdapter;
 import ui.ui_core.VisibilityFragment;
 
@@ -28,6 +28,8 @@ public class DemonstrationFragment extends VisibilityFragment implements SetVisi
     protected EditText outputDemonstration;
 
     protected TextView[] infos;
+    protected String[] keys;
+    Resources resources;
 
     public TextView getInputDescription() {return inputDescription;}
     public TextView getOutputDescription() {return outputDescription;}
@@ -75,12 +77,12 @@ public class DemonstrationFragment extends VisibilityFragment implements SetVisi
 
         setContext(getActivity());
         setDescriptions(bundle);
-        setDemonstrations(bundle.getString(FragmentPageAdapter.getCipherDemonstrationKey()));
+        setDemonstrations(Enumerations.Demonstration.valueOf(bundle.getString(Handler.getCipherDemonstrationKey()))); // using enums w/string to get designated match. Go enums!
     }
 
     public void setDescriptions(Bundle bundle) {
-        inputDescription.setText(bundle.getString(FragmentPageAdapter.getInputDescriptionKey()));
-        outputDescription.setText(bundle.getString(FragmentPageAdapter.getOutputDescriptionKey()));
+        inputDescription.setText(bundle.getString(Handler.getInputDescriptionKey()));
+        outputDescription.setText(bundle.getString(Handler.getOutputDescriptionKey()));
     }
 
     protected void setDemonstrationText(String inputText, String outputText) {
@@ -88,23 +90,28 @@ public class DemonstrationFragment extends VisibilityFragment implements SetVisi
         outputDemonstration.setText(outputText);
     }
 
-    public void setDemonstrations(String key) { // default is false
-        Resources resources = getResources();
+    public void setDemonstrations(Enumerations.Demonstration key) {
+        resources = getResources();
         switch(key) {
-            case "CaesarDemonstration":
+            case CaesarDemonstration:
                 setDemonstrationText(resources.getString(R.string.caesar_input_example), resources.getString(R.string.caesar_output_example));
                 break;
-            case "VigenereDemonstration":
+            case VigenereDemonstration:
                 setDemonstrationText(resources.getString(R.string.vigenere_input_example), resources.getString(R.string.vigenere_output_example));
                 break;
-            case "AtbashDemonstration":
+            case AtbashDemonstration:
                 setDemonstrationText(resources.getString(R.string.atbash_input_example), resources.getString(R.string.atbash_output_example));
                 break;
-            case "PolybiusDemonstration":
+            case PolybiusDemonstration:
                 setDemonstrationText(resources.getString(R.string.polybius_input_example), resources.getString(R.string.polybius_output_example));
                 break;
-            case "A1Z26Demonstration":
+            case A1Z26Demonstration:
                 setDemonstrationText(resources.getString(R.string.a1z26_input_example), resources.getString(R.string.a1z26_output_example));
+                break;
+            case PlayfairDemonstration:
+                setDemonstrationText(resources.getString(R.string.playfair_input_example), resources.getString(R.string.playfair_output_example));
+                break;
+            default:
                 break;
         }
     }
