@@ -77,8 +77,7 @@ public class KeyCipherDemonstrationFragment extends DemonstrationFragment implem
 
         setKeyDemonstrations(Enumerations.Demonstration.valueOf(bundle.getString(Handler.getCipherDemonstrationKey())));
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         return view;
     }

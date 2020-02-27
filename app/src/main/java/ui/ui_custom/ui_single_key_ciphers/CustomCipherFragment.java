@@ -102,8 +102,7 @@ public class CustomCipherFragment extends VisibilityFragment implements SetVisib
 
         setParameters();
 
-        if(Activity.getMode()) setDarkTheme(); // affects all classes in the inheritance tree (Go inheritance!)
-        else setLightTheme();
+        setTheme(); // affects all classes in the inheritance tree (Go inheritance!)
 
         return view;
     }

@@ -50,8 +50,7 @@ public class CipherVisualisationFragment extends VisibilityFragment implements S
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_cipher_visualisation, container, false);
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         return view;
     }

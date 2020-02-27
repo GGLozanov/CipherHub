@@ -60,8 +60,7 @@ public class KeyCipherFragment extends CipherFragment implements SetVisibilityMo
 
         keyCipherCallerManager.VigenereCipher(); // switch() for future key ciphers
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         return view;
     }

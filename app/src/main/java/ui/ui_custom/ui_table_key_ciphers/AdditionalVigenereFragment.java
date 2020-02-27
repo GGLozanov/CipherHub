@@ -187,8 +187,7 @@ public class AdditionalVigenereFragment extends VisibilityFragment implements Se
         setKeySwitchListener(constraintLayout);
         setInputListener();
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         return view;
     }

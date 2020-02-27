@@ -149,8 +149,7 @@ public class QuadrupButtonFragment extends VisibilityFragment implements SetVisi
         setParameters();
         setListeners(determinePage());
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         // Inflate the layout for this fragment
         return view;

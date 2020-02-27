@@ -163,8 +163,7 @@ public class CustomPolybiusTableFragment extends VisibilityDialogFragment implem
 
         setParameters(); // inits table
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         return view;
     }

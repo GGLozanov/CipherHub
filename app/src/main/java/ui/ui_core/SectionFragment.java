@@ -95,8 +95,7 @@ public class SectionFragment extends VisibilityFragment implements SetVisibility
 
         setParameters();
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         return view;
     }

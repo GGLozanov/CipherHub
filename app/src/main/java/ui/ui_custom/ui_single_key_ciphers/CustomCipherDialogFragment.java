@@ -110,8 +110,7 @@ public class CustomCipherDialogFragment extends VisibilityDialogFragment impleme
 
         setParameters();
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         return view;
     }

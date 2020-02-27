@@ -90,8 +90,7 @@ public class CipherFragment extends VisibilityFragment implements SetVisibilityM
 
         callCipher(cipher);
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         return view;
     }

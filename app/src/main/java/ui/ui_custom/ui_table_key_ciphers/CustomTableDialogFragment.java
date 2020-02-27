@@ -140,8 +140,7 @@ public class CustomTableDialogFragment extends VisibilityDialogFragment implemen
         setParameters();
         setListeners();
 
-        if(Activity.getMode()) setDarkTheme();
-        else setLightTheme();
+        setTheme();
 
         return view;
     }

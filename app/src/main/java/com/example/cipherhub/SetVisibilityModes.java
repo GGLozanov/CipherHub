@@ -6,4 +6,9 @@ public interface SetVisibilityModes {
 
     void setDarkTheme();
 
+    default void setTheme() {
+        if(Activity.getMode()) setDarkTheme();
+        else setLightTheme();
+    }
+
 }
